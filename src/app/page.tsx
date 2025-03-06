@@ -1,101 +1,188 @@
-import Image from "next/image";
+import React from 'react'
+import Image from 'next/image'
+import Link  from 'next/link' 
+import Light from '@/app/assets/_ui-award-03.png'
+import Homenav from '@/app/navbar'
+import { Button } from "@/components/ui/button"
+import Frame from '@/app/assets/Frame 15.png'
+import Frame1 from '@/app/assets/Frame 24.png'
+import Science from '@/app/assets/Metaverse 3D Icon Pack - 20 Free Download Science & Technology 3D Icons _ IconScout 1.png'
+import PremiumV from '@/app/assets/Premium Vector _ 3d Books icon for web design isolated, Education and online class concept_ Eps 10 Vector_ 2.png'
+import  Calculator  from '@/app/assets/3d open calculator stock illustration_ Illustration of isolated - 31101625 1.png'
+import Images from '@/app/assets/Download free image of Globe, environment icon, 3D rendering illustration by Nunny about sticker, planet, design, 3d, and earth 6740065 1.png'
+import Cyclopropane from '@/app/assets/Cyclopropane 1.png'
+import PSD from '@/app/assets/Premium PSD _ 3d rendering mentor icon, mentor teaching in front of two student_ 1 (1).png'
+import Studio from '@/app/assets/studio.png'
+import Tech from '@/app/assets/3D illustrations - Maria Garaeva 1.png'
+import KS1 from '@/app/assets/Frame 49 (3).png'
+import KS3 from '@/app/assets/Frame 50 (3).png'
+import College from '@/app/assets/Frame 51 (1).png'
+import Tutor from '@/app/assets/Frame 52.png'
+import Unipage from '@/app/unipage'
+import Home from '@/app/home'
+import Footer from '@/app/footer'
 
-export default function Home() {
+
+
+
+export default function page() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <main className="">
+  
+      
+      <Homenav />
+    
+    <section className="md:px-[100px] px-[24px] py-[30px]">
+      <article className=" rounded-2xl md:bg-[#FFEEE6]  flex flex-col justify-between  p-[47px] ">   
+     <div className=" flex md:flex-row flex-col-reverse 
+      items-center md:justify-between gap-[30px] ">
+   <aside className="md:w-[55%] w-[100%] flex md:items-start items-center
+    md:justify-center justify-center flex-col gap-[22px]">
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+    <span className="md:flex items-center p-1 rounded-md hidden   border-[1px] border-[#FF5900] gap-2.5">
+      <Image src={Light} height={20} width={20} alt=''/>  <span className="text-[#FF5900]"> 
+         Citadel-i-project  </span>
+    </span>
+
+  <h2 className="text-[48px] leading-[50px] md:max-w-[603px] font-semibold">Your Learning Companion For Academic
+     Success!</h2>
+  <p className="text-[18px] max-w-[547px] flex-col flex gap-[12px]">Access high-quality study materials, video lessons, and expert guidance
+     to boost your academic success. Prepare fo exams, improve your skills, and take control of
+      your learning-anytime, anywhere. <span className="text-[18px]">For Students, Teachers , and Parents</span>
+  </p>
+  
+<span className="flex gap-2">
+  
+  <Button className="bg-[#FF5900] hover:bg-[#344054] hover:text-white text-[24px] h-[50px] text-white" variant="outline">
+           <Link href='/'> Start Learning </Link>
+            </Button>
+            
+          <Button className="border-[1px] text-[24px]
+          hover:text-white hover:bg-black bg-transparent h-[50px] text-black border-black " variant='default'>
+          <Link href='/'>  Book a Tutor  </Link> 
+            </Button>
+  </span>
+
+   </aside>
+<aside className="md:w-[40%] w-[100%]  md:max-w-[498px]">
+  <Image src={Frame} alt='' layout='responsive'/>
+</aside>
+
+
+
+     </div>
+
+
+
+
+
+     <div className=" flex md:flex-row py-[30px] flex-col-reverse gap-7
+      items-center justify-between ">
+   <aside className="md:w-[55%] w-[100%] flex 
+      gap-[26px]">
+   
+<span className="">
+  <p className="text-[24px] font-bold text-[#344054]">
+    25+
+  </p>
+  <p className="text-[14px] text-[#344054]">Years of Experience</p>
+</span>
+
+
+<span className="">
+  <p className="text-[24px] font-bold text-[#344054]">
+    50+
+  </p>
+  <p className="text-[14px] text-[#344054]">Qualified Tutors</p>
+</span>
+
+   </aside>
+<aside className="md:w-[40%] flex items-center gap-2 w-[100%] md:max-w-[498px]">
+  <Image src={Frame1} alt='' width={100} height={10} />
+  <p className="text-[14px] text-[#344054]">50+ Students registered</p>
+</aside>
+
+
+
+     </div>
+     </article>
+
+<div className="md:p-[47px] md:flex justify-between grid grid-cols-2 gap-[24px]">
+
+
+<span className="flex flex-col items-center justify-center">
+  <Image src={Science} alt='' width={70} height={70} />
+  <p className="">Sciences</p>
+</span>
+
+<span className="flex flex-col items-center justify-center">
+  <Image src={PremiumV} alt='' width={70} height={70} />
+  <p className="">Arts and Humanities</p>
+</span>
+
+<span className="flex flex-col items-center justify-center">
+  <Image src={Calculator} alt='' width={70} height={70} />
+  <p className="">Business</p>
+</span>
+
+
+<span className="flex flex-col items-center justify-center">
+  <Image src={Images} alt='' width={70} height={70} />
+  <p className="">History</p>
+</span>
+
+
+<span className="flex flex-col items-center justify-center">
+  <Image src={Cyclopropane} alt='' width={70} height={70} />
+  <p className="">STEM</p>
+</span>
+
+
+<span className="flex flex-col items-center justify-center">
+  <Image src={PSD} alt='' width={70} height={70} />
+  <p className="">Coaching</p>
+</span>
+
+
+<span className="flex flex-col items-center justify-center">
+  <Image src={Studio} alt='' width={70} height={70} />
+  <p className="">Counselling</p>
+</span>
+
+
+<span className="flex flex-col items-center justify-center">
+  <Image src={Tech} alt='' width={70} height={70} />
+  <p className="">Tech</p>
+</span>
+</div>
+
+<div className="flex md:flex-row flex-col gap-[40px]  justify-between py-[50px] items-center">
+
+<figure className="h-[348px] w-[280px]">
+<Image src={KS1} alt='' layout='responsive'/>
+</figure>
+
+
+<figure className="h-[348px] w-[280px]">
+<Image src={KS3} alt='' layout='responsive'/>
+</figure>
+
+
+<figure className="h-[348px] w-[280px]">
+<Image src={College} alt='' layout='responsive'/>
+</figure>
+
+
+
+<figure className="h-[348px] w-[280px]">
+<Image src={Tutor} alt='' layout='responsive'/>
+</figure>
+
+</div>
+    </section>
+    <Unipage />
+    <Home/>
+    <Footer/>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+  )
 }
