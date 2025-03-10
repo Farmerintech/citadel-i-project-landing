@@ -8,19 +8,21 @@ import { Label } from "@/components/ui/label"
 import { FiSearch } from "react-icons/fi";
 import { Button } from "@/components/ui/button"
 
+interface showPageprops{
+  showRegPage:(param:any)=>void
+  showLoginPage:(param:any)=>void
+
+}
 
 
 
-
-export default function HomeNavBar() {
+export default function HomeNavBar({showRegPage, showLoginPage}:showPageprops) {
   // State to manage mobile menu visibility
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   // Function to toggle the mobile menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-
   return (
     <div className=" flex  w-[100%]" >
       <nav className=" p-[24px] md:p-0  flex justify-between w-[100%] ">
@@ -70,10 +72,10 @@ export default function HomeNavBar() {
 
         <span className="flex items-center gap-[5px]">
 
-        <Button className="bg-[#FF5900] w-[97px] h-[35px] text-[16px] text-white" variant="outline">
-         <Link href='/'>  Register </Link>
+        <Button className="bg-[#FF5900] w-[97px] h-[35px] text-[16px] text-white" variant="outline" onClick={()=>{showRegPage('')}}>
+         <Link href='/' >  Register </Link>
           </Button>
-        <Button className="border-[1px] text-[16px] bg-transparent w-[97px] h-[35px] text-black border-black " variant='default'>
+        <Button className="border-[1px] text-[16px] bg-transparent w-[97px] h-[35px] text-black border-black " variant='default' onClick={()=>{showLoginPage('')}}>
         <Link href='/'>  Log in  </Link> 
           </Button>
 
@@ -176,8 +178,8 @@ export default function HomeNavBar() {
 
         <span className="flex justify-center items-center gap-[5px]">
 
-<Button className="bg-[#FF5900] text-[16px] text-white" variant="outline">Register</Button>
-<Button className="border-[1px] text-[16px] bg-transparent text-black border-black " variant='default'>Log in</Button>
+<Button className="bg-[#FF5900] text-[16px] text-white" variant="outline" onClick={()=>{showRegPage('')}}>Register</Button>
+<Button className="border-[1px] text-[16px] bg-transparent text-black border-black " variant='default' onClick={()=>{showLoginPage('')}}>Log in</Button>
 
 </span>
           </div>

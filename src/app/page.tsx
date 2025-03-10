@@ -1,4 +1,6 @@
-import React from 'react'
+"use client";
+
+import React, { useState } from 'react'
 import Image from 'next/image'
 import Link  from 'next/link' 
 import Light from '@/app/assets/_ui-award-03.png'
@@ -21,22 +23,38 @@ import Tutor from '@/app/assets/Frame 52.png'
 import Unipage from '@/app/unipage'
 import Home from '@/app/home'
 import Footer from '@/app/footer'
-
-
+import SignUpPage from "@/app/signupPage"
+import SignInPage from "@/app/signinPage"
 
 
 export default function page() {
+  const [showReg, setShowReg] = useState(false)
+  const [showLogin, setShowLogin] = useState(false)
+
+  const showRegPage = () =>{
+    setShowReg(!showReg)
+  }
+  const showLoginPage = () =>{
+    setShowLogin(!showLogin)
+  }
   return (
-    <main className="">
-  
-      
-      <Homenav />
-    
-    <section className="md:px-[100px] px-[24px] py-[30px]">
+    <main className={`${showReg || showLogin ? 'overflow-y-hidden bg-[#0000008F] md:bg-[white] bg-opacity-50 md:bg-opacity-50 h-[1154px] md:h-[732px]':''}`}>
+      {showReg  && 
+      <div className='md:fixed absolute pl-5 pr-5 pt-5 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50  z-40'>
+        <SignUpPage/>
+      </div>
+      }
+      {showLogin  && 
+      <div className='md:fixed absolute p-10 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50  z-40'>
+        <SignInPage/>
+      </div>
+      }
+      <Homenav showRegPage={showRegPage} showLoginPage={showLoginPage}/>
+      <section className="md:px-[100px] px-[24px] py-[30px]">
       <article className=" rounded-2xl md:bg-[#FFEEE6]  flex flex-col justify-between  p-[47px] ">   
-     <div className=" flex md:flex-row flex-col-reverse 
+      <div className=" flex md:flex-row flex-col-reverse 
       items-center md:justify-between gap-[30px] ">
-   <aside className="md:w-[55%] w-[100%] flex md:items-start items-center
+      <aside className="md:w-[55%] w-[100%] flex md:items-start items-center
     md:justify-center justify-center flex-col gap-[22px]">
 
     <span className="md:flex items-center p-1 rounded-md hidden   border-[1px] border-[#FF5900] gap-2.5">
