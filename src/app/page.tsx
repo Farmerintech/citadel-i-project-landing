@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link  from 'next/link' 
 import Light from '@/app/assets/_ui-award-03.png'
@@ -37,16 +37,32 @@ export default function page() {
   const showLoginPage = () =>{
     setShowLogin(!showLogin)
   }
+  const overlayRef = useRef<HTMLDivElement>(null)
+
+  const handleCloseOverlay = (event:MouseEvent)=>{
+    if(overlayRef.current && !overlayRef.current?.contains(event.target as Node)){
+      setShowReg(false)
+
+    }
+  }
+
+  useEffect(()=>{
+    overlayRef.current?.addEventListener('click', handleCloseOverlay)
+    return ()=>{
+      overlayRef.current?.removeEventListener('click', handleCloseOverlay)
+
+    }
+  }, [handleCloseOverlay])
   return (
-    <main className={`${showReg || showLogin ? 'overflow-y-hidden bg-[#0000008F] md:bg-[white] bg-opacity-50 md:bg-opacity-50 h-[1154px] md:h-[732px]':''}`}>
+    <main className={`${showReg || showLogin ? 'overflow-hidden bg-[#0000008F] md:bg-[white] bg-opacity-50 md:bg-opacity-50 h-[1154px] md:h-[732px]':''}`}>
       {showReg  && 
-      <div className='md:fixed absolute pl-5 pr-5 pt-5 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50  z-40'>
-        <SignUpPage/>
+      <div className='md:fixed absolute pl-5 pr-5 pt-5 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50  z-40' ref={overlayRef}>
+        <SignUpPage setShowReg={setShowReg}/>
       </div>
       }
       {showLogin  && 
       <div className='md:fixed absolute p-10 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50  z-40'>
-        <SignInPage/>
+        <SignInPage setShowLogin={setShowLogin}/>
       </div>
       }
       <Homenav showRegPage={showRegPage} showLoginPage={showLoginPage}/>
