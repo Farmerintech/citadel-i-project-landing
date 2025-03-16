@@ -53,6 +53,7 @@ export default function page() {
 
     }
   }, [handleCloseOverlay])
+  
   return (
     <main className={`${showReg || showLogin ? 'overflow-hidden bg-[#0000008F] md:bg-[white] bg-opacity-50 md:bg-opacity-50 h-[1154px] md:h-[732px]':''}`}>
       {showReg  && 
