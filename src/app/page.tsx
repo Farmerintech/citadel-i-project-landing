@@ -25,6 +25,8 @@ import Home from '@/app/home'
 import Footer from '@/app/footer'
 import SignUpPage from "@/app/signupPage"
 import SignInPage from "@/app/signinPage"
+import { toggle } from '@/lib/utils';
+import { useSearchParams } from 'next/navigation';
 
 
 export default function page() {
@@ -32,7 +34,7 @@ export default function page() {
   const [showLogin, setShowLogin] = useState(false)
 
   const showRegPage = () =>{
-    setShowReg(!showReg)
+    toggle(setShowReg, showReg); // then toggle the registration page
   }
   const showLoginPage = () =>{
     setShowLogin(!showLogin)
@@ -54,6 +56,26 @@ export default function page() {
     }
   }, [handleCloseOverlay])
   
+  const searchParams = useSearchParams();
+
+  const showLoginParam = searchParams.get('showLogin');
+  const showRegParam = searchParams.get('showReg');
+
+ 
+
+  useEffect(() => {
+    if (showLoginParam === 'true') {
+      setShowLogin(true);
+    }
+    if (showRegParam === 'true') {
+      setShowReg(true);
+    }
+    if (showLoginParam || showRegParam) {
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+  }, [showLoginParam, showRegParam]);
+
+
   return (
     <main className={`${showReg || showLogin ? 'overflow-hidden bg-[#0000008F] md:bg-[white] bg-opacity-50 md:bg-opacity-50 h-[1154px] md:h-[732px]':''}`}>
       {showReg  && 

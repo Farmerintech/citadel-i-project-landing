@@ -24,10 +24,10 @@ export default function HomeNavBar({showRegPage, showLoginPage}:showPageprops) {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
   return (
-    <div className=" flex  w-[100%]" >
+    <div className=" flex  w-[100%] bg-[#FEF6E6]" >
       <nav className=" p-[24px] md:p-0  flex justify-between w-[100%] ">
         {/* Logo */}
-        <div className="flex md:hidden bg-white items-center">
+        <div className="flex md:hidden items-center">
           <Image src={Logo} alt="" width={100} height={50} />
         </div>
 
@@ -73,7 +73,7 @@ export default function HomeNavBar({showRegPage, showLoginPage}:showPageprops) {
         <span className="flex items-center gap-[5px]">
 
         <Button className="bg-[#FF5900] w-[97px] h-[35px] text-[16px] text-white" variant="outline" onClick={()=>{showRegPage('')}}>
-         <Link href='/' >  Register </Link>
+         Register 
           </Button>
         <Button className="border-[1px] text-[16px] bg-transparent w-[97px] h-[35px] text-black border-black " variant='default' onClick={()=>{showLoginPage('')}}>
         <Link href='/'>  Log in  </Link> 
@@ -89,7 +89,7 @@ export default function HomeNavBar({showRegPage, showLoginPage}:showPageprops) {
               <Link href="">Home</Link>
             </li>
             <li className=" text-[16px]  font-normal text-[#130F26]">
-              <Link href="#">Classes</Link>
+              <Link href="/class">Classes</Link>
             </li>
             <li className=" text-[16px] font-normal text-[#130F26]">
               <Link href="#">Admission Info</Link>
@@ -131,7 +131,7 @@ export default function HomeNavBar({showRegPage, showLoginPage}:showPageprops) {
         {isMobileMenuOpen && (
           <div
             id="mobile-menu"
-            className="absolute bg-white top-[80px] left-0 w-full flex-col  p-6  lg:hidden"
+            className="absolute bg-[white] top-[80px] left-0 w-full flex-col  p-6  lg:hidden"
           >
             <ul className="flex flex-col  gap-4">
             <li className=" leading-[20.02px] text-[18px] font-normal text-[#130F26]">

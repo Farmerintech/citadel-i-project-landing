@@ -92,7 +92,7 @@ export const SignInForm = ({
 
       {/* Google Sign-in */}
       <div className="flex items-center justify-center w-full">
-        <button className="w-3/4 rounded-[8px] border border-gray-300 py-2 flex items-center justify-center text-sm">
+        <button className="w-full rounded-[8px] border border-gray-300 py-2 flex items-center justify-center text-sm">
           <Image
             src={googleLogo}
             alt="Google"
