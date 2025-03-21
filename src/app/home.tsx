@@ -268,8 +268,8 @@ export default function home() {
         </div>
       </main>
 
-      <main className="flex md:px-[100px] bg-[#FFF8EA] items-center lg:flex-row flex-col md:py-[64px] md:min-h-[662px]  px-[24px] justify-center md:pt-[100px] gap-[56px]">
-        <div className="md:w-[471px]  lg:h-auto ">
+      <main className="flex md:px-[100px] bg-[#FFF8EA] items-center py-[24px] lg:flex-row flex-col md:py-[64px] md:min-h-[662px]  px-[24px] justify-center md:pt-[100px] gap-[56px]">
+        <div className="md:w-[471px]  lg:h-auto w-full">
           <Image src={Whatsapp} alt="" layout="responsive" />
         </div>
         <div className="md:w-[581px] flex flex-col gap-[38px] md:h-auto">
