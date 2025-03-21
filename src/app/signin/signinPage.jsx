@@ -1,10 +1,9 @@
 "use client";
 import { useState } from "react";
-import { SignInForm } from "@/app/signinForm";
+import { SignInForm } from "./signinForm";
 import { AuthPage } from "@/app/authRightPage";
-import { handleForm } from "../app/utils/authApi"; // 
 import {  X } from "lucide-react";
-
+import { handleForm } from "@/app/utils/authApi";
 export default function SignInPage({setShowLogin}) {
   const [formData, setFormData] = useState({
     email: "",

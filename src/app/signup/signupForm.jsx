@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { Eye, EyeOff, ChevronsRight } from "lucide-react";
 import { useState } from "react";
-import googleLogo from "../app/assets/google.svg";
+import googleLogo from "@/app/assets/google.svg";
 
 export const SignUpForm = ({
   email,

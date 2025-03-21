@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { SignUpForm } from "@/app/signupForm";
+import { SignUpForm } from "./signupForm";
 import { AuthPage } from "@/app/authRightPage";
-import { handleForm } from "../app/utils/authApi"; // 
+import { handleForm } from "@/app/utils/authApi";
 import {  X } from "lucide-react";
 
 export default function SignUpPage({setShowReg}){

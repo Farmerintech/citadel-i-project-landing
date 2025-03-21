@@ -4,14 +4,92 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 export default function unipage() {
+
+  const Schools= [
+    {
+      name:'UNILAG',
+      bgColor1:'bg-[#A6A8AC]',
+      bgColor2:'bg-[#3E414A] '
+    },
+    {
+      name:'LASU',
+      bgColor1:'bg-[#A6A8AC]',
+      bgColor2:'bg-[#3E414A] '
+    },
+    {
+      name:'UNILORIN',
+      bgColor1:'bg-[#A6A8AC]',
+      bgColor2:'bg-[#3E414A] '
+    },
+    {
+      name:'ABU',
+      bgColor1:'bg-[#A6A8AC]',
+      bgColor2:'bg-[#3E414A] '
+    },
+    {
+      name:'UI',
+      bgColor1:'bg-[#A6A8AC]',
+      bgColor2:'bg-[#3E414A] '
+    },
+    {
+      name:'FUTA',
+      bgColor1:'bg-[#FFB38A]',
+      bgColor2:'bg-[#FF5900]'
+    },
+    {
+      name:'BUK ',
+      bgColor1:'bg-[#FFB38A]',
+      bgColor2:'bg-[#FF5900]'
+    },
+    {
+      name:'EKSU ',
+      bgColor1:'bg-[#FFB38A]',
+      bgColor2:'bg-[#FF5900]'
+    },
+    {
+      name:'TASUED',
+      bgColor1:'bg-[#FFB38A]',
+      bgColor2:'bg-[#FF5900]'
+    },
+    {
+      name:'LASUED',
+      bgColor1:'bg-[#FFB38A]',
+      bgColor2:'bg-[#FF5900]'
+    },
+    {
+      name:'ABUAD ',
+      bgColor1:'bg-[#A6A8AC] ',
+      bgColor2:'bg-[#3E414A] '
+    },
+    {
+      name:'KP',
+      bgColor1:'bg-[#A6A8AC] ',
+      bgColor2:'bg-[#3E414A] '
+    },
+    {
+      name:'NOUN',
+      bgColor1:'bg-[#A6A8AC] ',
+      bgColor2:'bg-[#3E414A] '
+    },
+    {
+      name:'UDUS',
+      bgColor1:'bg-[#A6A8AC]',
+      bgColor2:'bg-[#3E414A] '
+    },
+    {
+      name:'EKSU',
+      bgColor1:'bg-[#A6A8AC] ',
+      bgColor2:'bg-[#3E414A] '
+    },
+  ]
   return (
     <>  
-<article className=" md:gap-[56px] flex px-[24px] py-[32px] md:px-[100px] md:py-[47px]">
+<article className=" lg:gap-[56px] bg-[#F6F6F6] flex px-[32px] lg:py-[32px] md:px-[100px] py-[16px] flex flex-col lg:flex-row">
 
-<div className="md:w-[431px] md:flex hidden w-[100%] md:h-[523.9px]">
+<div className="lg:w-[431px] flex w-full md:h-[523.9px]">
 <Image src={Books} alt='' layout='responsive'/>
 </div>
- <div className="md:w-[666px] w-[100%] flex flex-col gap-[56px] md:h-[556px]">
+ <div className="md:w-[666px] w-[100%] flex flex-col gap-[56px] lg:h-[556px]">
   <span className="flex flex-col gap-[16px]">  
 <h2 className="md:text-[32px] font-semibold md:leading-[38.73px]">University Admission Information</h2>
 <p className="text-[18px] md:leading-[21.87px]  text-[#1D2939]">
@@ -20,96 +98,22 @@ export default function unipage() {
 </p>
 </span>
 
-<aside className="flex flex-col gap-[42px]">
-
-<div className="md:flex grid grid-cols-2  gap-[20px]">  
-<span className="bg-[#A6A8AC] rounded-none text-[16px] p-[10px] text-white" >
-         <Link href='/' className='flex items-center justify-center text-[24px] bg-[#3E414A] px-[4px]'>UNILAG </Link>
-          </span>
-
-
-
-
-          <span className="bg-[#A6A8AC] rounded-none text-[16px] p-[10px] text-white" >
-         <Link href='/' className='flex items-center justify-center text-[24px] bg-[#3E414A] px-[4px]'>LASU </Link>
-          </span>
-
-
-
-
-          <span className="bg-[#A6A8AC] rounded-none text-[16px] p-[10px]  text-white" >
-         <Link href='/' className='flex items-center justify-center text-[20px] px-[4px]  bg-[#3E414A]'>UNILORIN </Link>
-          </span>
-
-          
-          
-
-<span className="bg-[#A6A8AC] rounded-none text-[16px]  p-[10px] text-white" >
-         <Link href='/' className='flex items-center justify-center text-[24px] bg-[#3E414A] px-[4px]'>ABU </Link>
-          </span>
-
-          
-
-<span className="bg-[#A6A8AC] rounded-none text-[16px] p-[10px]  text-white" >
-         <Link href='/' className='flex items-center justify-center text-[24px] bg-[#3E414A] px-[4px]'>UI</Link>
-          </span>
-          </div>
-          
-          <div className="md:flex grid grid-cols-2  gap-[20px]"> 
-<span className="bg-[#FFB38A] rounded-none text-[16px] p-[10px] text-white" > 
-          
-         <Link href='/' className='flex items-center justify-center text-[24px] bg-[#FF5900] px-[4px]'>FUTA</Link>
-         </span>
-
-          
-          
-         <span className="bg-[#FFB38A] rounded-none text-[16px] p-[10px] text-white" > 
-         <Link href='/' className='flex items-center justify-center text-[24px] bg-[#FF5900] px-[4px]'>BUK</Link>
-          </span>
-
-          
-          <span className="bg-[#FFB38A] rounded-none text-[16px] p-[10px] text-white" > 
-         <Link href='/' className='flex items-center justify-center text-[24px] bg-[#FF5900] px-[4px]'>EKSU</Link>
-          </span>
-
-          <span className="bg-[#FFB38A] rounded-none text-[16px] p-[10px] text-white" > 
-         <Link href='/' className='flex items-center justify-center text-[24px] bg-[#FF5900] px-[4px]'>TASUED</Link>
-          </span>
-          <span className="bg-[#FFB38A] rounded-none text-[16px] p-[10px] text-white" > 
-         <Link href='/' className='flex items-center justify-center text-[24px] bg-[#FF5900] px-[4px]'>LASUED</Link>
-          </span>
+<div className="grid grid-cols-5 gap-[20px]">
+  {
+    Schools.map((school)=>(
+        <div className={`rounded-none text-[12px]  md:text-[16px] p-[3px] md:p-[10px] text-white ${school.bgColor1}`}>
+             <Link href='/' className={`flex   items-center justify-center md:text-[12px] xl:text-[20px] text-[12px]  md:px-[4px] ${school.bgColor2}`}>
+                   {school.name}
+             </Link>
+        </div>
+    ))
+  }
 </div>
-          <div className="md:flex grid grid-cols-2  gap-[20px]"> 
 
-
-          <span className="bg-[#A6A8AC] rounded-none text-[16px] p-[10px]  text-white" >
-         <Link href='/' className='flex items-center justify-center text-[24px] bg-[#3E414A] px-[4px]'>ABUAD</Link>
-          </span>
-
-
-
-<span className="bg-[#A6A8AC] rounded-none text-[16px] p-[10px] text-white" >
-         <Link href='/' className='flex items-center justify-center text-[24px] bg-[#3E414A] px-[4px]'>KP</Link>
-          </span>
-
-          <span className="bg-[#A6A8AC] rounded-none text-[16px] p-[10px] text-white" >
-         <Link href='/' className='flex items-center justify-center text-[24px] bg-[#3E414A] px-[4px]'>NOUN</Link>
-          </span>
-
-          
-<span className="bg-[#A6A8AC] rounded-none text-[16px] p-[10px]  text-white" >
-         <Link href='/' className='flex items-center justify-center text-[24px] bg-[#3E414A] px-[4px]'>UDUS</Link>
-          </span>
-
-          
-<span className="bg-[#A6A8AC] rounded-none text-[16px] p-[10px]  text-white" >
-         <Link href='/' className='flex items-center justify-center text-[24px] bg-[#3E414A] px-[4px]'>EDSU</Link>
-          </span>
-          </div>
-</aside>
-<Button variant='ghost' className='w-[301px] h-[48px] border-[1px] border-black hover:bg-black hover:text-white
+<Button variant='ghost' className=' md:w-[301px] w- px-[16px] md:px-[24px] md:py-[12px] py-[8px] border-[1px] border-black hover:bg-black hover:text-white
  font-semibold text-[18px]' >Check out all school info
 </Button>
+
 
  </div>
 
