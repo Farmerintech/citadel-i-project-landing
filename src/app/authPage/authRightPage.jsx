@@ -1,5 +1,5 @@
-import logo from "../app/assets/Logo.svg";
-import asideImage from "../app/assets/reg.jpg";
+import logo from "@/app/assets/Logo.svg";
+import asideImage from "@/app/assets/reg.jpg";
 import Image from "next/image";
 
 export const AuthPage = () =>{

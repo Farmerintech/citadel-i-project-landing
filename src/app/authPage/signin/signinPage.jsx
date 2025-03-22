@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { SignInForm } from "./signinForm";
-import { AuthPage } from "@/app/authRightPage";
+import { AuthPage } from "../authRightPage";
 import {  X } from "lucide-react";
 import { handleForm } from "@/app/utils/authApi";
 export default function SignInPage({setShowLogin}) {

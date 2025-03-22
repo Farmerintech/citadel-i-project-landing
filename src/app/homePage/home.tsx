@@ -158,7 +158,7 @@ export default function home() {
               </Button>
               <Button
                 variant="outline"
-                className="hover:bg-black md:w-auto w-full md:text-[18px] text-[12px]hover:text-white border-[1px] border-black"
+                className="hover:bg-black md:w-auto w-full md:text-[18px] text-[12px] hover:text-white border-[1px] border-black"
               >
                 Book a free consultation
               </Button>
@@ -323,10 +323,7 @@ export default function home() {
 
           <span className=" flex gap-[20px]">
             <Button
-              variant="outline"
-              className="hover:bg-black h-[48px] text-[18px] hover:text-white
-  bg-[#FF5900] text-white"
-            >
+              className=" h-[48px] text-[18px] hover:text-white bg-[#FF5900] text-white">
               Register Now to Secure a Spot
             </Button>
           </span>
@@ -355,15 +352,27 @@ export default function home() {
             <p className="">Why chose Our Tutors</p>
             <span className="flex flex-col gap-[10px]">
               <p className="flex gap-3 items-center">
-                <Checkbox className="" />
+                <span>
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.93066 12.9775L10.9307 15.9775L16.9307 9.97754M8.23066 21.9775H16.6307C18.3108 21.9775 19.1509 21.9775 19.7926 21.6506C20.3571 21.3629 20.8161 20.904 21.1037 20.3395C21.4307 19.6978 21.4307 18.8577 21.4307 17.1775V8.77754C21.4307 7.09738 21.4307 6.2573 21.1037 5.61557C20.8161 5.05108 20.3571 4.59214 19.7926 4.30452C19.1509 3.97754 18.3108 3.97754 16.6307 3.97754H8.23066C6.55051 3.97754 5.71043 3.97754 5.06869 4.30452C4.50421 4.59214 4.04526 5.05108 3.75764 5.61557C3.43066 6.2573 3.43066 7.09738 3.43066 8.77754V17.1775C3.43066 18.8577 3.43066 19.6978 3.75764 20.3395C4.04526 20.904 4.50421 21.3629 5.06869 21.6506C5.71043 21.9775 6.55051 21.9775 8.23066 21.9775Z" stroke="#FF5900" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>                
                 Taught By Experience Instructors
               </p>
               <p className="flex gap-3 items-center">
-                <Checkbox className="" />
+                <span>
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.93066 12.9775L10.9307 15.9775L16.9307 9.97754M8.23066 21.9775H16.6307C18.3108 21.9775 19.1509 21.9775 19.7926 21.6506C20.3571 21.3629 20.8161 20.904 21.1037 20.3395C21.4307 19.6978 21.4307 18.8577 21.4307 17.1775V8.77754C21.4307 7.09738 21.4307 6.2573 21.1037 5.61557C20.8161 5.05108 20.3571 4.59214 19.7926 4.30452C19.1509 3.97754 18.3108 3.97754 16.6307 3.97754H8.23066C6.55051 3.97754 5.71043 3.97754 5.06869 4.30452C4.50421 4.59214 4.04526 5.05108 3.75764 5.61557C3.43066 6.2573 3.43066 7.09738 3.43066 8.77754V17.1775C3.43066 18.8577 3.43066 19.6978 3.75764 20.3395C4.04526 20.904 4.50421 21.3629 5.06869 21.6506C5.71043 21.9775 6.55051 21.9775 8.23066 21.9775Z" stroke="#FF5900" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
                 Fun & Interactive Learning
               </p>
               <p className="flex gap-3 items-center">
-                <Checkbox className="" />
+                <span>
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.93066 12.9775L10.9307 15.9775L16.9307 9.97754M8.23066 21.9775H16.6307C18.3108 21.9775 19.1509 21.9775 19.7926 21.6506C20.3571 21.3629 20.8161 20.904 21.1037 20.3395C21.4307 19.6978 21.4307 18.8577 21.4307 17.1775V8.77754C21.4307 7.09738 21.4307 6.2573 21.1037 5.61557C20.8161 5.05108 20.3571 4.59214 19.7926 4.30452C19.1509 3.97754 18.3108 3.97754 16.6307 3.97754H8.23066C6.55051 3.97754 5.71043 3.97754 5.06869 4.30452C4.50421 4.59214 4.04526 5.05108 3.75764 5.61557C3.43066 6.2573 3.43066 7.09738 3.43066 8.77754V17.1775C3.43066 18.8577 3.43066 19.6978 3.75764 20.3395C4.04526 20.904 4.50421 21.3629 5.06869 21.6506C5.71043 21.9775 6.55051 21.9775 8.23066 21.9775Z" stroke="#FF5900" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>                
                 100% Online & Accessible{" "}
               </p>
             </span>
@@ -372,23 +381,18 @@ export default function home() {
           <span className=" flex gap-[20px]">
             <Button
               variant="outline"
-              className="hover:bg-black h-[48px] text-[18px] hover:text-white
-  bg-[#FF5900] text-white"
-            >
+              className="hover:bg-black h-[48px] text-[18px] hover:text-white bg-[#FF5900] text-white">
               Become a Tutor Now!
             </Button>
 
             <Button
               variant="outline"
-              className="hover:bg-black h-[48px] text-[18px] hover:text-white
-  bg-[#FFEEE6] text-[#FF5900]"
-            >
+              className="hover:bg-black h-[48px] text-[18px] hover:text-white bg-[#FFEEE6] text-[#FF5900]">
               Become a Tutor
             </Button>
           </span>
         </div>
       </main>
-
       <main className="flex lg:flex-row bg-[#F6F6F6]  py-[24px] items-center  flex-col-reverse md:px-[100px] px-[24px] pb-[100px] justify-center gap-[56px]">
         <div className="md:w-[719px]  flex flex-col gap-[16px] md:h-[577px]">
           <h2 className="font-semibold text-[40px]">Sponsor A Candidate</h2>
@@ -405,20 +409,32 @@ export default function home() {
             <p className="">How You can Help:</p>
             <span className="md:flex grid grid-cols-1 gap-[8px]">
               <h2 className="md:p-[16px] p-[5px] text-black rounded-[8px] bg-[#FFEEE6]">
-                <Checkbox className="" />
-                <p className="">Sponsor Tuition Fee For A Child</p>{" "}
+                <span>
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.93066 12.9775L10.9307 15.9775L16.9307 9.97754M8.23066 21.9775H16.6307C18.3108 21.9775 19.1509 21.9775 19.7926 21.6506C20.3571 21.3629 20.8161 20.904 21.1037 20.3395C21.4307 19.6978 21.4307 18.8577 21.4307 17.1775V8.77754C21.4307 7.09738 21.4307 6.2573 21.1037 5.61557C20.8161 5.05108 20.3571 4.59214 19.7926 4.30452C19.1509 3.97754 18.3108 3.97754 16.6307 3.97754H8.23066C6.55051 3.97754 5.71043 3.97754 5.06869 4.30452C4.50421 4.59214 4.04526 5.05108 3.75764 5.61557C3.43066 6.2573 3.43066 7.09738 3.43066 8.77754V17.1775C3.43066 18.8577 3.43066 19.6978 3.75764 20.3395C4.04526 20.904 4.50421 21.3629 5.06869 21.6506C5.71043 21.9775 6.55051 21.9775 8.23066 21.9775Z" stroke="#FF5900" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+
+                </span>                <p className="">Sponsor Tuition Fee For A Child</p>{" "}
               </h2>
 
               <h2 className="md:p-[16px] p-[5px] text-black rounded-[8px] bg-[#FFEEE6]">
-                <Checkbox className="" />
-                <p className="">
+                <span>
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.93066 12.9775L10.9307 15.9775L16.9307 9.97754M8.23066 21.9775H16.6307C18.3108 21.9775 19.1509 21.9775 19.7926 21.6506C20.3571 21.3629 20.8161 20.904 21.1037 20.3395C21.4307 19.6978 21.4307 18.8577 21.4307 17.1775V8.77754C21.4307 7.09738 21.4307 6.2573 21.1037 5.61557C20.8161 5.05108 20.3571 4.59214 19.7926 4.30452C19.1509 3.97754 18.3108 3.97754 16.6307 3.97754H8.23066C6.55051 3.97754 5.71043 3.97754 5.06869 4.30452C4.50421 4.59214 4.04526 5.05108 3.75764 5.61557C3.43066 6.2573 3.43066 7.09738 3.43066 8.77754V17.1775C3.43066 18.8577 3.43066 19.6978 3.75764 20.3395C4.04526 20.904 4.50421 21.3629 5.06869 21.6506C5.71043 21.9775 6.55051 21.9775 8.23066 21.9775Z" stroke="#FF5900" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+
+                </span>                <p className="">
                   Provide Learning Materials & Examination Registration Support
                 </p>{" "}
               </h2>
 
               <h2 className="md:p-[16px] p-[5px] text-black flex flex-col gap-[10px] rounded-[8px] bg-[#FFEEE6]">
-                <Checkbox className="" />
-                <p className="">
+                <span>
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.93066 12.9775L10.9307 15.9775L16.9307 9.97754M8.23066 21.9775H16.6307C18.3108 21.9775 19.1509 21.9775 19.7926 21.6506C20.3571 21.3629 20.8161 20.904 21.1037 20.3395C21.4307 19.6978 21.4307 18.8577 21.4307 17.1775V8.77754C21.4307 7.09738 21.4307 6.2573 21.1037 5.61557C20.8161 5.05108 20.3571 4.59214 19.7926 4.30452C19.1509 3.97754 18.3108 3.97754 16.6307 3.97754H8.23066C6.55051 3.97754 5.71043 3.97754 5.06869 4.30452C4.50421 4.59214 4.04526 5.05108 3.75764 5.61557C3.43066 6.2573 3.43066 7.09738 3.43066 8.77754V17.1775C3.43066 18.8577 3.43066 19.6978 3.75764 20.3395C4.04526 20.904 4.50421 21.3629 5.06869 21.6506C5.71043 21.9775 6.55051 21.9775 8.23066 21.9775Z" stroke="#FF5900" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+
+                </span>                <p className="">
                   Empowwer A Future Leader with Quality Education
                 </p>{" "}
               </h2>
@@ -439,7 +455,7 @@ export default function home() {
           </span>
         </div>
 
-        <div className="w-[313px]  h-[600.12px]">
+        <div className="w-[313px]  h-[600.12px] ">
           <Image src={Frame7} alt="" layout="responsive" />
         </div>
       </main>

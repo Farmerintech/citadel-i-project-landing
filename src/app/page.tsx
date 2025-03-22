@@ -3,11 +3,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Homenav from '@/app/navbar'
-import Unipage from '@/app/unipage'
-import Home from '@/app/home'
+import Unipage from '@/app/homePage/unipage'
+import Home from '@/app/homePage/home'
 import Footer from '@/app/footer'
-import SignUpPage from "@/app/signup/signupPage"
-import SignInPage from "@/app/signin/signinPage"
+import SignUpPage from "@/app/authPage/signup/signupPage"
+import SignInPage from "@/app/authPage/signin/signinPage"
 import { toggle } from '@/lib/utils';
 import { useSearchParams } from 'next/navigation';
 import { Hero } from './homePage/hero';

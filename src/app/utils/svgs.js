@@ -15,7 +15,22 @@ export const Svgs =
      arrowDown:
          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M6 9L12 15L18 9" stroke="#667085" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-         </svg>
+         </svg>,
+         bulb:
+<svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.9996 0.695312C5.41211 0.695312 0.0683594 5.59219 0.0683594 11.6297C0.0683594 13.2047 0.543359 14.8891 1.24023 16.3734C2.21836 18.4609 3.28398 20.0047 3.59648 20.5734C4.46523 22.1547 4.34023 23.8203 4.58086 24.8641C5.03398 26.8141 6.39023 27.5203 11.9965 27.5203C17.6027 27.5203 18.809 26.8484 19.3121 25.0516C19.6559 23.8297 19.3215 22.4953 20.1871 20.9172C20.4996 20.3484 21.7715 18.4641 22.7527 16.3734C23.4496 14.8891 23.9246 13.2047 23.9246 11.6297C23.9309 5.59219 18.5871 0.695312 11.9996 0.695312Z" fill="#FFD600"/>
+</svg>,
+curveArrow:<svg width="56" height="64" viewBox="0 0 56 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_555_5334)">
+<path d="M2.09375 61.7972C8.12042 45.9725 24.4991 17.5857 43.6882 26.9572C56.7894 33.3555 46.7755 47.4535 32.7131 39.898C18.6507 32.3424 22.78 5.32485 53.9066 7.93923M53.9066 7.93923L49.728 12.6755M53.9066 7.93923L47.4499 2.53906" stroke="black" stroke-width="3" stroke-linecap="round"/>
+</g>
+<defs>
+<clipPath id="clip0_555_5334">
+<rect width="56" height="63.4453" fill="white" transform="translate(0 0.445312)"/>
+</clipPath>
+</defs>
+</svg>
+
 
     }
 

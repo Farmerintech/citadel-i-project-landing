@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { SignUpForm } from "./signupForm";
-import { AuthPage } from "@/app/authRightPage";
+import { AuthPage } from "../authRightPage";
 import { handleForm } from "@/app/utils/authApi";
 import {  X } from "lucide-react";
 

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from '@/app/assets/Logo.png'
 import Image from "next/image";
 import Link from "next/link";
@@ -7,13 +7,13 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { FiSearch } from "react-icons/fi";
 import { Button } from "@/components/ui/button"
-
+import {getCurrentNav} from "@/app/utils/getCurrentNav"
+import { useRouter, usePathname } from 'next/navigation';
 interface showPageprops{
   showRegPage:(param:any)=>void
   showLoginPage:(param:any)=>void
 
 }
-
 
 
 export default function HomeNavBar({showRegPage, showLoginPage}:showPageprops) {
@@ -23,6 +23,13 @@ export default function HomeNavBar({showRegPage, showLoginPage}:showPageprops) {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+  const [currentNav, setCurrentNav] = useState(0);
+  const pathname = usePathname(); 
+
+  useEffect(() => {
+    const navIndex = getCurrentNav(pathname);
+    setCurrentNav(navIndex);
+  }, [pathname]); 
   return (
     <div className=" flex  w-[100%] bg-[#FEF6E6] md:bg-[#FFFFFF]" >
       <nav className=" p-[24px] md:p-0  flex justify-between w-[100%] ">
@@ -72,7 +79,7 @@ export default function HomeNavBar({showRegPage, showLoginPage}:showPageprops) {
         </Label>
         </span>
         <span className="flex items-center gap-[5px]">
-        <Button className="bg-[#FF5900] w-[97px] h-[35px] text-[16px] text-white" variant="outline" onClick={()=>{showRegPage('')}}>
+        <Button className="bg-[#FF5900] w-[97px] h-[35px] text-[16px] text-white"  onClick={()=>{showRegPage('')}}>
          Register 
           </Button>
         <Button className="border-[1px] text-[16px] bg-transparent w-[97px] h-[35px] text-black border-black " variant='default' onClick={()=>{showLoginPage('')}}>
@@ -84,34 +91,41 @@ export default function HomeNavBar({showRegPage, showLoginPage}:showPageprops) {
           <div className="flex px-[100px] py-[16px] lg:items-center  border-b-[1px] border-[#F2F4F7]
             lg:justify-between ">  
           <ul className=" flex gap-[25px] items-center flex-wrap">
-            <li className="  text-[16px] border-b-[3px]
-            border-[#FF5900] py-[3px] font-normal text-[#130F26]">
-              <Link href="">Home</Link>
+            <li className={`text-[16px] 
+            border-[#FF5900] py-[3px] font-normal text-[#130F26] hover:text-[#FF5900] hover:border-b-[3px] ${currentNav===0 ? "text-[#FF5900] border-b-[3px]": "text-black"}`} onClick={()=>{setCurrentNav(0)}}>
+              <Link href="/">Home</Link>
             </li>
-            <li className=" text-[16px]  font-normal text-[#130F26]">
-              <Link href="/class">Classes</Link>
+            <li className={`text-[16px] 
+            border-[#FF5900] py-[3px] font-normal text-[#130F26] hover:text-[#FF5900] hover:border-b-[3px] ${currentNav===1 ? "text-[#FF5900] border-b-[3px]": "text-black"}`} onClick={()=>{setCurrentNav(1)}}>
+              <Link href="/classes">Classes</Link>
             </li>
-            <li className=" text-[16px] font-normal text-[#130F26]">
-              <Link href="#">Admission Info</Link>
+            <li className={`text-[16px] 
+            border-[#FF5900] py-[3px] font-normal text-[#130F26] hover:text-[#FF5900] hover:border-b-[3px] ${currentNav===2 ? "text-[#FF5900] border-b-[3px]": "text-black"}`} onClick={()=>{setCurrentNav(2)}}>
+              <Link href="/admission_info">Admission Info</Link>
             </li>
             
-            <li className=" text-[16px] font-normal text-[#130F26]">
-              <Link href="#">Counselling</Link>
+            <li className={`text-[16px] 
+            border-[#FF5900] py-[3px] font-normal text-[#130F26] hover:text-[#FF5900] hover:border-b-[3px] ${currentNav ===3 ? "text-[#FF5900] border-b-[3px]": "text-black"}`} onClick={()=>{setCurrentNav(3)}}>
+              <Link href="/counselling">Counselling</Link>
             </li>
-            <li className=" text-[16px] font-normal text-[#130F26]">
-              <Link href="#">Holiday Coaching</Link>
+            <li className={`text-[16px] 
+            border-[#FF5900] py-[3px] font-normal text-[#130F26] hover:text-[#FF5900] hover:border-b-[3px] ${currentNav ===4 ? "text-[#FF5900] border-b-[3px]": "text-black"}`} onClick={()=>{setCurrentNav(4)}}>
+              <Link href="/holiday_coaching">Holiday Coaching</Link>
             </li>
-            <li className=" text-[16px] font-normal text-[#130F26]">
-              <Link href="#">Exam Preparation</Link>
+            <li className={`text-[16px] 
+            border-[#FF5900] py-[3px] font-normal text-[#130F26] hover:text-[#FF5900] hover:border-b-[3px] ${currentNav ===5 ? "text-[#FF5900] border-b-[3px]": "text-black"}`} onClick={()=>{setCurrentNav(5)}}>
+              <Link href="/exam_preparation">Exam Preparation</Link>
             </li>
-            <li className=" text-[16px] font-normal text-[#130F26]">
-              <Link href="#">Library</Link>
+            <li className={`text-[16px] 
+            border-[#FF5900] py-[3px] font-normal text-[#130F26] hover:text-[#FF5900] hover:border-b-[3px] ${currentNav ===6 ? "text-[#FF5900] border-b-[3px]": "text-black"}`} onClick={()=>{setCurrentNav(6)}}>
+              <Link href="/library">Library</Link>
             </li>
-            <li className=" text-[16px] font-normal text-[#130F26]">
-              <Link href="#">Sponsor a student</Link>
+            <li className={`text-[16px] 
+            border-[#FF5900] py-[3px] font-normal text-[#130F26] hover:text-[#FF5900] hover:border-b-[3px] ${currentNav ===7 ? "text-[#FF5900] border-b-[3px]": "text-black"}`} onClick={()=>{setCurrentNav(7)}}>
+              <Link href="/sponsor">Sponsor a student</Link>
             </li>
           </ul>
-          <Button className="text-[#FF5900] text-[16px] bg-[#FFEEE6]" variant="outline">
+          <Button className="text-[#FF5900] text-[16px] bg-[#FFEEE6] hover:text-white" >
               <Link href='/'>  Book a Tutor </Link>
           </Button>
         </div>
