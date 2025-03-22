@@ -7,7 +7,7 @@ export const Main = () =>{
     const subjects= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     return(
         <section className="bg-white w-full min-h-screen  rounded-[2px] px-[16px] py-[16px] md:px-[40px] md:py-[32px] ">  
-        <div className=" grid grid-cols-2 gap-[12px] absolute left-8 right-5   z-[80px] ">
+        <div className=" grid grid-cols-2 gap-[12px] absolute left-8 right-5">
         <MobileSideBar/>
         <div className="w-[95%] ">
             <button className="  w-full px-[16px] py-[12px] flex items-center justify-between border-[1.5px] bg-orange-500 md:hidden block text-white">

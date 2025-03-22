@@ -134,33 +134,33 @@ export default function HomeNavBar({showRegPage, showLoginPage}:showPageprops) {
         {isMobileMenuOpen && (
           <div
             id="mobile-menu"
-            className="absolute bg-[white] top-[80px] right-0 w-[215px] h-[662px] flex-col p-6  lg:hidden"
+            className="absolute bg-[white] top-[80px] right-0 w-[215px] h-[662px] flex-col p-6 z-10  lg:hidden"
           >
             <ul className="flex flex-col   gap-[32px]">
             <li className=" leading-[20.02px] text-[18px] font-normal text-[#130F26]">
-              <Link href="">Home</Link>
+              <Link href="/">Home</Link>
             </li>
             <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
-              <Link href="#">Classes</Link>
+              <Link href="/classes">Classes</Link>
             </li>
             <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
-              <Link href="#">Admission Info</Link>
+              <Link href="/admission_info">Admission Info</Link>
             </li>
             <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
-              <Link href="#">Counselling</Link>
+              <Link href="/counselling">Counselling</Link>
             </li>
             <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
-              <Link href="#">Holiday Coaching</Link>
+              <Link href="/holiday_coaching">Holiday Coaching</Link>
             </li>
             <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
-              <Link href="#">Exam Preparation</Link>
+              <Link href="/exam_preparation">Exam Preparation</Link>
             </li>
             <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
-              <Link href="#">Library</Link>
+              <Link href="/library">Library</Link>
             </li>
             
             <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
-              <Link href="#">Sponsor a student</Link>
+              <Link href="/sponsor">Sponsor a student</Link>
             </li>
               <li>
               </li>

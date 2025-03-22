@@ -2,7 +2,7 @@ import { Svgs } from "../utils/svgs"
 
 export const RightSide = ()=>{
     return(
-        <aside className="xl:min-width-[829px] bg-white flex flex-col gap-[53px] px-[32px] py-[16px] lg:rounded-[4px] lg:w-2/3 lg:custom-scrollbar lg:overflow-y-scroll lg:h-[829px] ">
+        <aside className="xl:min-width-[829px] bg-white flex flex-col gap-[53px] px-[32px] py-[16px] lg:rounded-[4px] lg:w-2/3 custom-scrollbar lg:overflow-y-scroll lg:h-screen">
             <div className="flex flex-col gap-[24px]">
                 <h2 className="font-[700] md:text-[32px] text-[24px] text-[#0F0F0F]">Your Complete Guide to Securing Admission into Your Desired School and Course</h2>
                 <p className="font-[400] text-[18px]">Gaining admission into a higher institution in Nigeria requires careful planning and an understanding of the process. Whether you're applying to a university, polytechnic, or college, this guide will help you navigate the admission process smoothly.</p>

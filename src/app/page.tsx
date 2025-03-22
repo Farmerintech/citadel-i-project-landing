@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
 import Homenav from '@/app/navbar'
 import Unipage from '@/app/homePage/unipage'
 import Home from '@/app/homePage/home'
