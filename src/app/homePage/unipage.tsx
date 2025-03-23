@@ -84,7 +84,7 @@ export default function unipage() {
   ]
   return (
     <>  
-<article className=" lg:gap-[56px] bg-[#F6F6F6] flex px-[32px] lg:py-[32px] md:px-[100px] py-[16px] flex flex-col lg:flex-row">
+<article className=" lg:gap-[56px] md:gap-[16px] bg-[#F6F6F6] flex px-[32px] lg:py-[32px] lg:px-[100px] py-[16px] flex flex-col md:flex-row">
 
 <div className="lg:w-[431px] flex w-full md:h-[523.9px]">
 <Image src={Books} alt='' layout='responsive'/>
@@ -101,8 +101,8 @@ export default function unipage() {
 <div className="grid grid-cols-5 gap-[20px]">
   {
     Schools.map((school)=>(
-        <div className={`rounded-none text-[12px]  md:text-[16px] p-[3px] md:p-[10px] text-white ${school.bgColor1}`}>
-             <Link href='/' className={`flex   items-center justify-center md:text-[12px] xl:text-[20px] text-[12px]  md:px-[4px] ${school.bgColor2}`}>
+        <div className={`rounded-none text-[12px]  lg:text-[16px] p-[3px] lg:p-[10px] text-white ${school.bgColor1}`}>
+             <Link href='/' className={`flex   items-center justify-center lg:text-[12px] xl:text-[20px] text-[12px]  lg:px-[4px] ${school.bgColor2}`}>
                    {school.name}
              </Link>
         </div>
@@ -110,7 +110,7 @@ export default function unipage() {
   }
 </div>
 
-<Button variant='ghost' className=' md:w-[301px] w- px-[16px] md:px-[24px] md:py-[12px] py-[8px] border-[1px] border-black hover:bg-black hover:text-white
+<Button variant='ghost' className=' md:w-[301px] w- px-[16px] px-[24px] md:py-[12px] py-[8px] border-[1px] border-black hover:bg-black hover:text-white
  font-semibold text-[18px]' >Check out all school info
 </Button>
 

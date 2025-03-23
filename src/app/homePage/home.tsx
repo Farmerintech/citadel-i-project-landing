@@ -33,13 +33,13 @@ export default function home() {
           <Image src={Mother} alt="" layout="responsive" />
         </div>
       </main>
-      <main className="bg-[#FFF7F3] md:px-[135px] md:py-[64px] py-[32px] px-[24px] h-auto">
+      <main className="bg-[#FFF7F3] lg:px-[135px] md:py-[64px] py-[32px] px-[24px] h-auto">
         <h2 className="text-[32px] font-semibold">Our Services</h2>
-        <div className="flex justify-between items-center flex-col lg:flex-row gap-[64px]">
-          <div className="flex-1 w-full">
+        <div className="flex justify-between flex-col md:flex-row gap-[64px]">
+          <div className="flex-1">
             <Image src={Waec} alt="" layout="responsive" />
           </div>
-          <div className="flex-1">
+          <div className="flex-1 md:w-1/2">
             <h2 className="font-semibold md:text-[24px]">
               Exam Peparation, Guidance and Tutoring
             </h2>
@@ -152,13 +152,13 @@ export default function home() {
                 Mock Exams and Personalized Feedback
               </p>
             </div>
-            <span className=" flex  lg:flex-row flex-col gap-[20px] pt-8">
-              <Button className="md:w-auto w-full md:text-[18px] text-[12px]  bg-[#FF5900]">
+            <span className=" flex  xl:flex-row flex-col gap-[20px] pt-8 ">
+              <Button className="w-auto md:text-[18px] text-[12px]  bg-[#FF5900]">
                 Access Guide and Past Questions
               </Button>
               <Button
                 variant="outline"
-                className="hover:bg-black md:w-auto w-full md:text-[18px] text-[12px] hover:text-white border-[1px] border-black"
+                className="hover:bg-black w-auto md:text-[18px] text-[12px] hover:text-white border-[1px] border-black"
               >
                 Book a free consultation
               </Button>
@@ -167,13 +167,13 @@ export default function home() {
         </div>
       </main>
 
-      <main className="flex lg:flex-row flex-col-reverse   items-center md:px-[100px] md:py-[100px] py-[32px] gap-[56px]">
-        <div className="md:w-[581px] w-[100%] md:px-0 px-[24px] flex flex-col gap-[32px] md:h-[455px]">
+      <main className="flex md:flex-row flex-col-reverse   items-center md:px-[32px]  lg:px-[100px] md:py-[100px] py-[32px] gap-[56px]">
+        <div className="lg:w-[581px]  w-[100%] md:px-0 px-[24px] flex flex-col gap-[32px] md:h-[455px]">
           <h2 className="font-semibold text-[24px]">
             Educational & Career Counselling
           </h2>
           <span
-            className="flex md:w-[541px] md:h-[194px] rounded-[8px]   flex-col bg-[#F6C354] p-[16px]
+            className="flex w-auto lg:w-[541px] lg:h-[194px] rounded-[8px]   flex-col bg-[#F6C354] p-[16px]
      gap-[8px]"
           >
             <h3 className="text-[18px] font-semibold">
@@ -268,7 +268,7 @@ export default function home() {
         </div>
       </main>
 
-      <main className="flex md:px-[100px] bg-[#FFF8EA] items-center py-[24px] lg:flex-row flex-col md:py-[64px] md:min-h-[662px]  px-[24px] justify-center md:pt-[100px] gap-[56px]">
+      <main className="flex lg:px-[100px] bg-[#FFF8EA] items-center py-[24px] md:flex-row flex-col md:py-[64px] md:min-h-[662px]  px-[24px] justify-center md:pt-[100px] gap-[56px]">
         <div className="md:w-[471px]  lg:h-auto w-full">
           <Image src={Whatsapp} alt="" layout="responsive" />
         </div>
@@ -330,11 +330,11 @@ export default function home() {
         </div>
       </main>
 
-      <main className="flex md:px-[100px] bg-[#FFFBF9] px-[24px] lg:flex-row flex-col md:py-[64px] py-[32px]  justify-center items-center md:py-[100px] gap-[56px]">
+      <main className="flex lg:px-[100px] bg-[#FFFBF9] px-[24px] md:flex-row flex-col md:py-[64px] py-[32px]  justify-center items-center md:py-[100px] gap-[56px]">
         <div className="md:w-[471px] w-full h-auto">
           <Image src={Frame} alt="" layout="responsive" />
         </div>
-        <div className="md:w-[581px]  flex flex-col gap-[16px]  md:h-[455px] px-[24px]">
+        <div className="lg:w-[581px] md:w-[420px] flex-1  flex flex-col gap-[16px]  md:h-[455px] px-[24px]">
           <h2 className="font-semibold text-[24px]">Book a Tutor</h2>
           <span className="flex flex-col gap-[10px]">
             <h3 className="text-[18px] font-semibold">
@@ -393,8 +393,8 @@ export default function home() {
           </span>
         </div>
       </main>
-      <main className="flex lg:flex-row bg-[#F6F6F6]  py-[24px] items-center  flex-col-reverse md:px-[100px] px-[24px] pb-[100px] justify-center gap-[56px]">
-        <div className="md:w-[719px]  flex flex-col gap-[16px] md:h-[577px]">
+      <main className="flex md:flex-row bg-[#F6F6F6]  py-[24px] items-center  flex-col-reverse lg:px-[100px] px-[24px] pb-[100px] justify-center gap-[56px]">
+        <div className="md:w-[719px]  flex flex-col gap-[16px] md:h-auto">
           <h2 className="font-semibold text-[40px]">Sponsor A Candidate</h2>
           <span className="flex flex-col gap-[24px] rounded-[8px] bg-[#3E414A] p-[24px] text-white">
             <h3 className="text-[18px] font-semibold">
@@ -407,7 +407,7 @@ export default function home() {
               students in need.
             </p>
             <p className="">How You can Help:</p>
-            <span className="md:flex grid grid-cols-1 gap-[8px]">
+            <span className="lg:flex grid grid-cols-1 gap-[8px]">
               <h2 className="md:p-[16px] p-[5px] text-black rounded-[8px] bg-[#FFEEE6]">
                 <span>
                   <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">

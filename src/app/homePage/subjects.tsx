@@ -78,7 +78,7 @@ export const Ks = ()=>{
         },
     ]
     return(
-        <div className="grid justify-center grid-cols-2 md:flex md:flex-row flex-col gap-[40px] py-[36px]  md:justify-between items-center">
+        <div className="grid justify-center grid-cols-2 lg:flex md:flex-row flex-col gap-[40px] py-[36px]  md:justify-between items-center">
             {
                ksData.map((data)=>(
                  <figure className="md:h-[348px] w-full  md:w-[280px]">

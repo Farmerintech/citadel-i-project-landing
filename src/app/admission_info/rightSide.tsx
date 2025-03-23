@@ -2,7 +2,7 @@ import { Svgs } from "../utils/svgs"
 
 export const RightSide = ()=>{
     return(
-        <aside className="xl:min-width-[829px] bg-white flex flex-col gap-[53px] px-[32px] py-[16px] lg:rounded-[4px] lg:w-2/3 custom-scrollbar lg:overflow-y-scroll lg:h-screen">
+        <aside className=" bg-white flex flex-col gap-[53px] px-4 py-2 md:rounded-[4px] md:w-2/3 custom-scrollbar md:overflow-y-scroll md:h-[900px] lg:h-[800px]">
             <div className="flex flex-col gap-[24px]">
                 <h2 className="font-[700] md:text-[32px] text-[24px] text-[#0F0F0F]">Your Complete Guide to Securing Admission into Your Desired School and Course</h2>
                 <p className="font-[400] text-[18px]">Gaining admission into a higher institution in Nigeria requires careful planning and an understanding of the process. Whether you're applying to a university, polytechnic, or college, this guide will help you navigate the admission process smoothly.</p>
@@ -18,7 +18,7 @@ export const RightSide = ()=>{
                 </span>
                 <p className="text-[24px] text-[#0F0F0F] font-[600]">Admission Process</p>
             </div>
-            <div className="flex flex-col gap-[24px]">
+            <div className="flex flex-col gap-[24px] md:px-8">
                     <p className="font-[600] text-[20px] text-[#0F0F0F]">Step-by-Step Guide to Securing Admission</p>
                     <ul className="flex gap-[12px] flex-col list-decimal">
                         <li className="text-[18px] ">

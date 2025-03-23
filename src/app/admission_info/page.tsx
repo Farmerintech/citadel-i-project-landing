@@ -22,7 +22,7 @@ export default function AdmissionInfo (){
     return(
         <>
         <HomeNavBar showRegPage={showRegPage} showLoginPage={showLoginPage}/>
-        <section className=" lg:bg-[#F3F3F3] lg:px-[100px] py-[16px] flex flex-col-reverse lg:flex-row items-start justify-between gap-[12px]">
+        <section className=" md:bg-[#F3F3F3] md:px-6 py-2 flex flex-col-reverse md:flex-row items-start justify-between gap-2">
           <RightSide/>
           <LeftSide/>
         </section>
