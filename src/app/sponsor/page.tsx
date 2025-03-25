@@ -25,9 +25,9 @@ export default function Counselling (){
         <>
         <Header showRegPage={showRegPage} showLoginPage={showLoginPage}/>
         <section className=" bg-[#FFFBF9] lg:px-[100px] px-[32px] py-[64px]">
-         <div className=" flex flex-col md:flex-row items-start justify-between gap-[32px] md:gap-[12px]">
-         <RightSide/>
+         <div className=" flex flex-col md:flex-row items-center md:items-start justify-between gap-[32px] md:gap-[12px]">
          <LeftSide/>
+         <RightSide/>
          </div>
          <Bottom/>
 

@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { toggle } from "@/lib/utils";
 import { RightSide } from "./rightSide";
 import { LeftSide } from "./leftSide";
+import Header from "../header";
 export default function AdmissionInfo (){
       const [showReg, setShowReg] = useState(false)
       const [showLogin, setShowLogin] = useState(false)
@@ -21,10 +22,10 @@ export default function AdmissionInfo (){
       }
     return(
         <>
-        <HomeNavBar showRegPage={showRegPage} showLoginPage={showLoginPage}/>
+        <Header showRegPage={showRegPage} showLoginPage={showLoginPage}/>
         <section className=" md:bg-[#F3F3F3] md:px-6 py-2 flex flex-col-reverse md:flex-row items-start justify-between gap-2">
+        <LeftSide/>
           <RightSide/>
-          <LeftSide/>
         </section>
          <Footer/>
         </>
