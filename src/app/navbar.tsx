@@ -9,6 +9,7 @@ import { FiSearch } from "react-icons/fi";
 import { Button } from "@/components/ui/button"
 import {getCurrentNav} from "@/app/utils/getCurrentNav"
 import { useRouter, usePathname } from 'next/navigation';
+import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 interface showPageprops{
   showRegPage:(param:any)=>void
   showLoginPage:(param:any)=>void
@@ -70,7 +71,7 @@ export default function HomeNavBar({showRegPage, showLoginPage}:showPageprops) {
               <Image src={Logo} alt="" layout="responsive"/> </span>
           <p className="text-[14px] ">Education is all we do</p>
         </div>
-        <span className="lg:flex hidden ">   
+        <span className="flex  ">   
         <Input type="search" className="border-r-0  border-[1px] lg:w-[350px] md:w-auto h-[41px]  border-black"
          placeholder="serch for class, topics or anything..." />
         <Label className="bg-[#344054] w-[35px] text-white ml-[-35px] h-[41px] rounded-r-md border-r-[2px]
@@ -88,16 +89,22 @@ export default function HomeNavBar({showRegPage, showLoginPage}:showPageprops) {
 
         </span>
           </div>
-          <div className="flex px-[100px] py-[16px] lg:items-center  border-b-[1px] border-[#F2F4F7]
+          <div className="flex lg:px-[100px] md:px-[32px] py-[16px] lg:items-center  border-b-[1px] border-[#F2F4F7]
             lg:justify-between ">  
-          <ul className=" flex gap-[25px] items-center flex-wrap md:justify-center">
+          <ul className=" flex lg:gap-[25px] items-center md:gap-[12px] md:justify-center">
             <li className={`text-[16px] 
             border-[#FF5900] py-[3px]  font-normal text-[#130F26] hover:text-[#FF5900] hover:border-b-[3px] ${currentNav===0 ? "text-[#FF5900] border-b-[3px]": "text-black"}`} onClick={()=>{setCurrentNav(0)}}>
               <Link href="/">Home</Link>
             </li>
             <li className={`text-[16px] 
-            border-[#FF5900] py-[3px] font-normal text-[#130F26] hover:text-[#FF5900] hover:border-b-[3px] ${currentNav===1 ? "text-[#FF5900] border-b-[3px]": "text-black"}`} onClick={()=>{setCurrentNav(1)}}>
+            border-[#FF5900] py-[3px] font-normal text-[#130F26] hover:text-[#FF5900] flex items-center justify-center gap-[4px] hover:border-b-[3px] ${currentNav===1 ? "text-[#FF5900] border-b-[3px]": "text-black"}`} onClick={()=>{setCurrentNav(1)}}>
               <Link href="/classes">Classes</Link>
+              <FaChevronDown/>
+              <ul className="w-[119px] hidden  h-[84px] bg-white shadow-md fixed rounded-[4px] top-[80px] left-[130px] flex items-center justify-center flex-col ">
+              <li>KS1</li>
+                <li>KS2</li>
+                <li>KS3</li>
+              </ul>
             </li>
             <li className={`text-[16px] 
             border-[#FF5900] py-[3px] font-normal text-[#130F26] hover:text-[#FF5900] hover:border-b-[3px] ${currentNav===2 ? "text-[#FF5900] border-b-[3px]": "text-black"}`} onClick={()=>{setCurrentNav(2)}}>
@@ -117,6 +124,16 @@ export default function HomeNavBar({showRegPage, showLoginPage}:showPageprops) {
               <Link href="/exam_preparation">Exam Preparation</Link>
             </li>
             <li className={`text-[16px] 
+            border-[#FF5900] py-[3px] font-normal text-[#130F26] hover:text-[#FF5900] hover:border-b-[3px] flex items-center gap-[4px] justify-center ${currentNav ===8 ? "text-[#FF5900] border-b-[3px]": "text-black"}`} onClick={()=>{setCurrentNav(8)}}>
+              <Link href="/exam_preparation">Resources</Link>
+              <FaChevronDown/>
+            </li>
+            <ul className="w-[119px] hidden h-[84px] bg-white shadow-md relative rounded-[4px] top-[60px] -left-[90px] flex items-center justify-center flex-col ">
+                <li>Teacher</li>
+                <li>Student</li>
+              </ul>
+
+            <li className={`text-[16px] 
             border-[#FF5900] py-[3px] font-normal text-[#130F26] hover:text-[#FF5900] hover:border-b-[3px] ${currentNav ===6 ? "text-[#FF5900] border-b-[3px]": "text-black"}`} onClick={()=>{setCurrentNav(6)}}>
               <Link href="/library">Library</Link>
             </li>
@@ -125,7 +142,7 @@ export default function HomeNavBar({showRegPage, showLoginPage}:showPageprops) {
               <Link href="/sponsor">Sponsor a student</Link>
             </li>
           </ul>
-          <Button className="md:hidden lg:block text-[#FF5900] text-[16px] bg-[#FFEEE6] hover:text-white" >
+          <Button className="block text-[#FF5900] text-[16px] bg-[#FFEEE6] hover:text-white" >
               <Link href='/'>  Book a Tutor </Link>
           </Button>
         </div>

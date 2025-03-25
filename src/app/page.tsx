@@ -11,6 +11,7 @@ import { toggle } from '@/lib/utils';
 import { useSearchParams } from 'next/navigation';
 import { Hero } from './homePage/hero';
 import { Subjects, Ks } from './homePage/subjects';
+import Header from './header';
 
 export default function page() {
   const [showReg, setShowReg] = useState(false)
@@ -71,7 +72,8 @@ export default function page() {
         <SignInPage setShowLogin={setShowLogin}/>
       </div>
       }
-      <Homenav showRegPage={showRegPage} showLoginPage={showLoginPage}/>
+      {/* <Homenav showRegPage={showRegPage} showLoginPage={showLoginPage}/> */}
+      <Header showRegPage={showRegPage} showLoginPage={showLoginPage}/>
       <Hero/>
       <section className="md:px-[100px] px-[24px]">
         <Subjects/>

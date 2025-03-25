@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { toggle } from "@/lib/utils";
 import holiday from '@/app/assets/holiday.png'
 import Image from 'next/image'
+import Header from "../header";
 export default function Coaching (){
           const [showReg, setShowReg] = useState(false)
           const [showLogin, setShowLogin] = useState(false)
@@ -21,7 +22,7 @@ export default function Coaching (){
           }
     return(
         <>
-       <HomeNavBar showRegPage={showRegPage} showLoginPage={showLoginPage}/>
+       <Header showRegPage={showRegPage} showLoginPage={showLoginPage}/>
         <section className="bg-[#FFFFFF] lg:p-[64px] lg:pt-[32px] lg:px-[100px] px-[32px] py-[16px] gap-[24px] flex flex-col items-center  ">
             <div className=" flex flex-col items-center justify-center">
                 <h2 className="text-[32px] :text-[48px] font-[600] text-[#0F0F0F] text-center">Holiday Coaching: Learn, Grow & Excel!</h2>

@@ -1,6 +1,6 @@
 import Image from "next/image"
-import counsel from "@/app/assets/counsel.png"
-import chat from "@/app/assets/chat.png"
+import counsel from "@/app/assets/counsel.jpg"
+import chat from "@/app/assets/chat.svg"
 export const LeftSide = () =>{
     return(
         <aside className="flex flex-col gap-[24px] px-[16px]">

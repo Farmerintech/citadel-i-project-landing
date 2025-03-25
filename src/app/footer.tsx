@@ -58,7 +58,7 @@ export default function footer() {
             <p className="text-white font-bold text-[16px]">
               Send Us a Message
             </p>
-            <Input placeholder="Name" className=""/>
+            <Input placeholder="Name" className="w-[301px]"/>
             <Textarea placeholder="Your Message" />
             <Button className="bg-[#FF5900] text-white">Submit</Button>
           </aside>
