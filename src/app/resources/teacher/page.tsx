@@ -24,7 +24,7 @@ export default function Main(){
     return(
            <>
           <Header showRegPage={showRegPage} showLoginPage={showLoginPage}/>
-             <div className="md:px-[100px] md:py-[16px] pb-[64px] pt-[16px] px-[16px] ">
+             <div className="md:px-[100px] md:py-[16px] pb-[64px] pt-[16px] px-[16px] flex flex-col gap-[24px] ">
                 <div className="flex gap-[8px] items-center">
                   <span className="text-[#8C3100] text-[16px] font-[500]">Resources</span>
                   <span>
@@ -35,7 +35,7 @@ export default function Main(){
                   <span className="text-[#FF5900] text-[16px] font-[500]">Teacher</span>
                 </div>
                 <h3 className="text-[24px] font-[600]">A curated list of all necessary resources to aid your teaching</h3>
-                <div className="md:gap-[48px] grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 py-[32px]  ">
+                <div className="md:gap-[48px] gap-[40px] grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 py-[32px]  ">
                        {
                         subjects.map((subject)=>(
                           <div className="">
