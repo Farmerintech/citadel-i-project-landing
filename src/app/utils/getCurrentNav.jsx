@@ -12,7 +12,9 @@ export const getCurrentNav = (route)=>{
             return 4
         case '/exam_preparation':
             return 5
-        case '/library':
+        case '/resources/student':
+            return 6
+        case '/resources/teacher':
             return 6
         case '/sponsor':
             return 7

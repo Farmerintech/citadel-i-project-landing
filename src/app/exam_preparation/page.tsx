@@ -8,7 +8,7 @@ import { toggle } from "@/lib/utils";
 import { RightSide } from "./rightSide";
 import { LeftSide } from "./leftSide";
 import Header from "../header";
-export default function AdmissionInfo (){
+export default function ExamPrep (){
       const [showReg, setShowReg] = useState(false)
       const [showLogin, setShowLogin] = useState(false)
       const router = useRouter()
@@ -23,7 +23,7 @@ export default function AdmissionInfo (){
     return(
         <>
         <Header showRegPage={showRegPage} showLoginPage={showLoginPage}/>
-        <section className=" md:bg-[#F3F3F3] md:px-6 lg:px-[100px] py-2 flex flex-col-reverse md:flex-row items-start justify-between gap-2">
+        <section className=" md:bg-[#F3F3F3] md:px-6 lg:px-[100px] py-2 flex flex-col md:flex-row items-start justify-between gap-2">
         <LeftSide/>
           <RightSide/>
         </section>

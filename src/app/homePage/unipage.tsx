@@ -3,85 +3,86 @@ import Books from '@/app/assets/books.png'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+export const Schools= [
+  {
+    name:'UNILAG',
+    bgColor1:'bg-[#A6A8AC]',
+    bgColor2:'bg-[#3E414A] '
+  },
+  {
+    name:'LASU',
+    bgColor1:'bg-[#A6A8AC]',
+    bgColor2:'bg-[#3E414A] '
+  },
+  {
+    name:'UNILORIN',
+    bgColor1:'bg-[#A6A8AC]',
+    bgColor2:'bg-[#3E414A] '
+  },
+  {
+    name:'ABU',
+    bgColor1:'bg-[#A6A8AC]',
+    bgColor2:'bg-[#3E414A] '
+  },
+  {
+    name:'UI',
+    bgColor1:'bg-[#A6A8AC]',
+    bgColor2:'bg-[#3E414A] '
+  },
+  {
+    name:'FUTA',
+    bgColor1:'bg-[#FFB38A]',
+    bgColor2:'bg-[#FF5900]'
+  },
+  {
+    name:'BUK ',
+    bgColor1:'bg-[#FFB38A]',
+    bgColor2:'bg-[#FF5900]'
+  },
+  {
+    name:'EKSU ',
+    bgColor1:'bg-[#FFB38A]',
+    bgColor2:'bg-[#FF5900]'
+  },
+  {
+    name:'TASUED',
+    bgColor1:'bg-[#FFB38A]',
+    bgColor2:'bg-[#FF5900]'
+  },
+  {
+    name:'LASUED',
+    bgColor1:'bg-[#FFB38A]',
+    bgColor2:'bg-[#FF5900]'
+  },
+  {
+    name:'ABUAD ',
+    bgColor1:'bg-[#A6A8AC] ',
+    bgColor2:'bg-[#3E414A] '
+  },
+  {
+    name:'KP',
+    bgColor1:'bg-[#A6A8AC] ',
+    bgColor2:'bg-[#3E414A] '
+  },
+  {
+    name:'NOUN',
+    bgColor1:'bg-[#A6A8AC] ',
+    bgColor2:'bg-[#3E414A] '
+  },
+  {
+    name:'UDUS',
+    bgColor1:'bg-[#A6A8AC]',
+    bgColor2:'bg-[#3E414A] '
+  },
+  {
+    name:'EKSU',
+    bgColor1:'bg-[#A6A8AC] ',
+    bgColor2:'bg-[#3E414A] '
+  },
+]
+
 export default function unipage() {
 
-  const Schools= [
-    {
-      name:'UNILAG',
-      bgColor1:'bg-[#A6A8AC]',
-      bgColor2:'bg-[#3E414A] '
-    },
-    {
-      name:'LASU',
-      bgColor1:'bg-[#A6A8AC]',
-      bgColor2:'bg-[#3E414A] '
-    },
-    {
-      name:'UNILORIN',
-      bgColor1:'bg-[#A6A8AC]',
-      bgColor2:'bg-[#3E414A] '
-    },
-    {
-      name:'ABU',
-      bgColor1:'bg-[#A6A8AC]',
-      bgColor2:'bg-[#3E414A] '
-    },
-    {
-      name:'UI',
-      bgColor1:'bg-[#A6A8AC]',
-      bgColor2:'bg-[#3E414A] '
-    },
-    {
-      name:'FUTA',
-      bgColor1:'bg-[#FFB38A]',
-      bgColor2:'bg-[#FF5900]'
-    },
-    {
-      name:'BUK ',
-      bgColor1:'bg-[#FFB38A]',
-      bgColor2:'bg-[#FF5900]'
-    },
-    {
-      name:'EKSU ',
-      bgColor1:'bg-[#FFB38A]',
-      bgColor2:'bg-[#FF5900]'
-    },
-    {
-      name:'TASUED',
-      bgColor1:'bg-[#FFB38A]',
-      bgColor2:'bg-[#FF5900]'
-    },
-    {
-      name:'LASUED',
-      bgColor1:'bg-[#FFB38A]',
-      bgColor2:'bg-[#FF5900]'
-    },
-    {
-      name:'ABUAD ',
-      bgColor1:'bg-[#A6A8AC] ',
-      bgColor2:'bg-[#3E414A] '
-    },
-    {
-      name:'KP',
-      bgColor1:'bg-[#A6A8AC] ',
-      bgColor2:'bg-[#3E414A] '
-    },
-    {
-      name:'NOUN',
-      bgColor1:'bg-[#A6A8AC] ',
-      bgColor2:'bg-[#3E414A] '
-    },
-    {
-      name:'UDUS',
-      bgColor1:'bg-[#A6A8AC]',
-      bgColor2:'bg-[#3E414A] '
-    },
-    {
-      name:'EKSU',
-      bgColor1:'bg-[#A6A8AC] ',
-      bgColor2:'bg-[#3E414A] '
-    },
-  ]
   return (
     <>  
 <article className=" lg:gap-[56px] md:gap-[16px] bg-[#F6F6F6] flex px-[32px] lg:py-[32px] lg:px-[100px] py-[16px] flex flex-col md:flex-row">

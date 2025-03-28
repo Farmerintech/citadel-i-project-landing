@@ -90,24 +90,27 @@ export default function NavBar() {
           <Link href="/holiday_coaching">Holiday Coaching</Link>
         </li>
         <li
-            className={`relative text-[16px] border-[#FF5900] font-normal flex items-center gap-[4px] hover:text-[#FF5900] hover${
-              currentNav === 8 ? "text-[#FF5900] border-b-[3px]" : "text-black"
+            className={`relative text-[16px] border-[#FF5900] font-normal flex items-center gap-[4px] hover:text-[#FF5900] hover ${
+              currentNav === 6 ? "text-[#FF5900] border-b-[3px]" : "text-black"
             }`}
             onMouseEnter={() => setIsResourcesDropdownOpen(true)}
             onMouseLeave={() => setIsResourcesDropdownOpen(false)}
           >
             Resources
             {isResourcesDropdownOpen && (
-              <div className="absolute left-0 top-[100%] flex flex-col bg-white shadow-md  w-[120px]">
+              <div className="absolute left-0 top-[100%] flex flex-col bg-white shadow-md  w-[120px]"   onClick={() => setCurrentNav(6)}>
                 <Link
                   href="/resources/teacher"
                   className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black "
+                  onClick={() => setCurrentNav(6)}
+
                 >
                   Teacher
                 </Link>
                 <Link
                   href="/resources/student"
                   className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"
+                  onClick={() => setCurrentNav(6)}
                 >
                   Student
                 </Link>
