@@ -2,7 +2,7 @@ export const RightSide = ()=>{
     return(
         <aside className="p-[16px] bg-[#F9D68A] lg:rounded-[4px] w-full md:w-1/3 flex-col flex gap-[24px]">
             <div className="bg-[#FFFBF9] p-[16px] flex gap-[10px] rounded-[4px]">
-                <input type="text" placeholder="Search for course" className="w-2/3 border-1 border-[#101828] px-[8px] py-[4px] rounded-[8px] w-full"/>
+                <input type="text" placeholder="Search for course" className=" border-1 border-[#101828] px-[8px] py-[4px] rounded-[8px] w-full"/>
                 <button className="bg-[#FF5900] py-[8px] px-[16px] md:w-auto lg:w-1/3 flex items-center justify-center gap-[2px] text-white rounded-[8px]">
                     <span className="md:hidden lg:block">Search</span>
                     <span>

@@ -330,7 +330,7 @@ export default function home() {
         </div>
       </main>
 
-      <main className="flex lg:px-[100px] bg-[#FFFBF9] px-[24px] md:flex-row flex-col md:py-[64px] py-[32px]  justify-center items-center md:py-[100px] gap-[56px]">
+      <main className="flex lg:px-[100px] bg-[#FFFBF9] px-[24px] md:flex-row flex-col s py-[32px]  justify-center items-center md:py-[100px] gap-[56px]">
         <div className="md:w-[471px] w-full h-auto">
           <Image src={Frame} alt="" layout="responsive" />
         </div>
@@ -414,7 +414,7 @@ export default function home() {
                     <path d="M7.93066 12.9775L10.9307 15.9775L16.9307 9.97754M8.23066 21.9775H16.6307C18.3108 21.9775 19.1509 21.9775 19.7926 21.6506C20.3571 21.3629 20.8161 20.904 21.1037 20.3395C21.4307 19.6978 21.4307 18.8577 21.4307 17.1775V8.77754C21.4307 7.09738 21.4307 6.2573 21.1037 5.61557C20.8161 5.05108 20.3571 4.59214 19.7926 4.30452C19.1509 3.97754 18.3108 3.97754 16.6307 3.97754H8.23066C6.55051 3.97754 5.71043 3.97754 5.06869 4.30452C4.50421 4.59214 4.04526 5.05108 3.75764 5.61557C3.43066 6.2573 3.43066 7.09738 3.43066 8.77754V17.1775C3.43066 18.8577 3.43066 19.6978 3.75764 20.3395C4.04526 20.904 4.50421 21.3629 5.06869 21.6506C5.71043 21.9775 6.55051 21.9775 8.23066 21.9775Z" stroke="#FF5900" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
 
-                </span>                <p className="">Sponsor Tuition Fee For A Child</p>{" "}
+                </span> <p className="">Sponsor Tuition Fee For A Child</p>{" "}
               </h2>
 
               <h2 className="md:p-[16px] p-[5px] text-black rounded-[8px] bg-[#FFEEE6]">

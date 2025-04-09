@@ -24,7 +24,6 @@
     ]
 
 import { useState } from "react"
-import { Svgs } from "../utils/svgs"
 export const SideBar = () =>{
     const [yearIndex, setYearIndex] = useState(0)
     const [classIndex, setClassIndex] = useState(0)
@@ -38,7 +37,7 @@ export const SideBar = () =>{
                                 <div className={`flex justify-between items-center ${classIndex == menu.id ? "bg-[#F6C354]":''} w-[132px] px-[8px] py-[12px]`} >
                                     <span>{menu.name}</span>
                                      <span>
-                                        {classIndex===menu.id ? Svgs.arrowUp : Svgs.arrowDown}
+                                    
                                      </span>
                                 </div>                      
                                  <ul  className={` ${classIndex == menu.id ? 'block': 'hidden' }`}>
@@ -70,7 +69,7 @@ export const MobileSideBar = () =>{
                             <div className={`flex justify-between items-center ${menu.name === 'KS1' ? "bg-[#F6C354]":'bg-white'} px-[8px] py-[12px] `} >
                                 <span>{menu.name}</span>
                                 <span>
-                                    {classIndex===menu.id ? Svgs.arrowUp : Svgs.arrowDown}
+                                
                                 </span>
                             </div>                      
                              <ul  className={` ${classIndex == menu.id ? 'block': 'hidden' }`}>
@@ -86,7 +85,7 @@ export const MobileSideBar = () =>{
             <li className={`w-full px-[8px] py-[12px] bg-[#F6C354] flex items-center justify-between ${!showMenu ? "block":"hidden"}`}>
                 
                 <span>KS1</span>
-                <span className="text-black">{Svgs.arrowDown}</span>
+                <span className="text-black"></span>
 
             </li>
        </ul>
