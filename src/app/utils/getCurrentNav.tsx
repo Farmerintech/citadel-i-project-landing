@@ -1,4 +1,7 @@
-export const getCurrentNav = (route)=>{
+
+// type Route = "/" | "/classes" | "/admission_info" | "/counselling" | "/holiday_coaching"
+//              | "/exam_preparation" | "/resources/student" | "/resources/teacher" | "/sponsor"
+export const getCurrentNav = (route:any):number=>{
     switch (route) {
         case '/':
             return 0

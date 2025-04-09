@@ -98,7 +98,7 @@ export default function NavBar() {
           >
             Resources
             {isResourcesDropdownOpen && (
-              <div className="absolute left-0 top-[100%] flex flex-col bg-white shadow-md  w-[120px]"   onClick={() => setCurrentNav(6)}>
+              <div className="absolute left-0 top-[100%] flex flex-col bg-white shadow-md  w-[120px]">
                 <Link
                   href="/resources/teacher"
                   className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black "
