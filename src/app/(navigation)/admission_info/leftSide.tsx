@@ -1,4 +1,4 @@
-import { Svgs } from "../utils/svgs"
+
 
 export const LeftSide = ()=>{
     return(
@@ -50,12 +50,12 @@ export const LeftSide = ()=>{
                 </div>
                 <div>
                     <span>
-                        {Svgs.bulb}
+                        
                     </span>
                     <div className="bg-[#FFEEE6] p-[16px] rounded-[8px] flex justify-between">
                         <p>Search for your course and see the O’Level requirements, JAMB subject Combination, and Post UTME subject guide</p>
                         <span>
-                            {Svgs.curveArrow}
+                        
                         </span>
                     </div>
                 </div>

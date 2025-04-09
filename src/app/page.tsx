@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from 'react'
-import Homenav from '@/app/navbar'
+
 import Unipage from '@/app/homePage/unipage'
 import Home from '@/app/homePage/home'
 import Footer from '@/app/footer'
@@ -11,7 +11,7 @@ import { toggle } from '@/lib/utils';
 import { useSearchParams } from 'next/navigation';
 import { Hero } from './homePage/hero';
 import { Subjects, Ks } from './homePage/subjects';
-import Header from './header';
+import Header from '@/app/navbar';
 
 export default function page() {
   const [showReg, setShowReg] = useState(false)
@@ -73,7 +73,7 @@ export default function page() {
       </div>
       }
       {/* <Homenav showRegPage={showRegPage} showLoginPage={showLoginPage}/> */}
-      <Header showRegPage={showRegPage} showLoginPage={showLoginPage}/>
+      <Header />
       <Hero/>
       <section className="md:px-[100px] px-[24px]">
         <Subjects/>

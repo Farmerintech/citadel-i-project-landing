@@ -4,7 +4,7 @@ export const ClassNav = () =>{
         <div>
           <h3 className="font-[600] text-[20px]">All your learning materials in one place</h3>
         </div>
-        <div className="w-full md:w-auto flex md:items-center md:justify-center gap-[10px] border-1 border-gray-300 p-[16px] rounded-[8px] 
+        <div className="w-full md:w-auto  md:items-center md:justify-center gap-[10px] border-1 border-gray-300 p-[16px] rounded-[8px] 
                 grid grid-cols-2 md:flex ">
           <div className="hidden lg:block">
           <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">

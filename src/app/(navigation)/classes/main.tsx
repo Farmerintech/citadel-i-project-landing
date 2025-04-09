@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MobileSideBar } from "./sideBar";
-import {Svgs} from "../../app/utils/svgs"
+
 export const Main = () =>{
 
     const [index, setIndex] = useState(0)
@@ -10,7 +10,8 @@ export const Main = () =>{
         <div className=" grid grid-cols-2 gap-[12px] absolute left-8 right-5">
         <MobileSideBar/>
         <div className="w-[95%] ">
-            <button className="  w-full px-[16px] py-[12px] flex items-center justify-between border-[1.5px] bg-orange-500 md:hidden block text-white">
+            <button className="  w-full px-[16px] py-[12px]  items-center justify-between
+             border-[1.5px] bg-orange-500 md:hidden block text-white">
                     <span>First term</span>
                     <span>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +39,7 @@ export const Main = () =>{
                   <div className="w-full h-[177px] ">
                     <div className="bg-[#F3F3F3] w-full h-[137px]">
                       <div className="flex items-center justify-center py-[35px] px-[26px]">
-                         {Svgs.subject2}
+                    
                       </div>
                     </div>
                     <div className="bg-[#3E414A] h-[40px] w-full text-center text-white flex items-center justify-center">

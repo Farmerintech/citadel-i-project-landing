@@ -1,14 +1,11 @@
 "use client"
-
-import HomeNavBar from "@/app/navbar"
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import { toggle } from "@/lib/utils";
 import { ClassNav } from "./classNav";
 import { SideBar } from "./sideBar";
 import { Main } from "./main";
-import Footer from "@/app/footer"
-import Header from "../header";
+
 export default function Myclass (){
   const [showReg, setShowReg] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
@@ -24,7 +21,7 @@ export default function Myclass (){
 
     return(
         <>
-        <Header showRegPage={showRegPage} showLoginPage={showLoginPage}/>
+  
         <section className="lg:px-[100px] md:px-[50px] py-[16px] px-[16px] bg-[#F3F3F3] ">
           <ClassNav/>
           <div className="flex gap-[12px] mt-[16px]">
@@ -32,7 +29,7 @@ export default function Myclass (){
             <Main/>
           </div>
         </section>
-        <Footer/>
+        
         </>
     )
 }
