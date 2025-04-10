@@ -9,9 +9,9 @@ import { Button } from "@/components/ui/button";
 export default function footer() {
   return (
     <>
-      <section className="bg-[#3E414A] h-auto md:flex flex-col gap-[32px] px-[24px]  py-[32px] md:px-[100px]">
+      <section className="bg-[#3E414A] h-auto md:flex flex-col gap-[32px] px-[24px]  py-[32px] lg:px-[100px] md:px-[48px]">
         <div className="md:flex justify-between grid grid-col-1 gap-[25px]">
-          <aside className="fex flex-col gap-[16px]">
+          <aside className="fex flex-col gap-[16px] flex-1">
             <span className=" flex flex-col gap-[15px]  ">
               <span className="h-[43px] w-[235.64px]">
                 {" "}
@@ -39,7 +39,7 @@ export default function footer() {
             </span>
           </aside>
 
-          <aside className="">
+          <aside className="flex-1">
             <ul className="flex flex-col gap-[9px]">
               <p className="text-white font-bold text-[16px]">Quick Links</p>
               <li className="text-white text-[14px]">Classes</li>
@@ -54,12 +54,12 @@ export default function footer() {
             </ul>
           </aside>
 
-          <aside className="flex flex-col gap-[16px] ">
+          <aside className="flex flex-col gap-[16px] flex-1">
             <p className="text-white font-bold text-[16px]">
               Send Us a Message
             </p>
-            <Input placeholder="Name" className="w-[301px]"/>
-            <Textarea placeholder="Your Message" />
+            <Input placeholder="Name" className=""/>
+            <Textarea placeholder="Your Message" className="" />
             <Button className="bg-[#FF5900] text-white">Submit</Button>
           </aside>
         </div>
