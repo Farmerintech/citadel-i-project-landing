@@ -1,8 +1,19 @@
 "use client";
 import Image from "next/image";
 import { Eye, EyeOff, ChevronsRight } from "lucide-react";
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import googleLogo from "@/app/assets/google.svg";
+
+interface SignInFormProps {
+  email: string;
+  password: string;
+  handleInput: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleForm: (event: FormEvent<HTMLFormElement>) => void;
+  handleCheck: (event: ChangeEvent<HTMLInputElement>) => void;
+  message?: string;
+  error?: string;
+  isChecked: boolean;
+}
 
 export const SignInForm = ({
   email,
@@ -12,17 +23,14 @@ export const SignInForm = ({
   handleCheck,
   message,
   error,
-  isChecked, 
-
-}) => {
+  isChecked,
+}: SignInFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <form className="space-y-3" onSubmit={handleForm}>
-      {/* Success & Error Messages */}
       {message && <p className="text-green-500 text-sm">{message}</p>}
 
-      {/* Email Field */}
       <label className="text-sm">Email Address</label>
       <input
         type="email"
@@ -33,7 +41,6 @@ export const SignInForm = ({
         onChange={handleInput}
       />
 
-      {/* Password Field */}
       <div className="relative">
         <label className="text-sm">Password</label>
         <input
@@ -53,7 +60,6 @@ export const SignInForm = ({
         </button>
       </div>
 
-      {/* Remember Me & Forgot Password */}
       <div className="flex items-center text-xs">
         <input
           type="checkbox"
@@ -71,7 +77,6 @@ export const SignInForm = ({
         </div>
       </div>
 
-      {/* Submit Button */}
       <button
         className={`w-full ${
           isChecked ? "bg-orange-500" : "bg-gray-400"
@@ -81,16 +86,15 @@ export const SignInForm = ({
         Login
         <ChevronsRight size={24} className="text-white" />
       </button>
+
       {error && <p className="text-red-500 text-sm">{error}</p>}
 
-      {/* OR Divider */}
       <div className="flex items-center my-2">
         <hr className="flex-grow border-gray-300" />
         <span className="text-gray-500 text-xs px-2">Or</span>
         <hr className="flex-grow border-gray-300" />
       </div>
 
-      {/* Google Sign-in */}
       <div className="flex items-center justify-center w-full">
         <button className="w-full rounded-[8px] border border-gray-300 py-2 flex items-center justify-center text-sm">
           <Image
@@ -104,7 +108,6 @@ export const SignInForm = ({
         </button>
       </div>
 
-      {/* Register Link */}
       <p className="text-center text-xs text-gray-500 mt-2">
         Don't have an account?{" "}
         <a href="/signup" className="text-orange-500">

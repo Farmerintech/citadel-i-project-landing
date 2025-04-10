@@ -8,11 +8,14 @@ export default async function Dashboardlayout({
   children: React.ReactNode;
 }) {
   
+
+ 
+
   return (
     <div className="w-full   min-h-[100dvh]">
-    <Header />
+    <Header/>
       {children}
- <Footer />
+    <Footer />
     </div>
   );
 }
