@@ -240,7 +240,8 @@ export default function page() {
 <span className="flex flex-col gap-[12px] w-[168px]">
   <p className="text-[18px] font-semibold">Mathematics</p>
   <Button variant="outline" className='w-[113px] border border-[#FF5900] text-[#FF5900]'>Go to Lesson</Button>
-  <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>Study Past Questions</Button>
+  <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>
+  <Link href='/exam_preparation/exam_questions' >Study Past Questions</Link></Button>
 
 </span>
 </article>
