@@ -5,6 +5,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import Maths from '@/app/assets/maths.png'
+import { FiPhoneOutgoing } from 'react-icons/fi'
+import EXamt from '@/app/assets/examtuto.png'
+
 import {
   Accordion,
   AccordionContent,
@@ -100,10 +103,10 @@ export default function page() {
   ]
   
   return (
-    <section className="px-[100px] flex gap-[20px] ">
- <aside className="w-[836px] bg-[#FFFFFF] flex flex-col gap-[48px] px-[32px] pt-[16px] pb-[40px]">
+    <section className="md:px-[100px] px-[16px] flex gap-[20px] md:flex-row flex-col ">
+ <aside className="md:w-[836px] bg-[#FFFFFF] flex flex-col gap-[48px] md:px-[32px] pt-[16px] pb-[40px]">
     <span className="gap-[24px] flex flex-col">
-<h2 className="text-[32px] font-bold">Exam Preparation & Practice: Get Ready to Succeed!</h2>
+<h2 className="md:text-[32px] text-[24px] font-bold">Exam Preparation & Practice: Get Ready to Succeed!</h2>
 <p className="text-[18px] text-[#101828]">
     Preparing for Exams can be demanding, but with the ight resources,
      success is within reach! Our Exam Preparation & Practice section
@@ -132,7 +135,7 @@ export default function page() {
 <Label className='tet-[18px] font-semibold'>Class Category</Label>
 
 <Select>
-  <SelectTrigger className="w-[350px]">
+  <SelectTrigger className="md:w-[350px] w-[100%]">
     <SelectValue placeholder="All" />
   </SelectTrigger>
   <SelectContent>
@@ -148,7 +151,7 @@ export default function page() {
 <Label className='tet-[18px] font-semibold'>Year</Label>
 
 <Select>
-  <SelectTrigger className="w-[350px]">
+  <SelectTrigger className="md:w-[350px] w-[100%]">
     <SelectValue placeholder="All" />
   </SelectTrigger>
   <SelectContent>
@@ -165,7 +168,7 @@ export default function page() {
 <Label className='tet-[18px] font-semibold'>Subject</Label>
 
 <Select>
-  <SelectTrigger className="w-[350px]">
+  <SelectTrigger className="md:w-[350px] w-[100%]">
     <SelectValue placeholder="All" />
   </SelectTrigger>
   <SelectContent>
@@ -182,7 +185,7 @@ export default function page() {
 <Label className='tet-[18px] font-semibold'>Term</Label>
 
 <Select>
-  <SelectTrigger className="w-[350px]">
+  <SelectTrigger className="md:w-[350px] w-[100%]">
     <SelectValue placeholder="All" />
   </SelectTrigger>
   <SelectContent>
@@ -407,7 +410,7 @@ export default function page() {
 
  </aside>
 
-<aside className="w-[370px]">
+<aside className="w-[370px] flex flex-col gap-[40px]">
 <article className="flex flex-col gap-[24px]">    
 <div className="grid grid-cols-5 pt-3 gap-[20px]">
   {
@@ -426,7 +429,42 @@ export default function page() {
 
   </article>
 
+<div className="md:flex hidden">   
+<div className="bg-[#FEF6E6] p-[16px] flex flex-col gap-[24px]">
+  <span className="flex items-center px-[16px] py-[8px] gap-[12px]  ">   
+<FiPhoneOutgoing className='w-[50px] h-[50px]' /> <p className="font-semibold text-[24px] leading-[100%]">
+  Need Help? Book a one-on-one Tutor</p>
+</span>
+<p className="text-[16px]">Need extra help with you studies?
+   Connect with experienced tutors for one-on-one or Goup lessons tailored to your needs.</p>
+</div></div>
+
+
+<div className="md:flex hidden">
+  <span className="">  
+<Image src={EXamt} alt='' layout='' />
+<figcaption className='text-center pt-2.5'>
+  <Link className='underline text-[#097647]' href=''>Sign Up for Our Various Holiday Classes</Link>
+</figcaption>
+</span>
+</div>
+
+
+<div className="bg-[#FFCCB0] p-[16px] flex flex-col gap-[24px]">
   
+<p className="text-[20px]">Start Free CBT Exam Simulation on WAEC and JAMB</p>
+<Button variant='outline' className='w-[50%] text-[#FF5900] border border-[#FF5900] bg-transparent'><Link href=''>Start Now </Link>   </Button>
+</div>
+
+
+<div className="bg-[#FBE3B0] p-[16px] flex flex-col gap-[24px] mb-[50px]">
+  
+<p className="text-[18px]">Watch Video Lessons on various subjects and Topics to be better prepared for your Exams </p>
+<Button variant='outline' className='w-[50%] text-[#FF5900] border border-[#FF5900] bg-transparent'>
+  <Link href=''>Watch Now </Link>   </Button>
+</div>
+
+
 </aside>
 
 
