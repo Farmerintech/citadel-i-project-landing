@@ -128,7 +128,9 @@ Study Saved questions
      <p className="text-[18px]"> D) Reticulum</p>
     </span>
     <span className="flex justify-between w-[261px]">
-<Button variant='outline' className='border border-[#FF5900] text-[#FF5900]'>View Answer</Button>
+<Button variant='outline' className='border border-[#FF5900] text-[#FF5900]'>
+ <Link href='/exam_preparation/exam_questions/view_answer'>      View Answer</Link>
+    </Button>
 <Button variant='outline' className='border border-[#FF5900] text-[#FF5900]'><ChefHatIcon/> Save Question</Button>
 
     </span>
