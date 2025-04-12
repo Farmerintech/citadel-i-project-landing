@@ -60,7 +60,7 @@ export default function SignUpPage({ setShowReg }: SignUpPageProps) {
             handleForm={(e) =>
               handleSignupForm(
                 e,
-                "http://localhost:8000/api/v1/auth/student/signup",
+                "https://citadel-i-project.onrender.com/api/v1/user/auth/signup",
                 formData,
                 setError,
                 setMessage,

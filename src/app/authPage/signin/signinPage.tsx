@@ -58,7 +58,7 @@ export default function SignInPage({ setShowLogin }: SignInPageProps) {
              handleForm={(event) =>
               handleForm(
                 event,
-                "http://localhost:8000/api/v1/auth/student/signin",
+                "https://citadel-i-project.onrender.com/api/v1/user/auth/signin",
                 formData,
                 setError,
                 setMessage,

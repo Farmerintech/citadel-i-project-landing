@@ -9,17 +9,7 @@ import { RightSide } from "./rightSide";
 import { LeftSide } from "./leftSide";
 import { Bottom } from "./bottom";
 export default function Counselling (){
-      const [showReg, setShowReg] = useState(false)
-      const [showLogin, setShowLogin] = useState(false)
-      const router = useRouter()
-      const showRegPage = () =>{
-        router.push('/?showReg=true'); // navigate to home page
-        toggle(setShowReg, showReg); // then toggle the registration page
-      }
-      const showLoginPage = () =>{
-        router.push('/?showLogin=true'); // navigate to home page
-        setShowLogin(!showLogin)
-      }
+     
     return(
         <>
         
