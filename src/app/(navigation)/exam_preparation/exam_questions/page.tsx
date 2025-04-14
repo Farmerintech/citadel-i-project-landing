@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState} from 'react'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
 import { ChefHatIcon } from 'lucide-react'
@@ -11,9 +12,43 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
+import { useRouter } from 'next/router'
 
+  type PQItem = {
+    question: string;
+    // optionally add: id: string; or other fields if present
+  };
+  
 export default function page() {
-  return (
+
+  const [data, setData] = useState<any>(null);
+  const [error, setError] = useState<string>()
+  
+  useEffect(() => {
+    const fetchPQ = async () => {
+      setError("");
+  
+      try {
+        const response = await fetch(`https://citadel-i-project.onrender.com/api/v1/exam_prep/past-question/biololgy`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+  
+        const result = await response.json();
+        setData(result);
+        console.log(data)
+      } catch (error) {
+        console.error(error);
+        setError("Error connecting to server");
+      }
+    };
+  
+    fetchPQ();
+  }, []);
+
+    return (
     <main className="md:px-[100px] py-3 px-[16px]">
 <div className="flex items-center justify-between">
 
@@ -116,6 +151,19 @@ Study Saved questions
     <span className="flex items-center gap-2">
         <p className="h-[24px] w-[24px] bg-[#FFCCB0] text-[10px]
         border border-[#FF5900] text-[#FF5900] rounded-full flex items-center justify-center">1</p>
+      {
+  data?.map((pq: PQItem, index: number) => (
+    <span className="flex items-center gap-2">
+    <p className="h-[24px] w-[24px] bg-[#FFCCB0] text-[10px]
+    border border-[#FF5900] text-[#FF5900] rounded-full flex items-center justify-center">1</p>
+    <p key={index} className="font-semibold text-[18px]">
+      {pq.question}
+    </p>
+    </span>
+  ))
+}
+
+
         <p className="font-semibold text-[18px]">The true stomach of the ruminants is called  </p>
     </span>
     <span className="">

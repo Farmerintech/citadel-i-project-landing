@@ -102,6 +102,79 @@ export default function page() {
     },
   ]
   
+
+  const subjects =[
+    {
+      name:'Mathematics',
+      url:'maths',
+      image:Maths
+    },
+    {
+      name:'English',
+      url:'english',
+      image:Maths
+
+    },
+    {
+      name:'Civi Education',
+      url:'civic-education',
+      image:Maths
+    },
+    {
+      name:'Biology',
+      url:'biology',
+      image:Maths
+    },
+    {
+      name:'Chemistry',
+      url:'chemistry',
+      image:Maths
+    },
+    {
+      name:'Literature',
+      url:'literature',
+      image:Maths
+    },
+    {
+      name:'Physics',
+      url:'physics',
+      image:Maths
+
+    },
+    {
+      name:'Economics',
+      url:'economics',
+      image:Maths
+    },
+    {
+      name:'Accounting',
+      url:'accounting',
+      image:Maths
+    },
+    {
+      name:'Computer Studies',
+      url:'computer-studies',
+      image:Maths
+
+    }, {
+      name:'Commerce',
+      url:'commerce',
+      image:Maths
+
+    }, 
+    {
+      name:'Government',
+      url:'government',
+      image:Maths
+
+    },
+    {
+      name:'Agricultural Studies',
+      url:'agricultural-studies',
+      image:Maths
+
+    },
+  ]
   return (
     <section className="md:px-[100px] px-[16px] flex gap-[20px] md:flex-row flex-col ">
  <aside className="md:w-[836px] bg-[#FFFFFF] flex flex-col gap-[48px] md:px-[32px] pt-[16px] pb-[40px]">
@@ -233,180 +306,26 @@ export default function page() {
 
 
 <div className="flex flex-col gap-[32px]">
-<article className="flex gap-[24px] items-center">
+  {
+    subjects.map(subject =>(
+<article className="flex gap-[24px] items-center" >
 <span className="w-[140px] h-[120px]">
-  <Image src={Maths} alt='' layout='responsive'/>
+  <Image src={subject.image} alt='' layout='responsive'/>
 </span>
 <span className="flex flex-col gap-[12px] w-[168px]">
-  <p className="text-[18px] font-semibold">Mathematics</p>
+  <p className="text-[18px] font-semibold">{subject.name}</p>
   <Button variant="outline" className='w-[113px] border border-[#FF5900] text-[#FF5900]'>Go to Lesson</Button>
   <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>
-  <Link href='/exam_preparation/exam_questions' >Study Past Questions</Link></Button>
+  <Link href={`/exam_preparation/${subject.url}/exam_questions`} >Study Past Questions</Link></Button>
 
 </span>
 </article>
 
-
-
-<article className="flex gap-[24px] items-center">
-<span className="w-[140px] h-[120px]">
-  <Image src={Maths} alt='' layout='responsive'/>
-</span>
-<span className="flex flex-col gap-[12px] w-[168px]">
-  <p className="text-[18px] font-semibold">English</p>
-  <Button variant="outline" className='w-[113px] border border-[#FF5900] text-[#FF5900]'>Go to Lesson</Button>
-  <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>Study Past Questions</Button>
-
-</span>
-</article>
-
-
-<article className="flex gap-[24px] items-center">
-<span className="w-[140px] h-[120px]">
-  <Image src={Maths} alt='' layout='responsive'/>
-</span>
-<span className="flex flex-col gap-[12px] w-[168px]">
-  <p className="text-[18px] font-semibold">Civi Education</p>
-  <Button variant="outline" className='w-[113px] border border-[#FF5900] text-[#FF5900]'>Go to Lesson</Button>
-  <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>Study Past Questions</Button>
-
-</span>
-</article>
+    ))
+  }
 
 
 
-
-<article className="flex gap-[24px] items-center">
-<span className="w-[140px] h-[120px]">
-  <Image src={Maths} alt='' layout='responsive'/>
-</span>
-<span className="flex flex-col gap-[12px] w-[168px]">
-  <p className="text-[18px] font-semibold">Biology</p>
-  <Button variant="outline" className='w-[113px] border border-[#FF5900] text-[#FF5900]'>Go to Lesson</Button>
-  <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>Study Past Questions</Button>
-
-</span>
-</article>
-
-
-
-<article className="flex gap-[24px] items-center">
-<span className="w-[140px] h-[120px]">
-  <Image src={Maths} alt='' layout='responsive'/>
-</span>
-<span className="flex flex-col gap-[12px] w-[168px]">
-  <p className="text-[18px] font-semibold">Chmistry</p>
-  <Button variant="outline" className='w-[113px] border border-[#FF5900] text-[#FF5900]'>Go to Lesson</Button>
-  <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>Study Past Questions</Button>
-
-</span>
-</article>
-
-
-
-<article className="flex gap-[24px] items-center">
-<span className="w-[140px] h-[120px]">
-  <Image src={Maths} alt='' layout='responsive'/>
-</span>
-<span className="flex flex-col gap-[12px] w-[168px]">
-  <p className="text-[18px] font-semibold">Literature</p>
-  <Button variant="outline" className='w-[113px] border border-[#FF5900] text-[#FF5900]'>Go to Lesson</Button>
-  <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>Study Past Questions</Button>
-
-</span>
-</article>
-
-
-
-<article className="flex gap-[24px] items-center">
-<span className="w-[140px] h-[120px]">
-  <Image src={Maths} alt='' layout='responsive'/>
-</span>
-<span className="flex flex-col gap-[12px] w-[168px]">
-  <p className="text-[18px] font-semibold">Physics</p>
-  <Button variant="outline" className='w-[113px] border border-[#FF5900] text-[#FF5900]'>Go to Lesson</Button>
-  <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>Study Past Questions</Button>
-
-</span>
-</article>
-
-
-<article className="flex gap-[24px] items-center">
-<span className="w-[140px] h-[120px]">
-  <Image src={Maths} alt='' layout='responsive'/>
-</span>
-<span className="flex flex-col gap-[12px] w-[168px]">
-  <p className="text-[18px] font-semibold">Economics</p>
-  <Button variant="outline" className='w-[113px] border border-[#FF5900] text-[#FF5900]'>Go to Lesson</Button>
-  <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>Study Past Questions</Button>
-
-</span>
-</article>
-
-
-<article className="flex gap-[24px] items-center">
-<span className="w-[140px] h-[120px]">
-  <Image src={Maths} alt='' layout='responsive'/>
-</span>
-<span className="flex flex-col gap-[12px] w-[168px]">
-  <p className="text-[18px] font-semibold">Accounting</p>
-  <Button variant="outline" className='w-[113px] border border-[#FF5900] text-[#FF5900]'>Go to Lesson</Button>
-  <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>Study Past Questions</Button>
-
-</span>
-</article>
-
-
-<article className="flex gap-[24px] items-center">
-<span className="w-[140px] h-[120px]">
-  <Image src={Maths} alt='' layout='responsive'/>
-</span>
-<span className="flex flex-col gap-[12px] w-[168px]">
-  <p className="text-[18px] font-semibold">Computer Studies</p>
-  <Button variant="outline" className='w-[113px] border border-[#FF5900] text-[#FF5900]'>Go to Lesson</Button>
-  <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>Study Past Questions</Button>
-
-</span>
-</article>
-
-
-<article className="flex gap-[24px] items-center">
-<span className="w-[140px] h-[120px]">
-  <Image src={Maths} alt='' layout='responsive'/>
-</span>
-<span className="flex flex-col gap-[12px] w-[168px]">
-  <p className="text-[18px] font-semibold">Commerce</p>
-  <Button variant="outline" className='w-[113px] border border-[#FF5900] text-[#FF5900]'>Go to Lesson</Button>
-  <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>Study Past Questions</Button>
-
-</span>
-</article>
-
-
-<article className="flex gap-[24px] items-center">
-<span className="w-[140px] h-[120px]">
-  <Image src={Maths} alt='' layout='responsive'/>
-</span>
-<span className="flex flex-col gap-[12px] w-[168px]">
-  <p className="text-[18px] font-semibold">Government</p>
-  <Button variant="outline" className='w-[113px] border border-[#FF5900] text-[#FF5900]'>Go to Lesson</Button>
-  <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>Study Past Questions</Button>
-
-</span>
-</article>
-
-
-<article className="flex gap-[24px] items-center">
-<span className="w-[140px] h-[120px]">
-  <Image src={Maths} alt='' layout='responsive'/>
-</span>
-<span className="flex flex-col gap-[12px] w-[168px]">
-  <p className="text-[18px] font-semibold">Agricultural Studies</p>
-  <Button variant="outline" className='w-[113px] border border-[#FF5900] text-[#FF5900]'>Go to Lesson</Button>
-  <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>Study Past Questions</Button>
-
-</span>
-</article>
 </div>
 
  </aside>

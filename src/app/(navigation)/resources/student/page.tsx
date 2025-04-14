@@ -9,15 +9,6 @@ export default function Main(){
     // const router = useRouter()
     // const {role} = router.query
     const subjects = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] 
-  const [showReg, setShowReg] = useState(false)
-  const [showLogin, setShowLogin] = useState(false)
-
-  const showRegPage = () =>{
-    toggle(setShowReg, showReg); // then toggle the registration page
-  }
-  const showLoginPage = () =>{
-    setShowLogin(!showLogin)
-  }
 
     return(
            <>

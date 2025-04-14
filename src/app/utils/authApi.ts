@@ -64,3 +64,38 @@ export interface FormDataType {
     }
   };
   
+
+  //pq
+  export interface PQinterface {
+    subject: string;
+    
+  }
+  
+
+  export const handlePQ = async (
+    event: React.FormEvent<HTMLFormElement>,
+    URL: string,
+    setError: (msg: string) => void,
+    setData: (data: any) => void,
+  ): Promise<void> => {
+    event.preventDefault();
+    setError("");
+
+    try {
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      
+      });
+  
+      const result = await response.json();
+      setData(result);
+    } catch (error) {
+      console.error(error);
+      setError("Error connecting to server");
+    }
+  };
+
+  
