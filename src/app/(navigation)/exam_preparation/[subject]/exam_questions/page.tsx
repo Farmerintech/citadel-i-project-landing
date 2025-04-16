@@ -30,6 +30,8 @@ export default function Page() {
   let subject = params.subject as string; // if TypeScript complains
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState<string>()
+
+  
 console.log(params)
   useEffect(() => {
     const fetchPQ = async () => {
