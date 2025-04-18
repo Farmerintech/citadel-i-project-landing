@@ -64,7 +64,7 @@ console.log(params)
   }
     return (
     <main className="md:px-[100px] py-3 px-[16px]">
-<div className="flex items-center justify-between">
+    <div className="flex items-center justify-between">
 
     <span className="">  
 <p className="text-[#FF5900] text-[16px]">{subject ? `${subject} Past Question` : "Loading..."}</p>
@@ -199,6 +199,8 @@ Study Saved questions
 }
 </div>
 </article>
+
+
 <span className="flex justify-between">
 <Button variant='outline' className=' border border-[#FF5900]'><Link href=''>Go Back</Link>    </Button>
   

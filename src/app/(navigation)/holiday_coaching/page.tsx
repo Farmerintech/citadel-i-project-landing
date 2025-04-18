@@ -9,17 +9,6 @@ import holiday from '@/app/assets/holiday.png'
 import Image from 'next/image'
 
 export default function Coaching (){
-          const [showReg, setShowReg] = useState(false)
-          const [showLogin, setShowLogin] = useState(false)
-          const router = useRouter()
-          const showRegPage = () =>{
-            router.push('/?showReg=true'); // navigate to home page
-            toggle(setShowReg, showReg); // then toggle the registration page
-          }
-          const showLoginPage = () =>{
-            router.push('/?showLogin=true'); // navigate to home page
-            setShowLogin(!showLogin)
-          }
     return(
         <>
     
