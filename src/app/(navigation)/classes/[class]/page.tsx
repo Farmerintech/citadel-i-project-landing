@@ -48,71 +48,90 @@ export default function Myclass (){
 const [yearIndex, setYearIndex] = useState<number>(0)
 const [classIndex, setClassIndex] = useState<number>(0);
 const [term, setTerm] = useState<string>("First Term")
-const [data, setData] = useState<string>()
+const [data, setData] = useState<any>(null)
 const [error, setError] = useState<string>()
 const params = useParams<any>();
 const subjects = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 const [showMenu, setShowMenu] = useState<boolean>(false);
 const [showTerm, setShowTerm] = useState<boolean>(false)
 let theClass = params.class as string; //  
-let year:string;
-let realTerm:string;
-const fetchClassNote = async () => {
-if (!theClass) return; // Wait until class is available from params
+const [loading, setLoading] = useState<boolean>(true);
 
-//format year for the api
-if(yearIndex ===0){year = "year1"}
-if(yearIndex ===0){year = "year1"}
-if(yearIndex ===1){year = "year2"}
-if(yearIndex ===2){year = "year3"}
-if(yearIndex ===3){year = "year4"}
-if(yearIndex ===4){year = "year5"}
-if(yearIndex ===5){year = "year6"}
-//format term normally to remove spacing for the api
-if(term === "First Term"){realTerm = "first-term"}
-if(term === "Second Term"){realTerm = "second-term"}
-if(term === "Third Term"){realTerm = "third-term"}
+useEffect(() => {
+  if (!params.class) return;
+  setLoading(true);
 
-setError("");
+  const theClass = params.class as string;
 
-console.log(theClass, year, realTerm)
-//https://citadel-i-project.onrender.com/api/v1/class_note/KS1/year1/first-term
-try {
-  const response = await fetch(`https://citadel-i-project.onrender.com/api/v1/class_note/${theClass}/${year}/${realTerm}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const formatYear = (index: number): string => {
+    const years = ["year1", "year2", "year3", "year4", "year5", "year6"];
+    return years[index] || "year1";
+  };
 
-  const result = await response.json();
-  setData(result);
-  console.log(data)
-} catch (error) {
-  console.error(error);
-  setError("Error connecting to server");
+  const formatTerm = (term: string): string => {
+    switch (term) {
+      case "First Term":
+        return "first-term";
+      case "Second Term":
+        return "second-term";
+      case "Third Term":
+        return "third-term";
+      default:
+        return "first-term";
+    }
+  };
+
+  const fetchClassNote = async () => {
+    const year = formatYear(yearIndex);
+    const realTerm = formatTerm(term);
+
+    setError("");
+    setData(null);
+
+    try {
+      const res = await fetch(
+        `https://citadel-i-project.onrender.com/api/v1/class_note/${theClass}/${year}/${realTerm}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.message || "Failed to fetch class material");
+        setError(result.message)
+      }
+
+      setData(result);
+      console.log("Fetched:", result);
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || "Error connecting to server");
+    } finally{
+      setLoading(false);
+
+    }
+  };
+
+  // Determine classIndex on mount
+  const matchIndex = menuItems.findIndex((item) => item.name === theClass);
+  if (matchIndex !== -1) setClassIndex(matchIndex);
+
+  fetchClassNote();
+}, [params.class, yearIndex, term]);
+
+type materialItem = {
+  subject:string,
+  classFor:string,
+  year:string,
+  term:string,
+  id:number,
+  filePath:any
 }
-};
-
-useEffect(()=>{
-    if(theClass === "KS1"){
-        setClassIndex(0)
-    }
-    if(theClass === "KS2"){
-        setClassIndex(1)
-    }
-    if(theClass === "KS3"){
-      setClassIndex(2)
-    }
-    if(theClass === "SSCE_GCE"){
-        setClassIndex(3)
-    }
-    fetchClassNote()
-}, [
-  [data], [yearIndex], [term]
-])
-
-
     return(
         <>
   
@@ -235,7 +254,32 @@ useEffect(()=>{
 
             </div>
             <div className="mt-[50px] md:mt-[0px]  grid md:grid-cols-2 lg:grid-cols-4 gap-[32px] py-[32px]  ">
-               {
+            {loading && (
+              <p className="text-center w-full text-[18px] font-medium">Loading material...</p>
+            )}
+
+          {!loading && error && (
+           <p className="md:w-[500px] w-full text-center text-[18px] font-[500] text-black">
+                {error}
+            </p>
+          )}
+
+          {!loading && data?.classMaterial?.length > 0 && (
+            data.classMaterial.map((material: materialItem, index: number) => (
+               <div className="w-full h-[177px]" key={index}>
+                 <div className="bg-[#F3F3F3] w-full h-[137px]">
+                   <div className="flex items-center justify-center py-[35px] px-[26px]">
+                    {/* You could add an icon or image here */}
+                  </div>
+               </div>
+             <div className="bg-[#3E414A] h-[40px] w-full text-center text-white flex items-center justify-center">
+             <Link href={`/${material.filePath}`}>{material.subject}</Link>
+          </div>
+       </div>
+       ))
+       )}
+
+               {/* {
                 subjects.map((subject)=>(
                   <div className="w-full h-[177px] ">
                     <div className="bg-[#F3F3F3] w-full h-[137px]">
@@ -248,7 +292,7 @@ useEffect(()=>{
                     </div>
                   </div>
                 ))
-               }
+               } */}
             </div>
             <div className="md:flex-row flex-col flex flex-start gap-[32px] md:items-center">
                     <p className="font-[400] text-[18px] text-xl">Need help with understanding your subjects?</p>
