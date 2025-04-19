@@ -130,7 +130,6 @@ useEffect(() => {
   // Determine classIndex on mount
   const matchIndex = menuItems.findIndex((item) => item.name === theClass);
   if (matchIndex !== -1) setClassIndex(matchIndex);
-
   fetchClassNote();
 }, [params.class, yearIndex, term]);
 
@@ -147,11 +146,13 @@ const handleSelect = (event: ChangeEvent<HTMLSelectElement>)=>{
     ...form,
     [event.target.name]:event.target.value
   })
+  
+
 }
 
 const filterBySubject = async (event: React.FormEvent<HTMLFormElement>) => {
+  setTerm(form.term)
   event.preventDefault()
-
   if (!params.class) return;
   setLoading(true);
   const theClass = params.class as string;
