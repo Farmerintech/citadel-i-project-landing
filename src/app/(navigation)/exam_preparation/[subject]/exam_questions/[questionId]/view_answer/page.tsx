@@ -118,16 +118,7 @@ Study Saved questions
     </span>
 
 <span className="flex justify-between">
-<Button variant='outline' className=' border border-[#FF5900]'><Link href=''>Go Back</Link>    </Button>
-  
-  <span className="flex gap-2">
-    
-<Button variant='outline' className=' border border-[#FF5900]'><Link href=''>Previous</Link>    </Button>
-<Button variant='outline' className=' border border-[#FF5900]'><Link href=''>Next</Link>    </Button>
-  </span>
-
-
-
+<Button variant='outline' className=' border border-[#FF5900]'><Link href={`/exam_preparation/${subject}/exam_questions/`}>Go Back</Link>    </Button>
 </span>
 </>
   
