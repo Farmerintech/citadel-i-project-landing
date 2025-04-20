@@ -6,6 +6,7 @@ import { ChefHatIcon } from 'lucide-react'
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { useParams } from 'next/navigation'; // ✅ Use this instead
+
 import {
     Select,
     SelectContent,
@@ -24,49 +25,56 @@ import {
     subject:string,
     id:number
   };
-  
+  import { useSearchParams } from 'next/navigation';
+
 export default function Page() {
   const params = useParams();
   let subject = params.subject as string; // if TypeScript complains
+  const searchParams = useSearchParams();
+  const currentPage = Number(searchParams.get("page")) || 1;
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState<string>()
-
-  
+  const [totalPage, setTotalPage] = useState<number>()
 console.log(params)
-  useEffect(() => {
-    const fetchPQ = async () => {
-      if (!subject) return; // Wait until subject is available
-
-      setError("");
-  
-      try {
-        const response = await fetch(`https://citadel-i-project.onrender.com/api/v1/exam_prep/past-question/${subject}`, {
+useEffect(() => {
+  const fetchPQ = async () => {
+    if (!subject) return;
+    if(!currentPage) return 
+    setError("");
+  let offset;
+  currentPage > 1 ? offset = (currentPage * 10)-10 : offset=0
+    try {
+      const response = await fetch(
+        `https://citadel-i-project.onrender.com/api/v1/exam_prep/past-question/${subject}?page=${currentPage}&offset=${offset}`,
+        {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-        });
-  
-        const result = await response.json();
-        setData(result);
-        console.log(data)
-      } catch (error) {
-        console.error(error);
-        setError("Error connecting to server");
-      }
-    };
-  
-    fetchPQ();
-  }, [subject]);
+        }
+      );
+
+      const result = await response.json();
+      setData(result);
+      setTotalPage(result.pagination.totalPages)
+    } catch (error) {
+      console.error(error);
+      setError("Error connecting to server");
+    }
+  };
+
+  fetchPQ();
+}, [subject, currentPage]);
 
   if(subject === "maths"){
     subject="Mathematics"
   }
-    return (
-    <main className="md:px-[100px] py-3 px-[16px]">
-    <div className="flex items-center justify-between">
 
-    <span className="">  
+    return (
+<main className="md:px-[100px] py-3 px-[16px]">
+<div className="flex items-center justify-between">
+
+<span className="">  
 <p className="text-[#FF5900] text-[16px]">{subject ? `${subject} Past Question` : "Loading..."}</p>
 <p className="md:text-[32px] text-[12px] font-bold">{subject ? `${subject} Past Question` : "Loading..."}</p>
 </span>
@@ -204,11 +212,15 @@ Study Saved questions
 <span className="flex justify-between">
 <Button variant='outline' className=' border border-[#FF5900]'><Link href=''>Go Back</Link>    </Button>
   
-  <span className="flex gap-2">
-    
-<Button variant='outline' className=' border border-[#FF5900]'><Link href=''>Previous</Link>    </Button>
-<Button variant='outline' className=' border border-[#FF5900]'><Link href=''>Next</Link>    </Button>
-  </span>
+<span className="flex justify-between gap-[24px]">
+  <Button variant='outline' className=' border border-[#FF5900]' disabled={currentPage === 1}>
+    <Link href={`/exam_preparation/${subject}/exam_questions?page=${Math.max(currentPage - 1, 1)}`}>Previous</Link>
+  </Button>
+
+  <Button variant='outline' className=' border border-[#FF5900]' disabled={currentPage === totalPage}>
+    <Link href={`/exam_preparation/${subject}/exam_questions?page=${currentPage + 1}`} >Next</Link>
+  </Button>
+</span>
 
 
 
