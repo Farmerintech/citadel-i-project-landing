@@ -23,6 +23,91 @@ import {
     SelectValue,
   } from "@/components/ui/select"
   
+  export const subjects =[
+    {
+      name:'Mathematics',
+      url:'maths',
+      image:Maths
+    },
+    {
+      name:'English',
+      url:'english',
+      image:Maths
+
+    },
+    {
+      name:'Civi Education',
+      url:'civic-education',
+      image:Maths
+    },
+    {
+      name:'Biology',
+      url:'biology',
+      image:Maths
+    },
+    {
+      name:'Chemistry',
+      url:'chemistry',
+      image:Maths
+    },
+    {
+      name:'Literature',
+      url:'literature',
+      image:Maths
+    },
+    {
+      name:'Physics',
+      url:'physics',
+      image:Maths
+
+    },
+    {
+      name:'Economics',
+      url:'economics',
+      image:Maths
+    },
+    {
+      name:'Accounting',
+      url:'accounting',
+      image:Maths
+    },
+    {
+      name:'Computer Studies',
+      url:'computer-studies',
+      image:Maths
+
+    }, {
+      name:'Commerce',
+      url:'commerce',
+      image:Maths
+
+    }, 
+    {
+      name:'Government',
+      url:'government',
+      image:Maths
+
+    },
+    {
+      name:'Agricultural Science',
+      url:'agricultural-science',
+      image:Maths
+
+    },
+    {
+      name:'Christian Religion studies',
+      url:'agricultural-science',
+      image:Maths
+
+    },
+    {
+      name:'Islamic Religion studies',
+      url:'agricultural-science',
+      image:Maths
+
+    },
+  ]
+
 export default function page() {
   const Schools = [
     {
@@ -103,78 +188,6 @@ export default function page() {
   ]
   
 
-  const subjects =[
-    {
-      name:'Mathematics',
-      url:'maths',
-      image:Maths
-    },
-    {
-      name:'English',
-      url:'english',
-      image:Maths
-
-    },
-    {
-      name:'Civi Education',
-      url:'civic-education',
-      image:Maths
-    },
-    {
-      name:'Biology',
-      url:'biology',
-      image:Maths
-    },
-    {
-      name:'Chemistry',
-      url:'chemistry',
-      image:Maths
-    },
-    {
-      name:'Literature',
-      url:'literature',
-      image:Maths
-    },
-    {
-      name:'Physics',
-      url:'physics',
-      image:Maths
-
-    },
-    {
-      name:'Economics',
-      url:'economics',
-      image:Maths
-    },
-    {
-      name:'Accounting',
-      url:'accounting',
-      image:Maths
-    },
-    {
-      name:'Computer Studies',
-      url:'computer-studies',
-      image:Maths
-
-    }, {
-      name:'Commerce',
-      url:'commerce',
-      image:Maths
-
-    }, 
-    {
-      name:'Government',
-      url:'government',
-      image:Maths
-
-    },
-    {
-      name:'Agricultural Studies',
-      url:'agricultural-studies',
-      image:Maths
-
-    },
-  ]
   return (
     <section className="md:px-[100px] px-[16px] flex gap-[20px] md:flex-row flex-col ">
  <aside className="md:w-[836px] bg-[#FFFFFF] flex flex-col gap-[48px] md:px-[32px] pt-[16px] pb-[40px]">

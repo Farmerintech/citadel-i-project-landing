@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Textarea } from '@/components/ui/textarea'
 import { useParams } from 'next/navigation'
+import { subjects } from "@/app/(navigation)/exam_preparation/page"
   
 
 type PQItem = {
@@ -57,17 +58,15 @@ export default function page() {
       fetchPQ();
     }, [myData]);
   
-    if(subject === "maths"){
-      subject="Mathematics"
-    }
-  
+    const matched = subjects.find(subj => subj.url === subject);
+
   return (
     <main className="md:px-[100px] py-3 px-[16px]">
 <div className="flex items-center justify-between">
 
     <span className="">  
-<p className="text-[#FF5900] text-[16px]">Biology Past question</p>
-<p className="md:text-[32px] text-[12px] font-bold">Biology Past Question</p>
+<p className="text-[#FF5900] text-[16px]">{ matched ? `${matched.name} Past Question` : "Loading..."}</p>
+<p className="md:text-[32px] text-[12px] font-bold">{ matched ? `${matched.name} Past Question` : "Loading..."}</p>
 </span>
 <Button className='bg-[#FF5900] text-[12px] md:text-white md:text-[18px]' variant='outline'><Link href='' className='flex gap-2 items-center'>
 Study Saved questions

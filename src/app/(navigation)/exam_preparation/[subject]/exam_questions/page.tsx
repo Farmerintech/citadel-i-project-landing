@@ -26,6 +26,7 @@ import {
     id:number
   };
   import { useSearchParams } from 'next/navigation';
+import { subjects } from '../../page'
 
 export default function Page() {
   const params = useParams();
@@ -34,17 +35,19 @@ export default function Page() {
   const currentPage = Number(searchParams.get("page")) || 1;
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState<string>()
-  const [totalPage, setTotalPage] = useState<number>()
+  const [totalPage, setTotalPage] = useState<number>(1)
+  const [loading, setIsLoading] = useState<boolean>(true)
 console.log(params)
 useEffect(() => {
   const fetchPQ = async () => {
     if (!subject) return;
     if(!currentPage) return 
     setError("");
-  let offset;
-  currentPage > 1 ? offset = (currentPage * 10)-10 : offset=0
+    setIsLoading(true)
+
+   let offset= (currentPage * 10)-10 
     try {
-      const response = await fetch(
+      const res = await fetch(
         `https://citadel-i-project.onrender.com/api/v1/exam_prep/past-question/${subject}?page=${currentPage}&offset=${offset}`,
         {
           method: "GET",
@@ -54,29 +57,37 @@ useEffect(() => {
         }
       );
 
-      const result = await response.json();
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.message || "Failed to Question");
+        setError(result.message)
+      }
+  
       setData(result);
-      setTotalPage(result.pagination.totalPages)
-    } catch (error) {
-      console.error(error);
-      setError("Error connecting to server");
+      console.log("Fetched:", result);
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || "Error connecting to server");
+    } finally{
+      setIsLoading(false);
+  
     }
-  };
+    };
 
   fetchPQ();
 }, [subject, currentPage]);
-
-  if(subject === "maths"){
-    subject="Mathematics"
-  }
-
+  
+  const matched = subjects.find(subj => subj.url === subject);
+    
+ 
     return (
 <main className="md:px-[100px] py-3 px-[16px]">
 <div className="flex items-center justify-between">
 
 <span className="">  
-<p className="text-[#FF5900] text-[16px]">{subject ? `${subject} Past Question` : "Loading..."}</p>
-<p className="md:text-[32px] text-[12px] font-bold">{subject ? `${subject} Past Question` : "Loading..."}</p>
+<p className="text-[#FF5900] text-[16px]">{ matched ? `${matched.name} Past Question` : "Loading..."}</p>
+<p className="md:text-[32px] text-[12px] font-bold">{ matched ? `${matched.name} Past Question` : "Loading..."}</p>
 </span>
 <Button className='bg-[#FF5900] text-[12px] md:text-white md:text-[18px]' variant='outline'><Link href='' className='flex gap-2 items-center'>
 Study Saved questions
@@ -170,9 +181,15 @@ Study Saved questions
   </SelectContent>
 </Select> </span>
 <div className="flex flex-col gap-2.5">
+{loading && (
+    <p className="mt-6 text-center w-full text-[18px] ">Loading Question...</p>
+)}
+
+{!loading && error && (
+  <p className="mt-6 w-full text-center text-[18px] font-[500] text-black">{error}</p>
+ )}
 {
-  data ?
-   data?.Questions?.length !==0 ?
+  !loading  && data?.Questions?.length > 0 &&
   data?.Questions?.map((pq: PQItem, index: number) => (
     <>
     <span className="flex items-center gap-2" key={index}>
@@ -202,15 +219,13 @@ Study Saved questions
    </>
     
   ))
-  :"No Question yet"
-  :"Loading Question..."
 }
 </div>
 </article>
 
 
 <span className="flex justify-between">
-<Button variant='outline' className=' border border-[#FF5900]'><Link href=''>Go Back</Link>    </Button>
+<Button variant='outline' className=' border border-[#FF5900]'><Link href='/exam_preparation'>Go Back</Link>    </Button>
   
 <span className="flex justify-between gap-[24px]">
   <Button variant='outline' className=' border border-[#FF5900]' disabled={currentPage === 1}>
