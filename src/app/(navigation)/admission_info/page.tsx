@@ -199,7 +199,6 @@ export default function AdmissionInfo (){
                         <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
                             {courseItems["O'Level Requirements"].map(olevel=>(
                             <li>{olevel}</li>
-
                             ))}
                         </ul>
                     </div>
