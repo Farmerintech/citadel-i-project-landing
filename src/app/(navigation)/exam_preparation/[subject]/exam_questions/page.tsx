@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState} from 'react'
+import React, { ChangeEvent, useEffect, useState} from 'react'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
 import { ChefHatIcon } from 'lucide-react'
@@ -36,8 +36,28 @@ export default function Page() {
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState<string>()
   const [totalPage, setTotalPage] = useState<number>(1)
-  const [loading, setIsLoading] = useState<boolean>(true)
+  const [loading, setIsLoading] = useState<boolean>(true);
+  const [formData, setFormData] = useState<any>({
+    subject:"",
+    examType:"",
+    questionType:""
+  });
+ 
+  const handleSelectExamType = (value:string) =>{
+    setFormData({examType:value})
+  }
+  const handleSelectSubject = (value:string) =>{
+    setFormData({subject:value})
+  }
+  const handleSelectQuestionType = (value:string) =>{
+    setFormData({questionType:value})
+  }
 console.log(params)
+const matched = subjects.find(subj => subj.url === subject);
+
+ const form = {subject:`${matched?.name}`}
+console.log(form)
+     
 useEffect(() => {
   const fetchPQ = async () => {
     if (!subject) return;
@@ -48,12 +68,14 @@ useEffect(() => {
    let offset= (currentPage * 10)-10 
     try {
       const res = await fetch(
-        `https://citadel-i-project.onrender.com/api/v1/exam_prep/past-question/${subject}?page=${currentPage}&offset=${offset}`,
+        `https://citadel-i-project.onrender.com/api/v1/past-question?page=${currentPage}&offset=${offset}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
+          body:JSON.stringify(form)
+        
         }
       );
 
@@ -78,8 +100,44 @@ useEffect(() => {
   fetchPQ();
 }, [subject, currentPage]);
   
-  const matched = subjects.find(subj => subj.url === subject);
-    
+const fetchPQByConditions = async () => {
+  if (!subject) return;
+  if(!currentPage) return 
+  setError("");
+  setIsLoading(true)
+
+ let offset= (currentPage * 10)-10 
+  try {
+    const res = await fetch(
+      `https://citadel-i-project.onrender.com/api/v1/past-question?page=${currentPage}&offset=${offset}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body:JSON.stringify(formData)
+      
+      }
+    );
+
+    const result = await res.json();
+
+    if (!res.ok) {
+      throw new Error(result.message || "Failed to Question");
+      setError(result.message)
+    }
+
+    setData(result);
+    console.log("Fetched:", result);
+  } catch (err: any) {
+    console.error(err);
+    setError(err.message || "Error connecting to server");
+  } finally{
+    setIsLoading(false);
+
+  }
+  };
+
  
     return (
 <main className="md:px-[100px] py-3 px-[16px]">
@@ -98,16 +156,18 @@ Study Saved questions
 
 <div className="grid grid-cols-2 gap-[24px] py-4">
 <span className="flex flex-col gap-[12px]"> 
-<Label className='tet-[18px] font-semibold'>Class Category</Label>
+<Label className='tet-[18px] font-semibold'>Exam Type</Label>
 
-<Select>
+<Select onValueChange={handleSelectExamType} >
   <SelectTrigger className="md:w-[350px] w-[100%]">
     <SelectValue placeholder="All" />
   </SelectTrigger>
-  <SelectContent>
-    <SelectItem value="light">Light</SelectItem>
-    <SelectItem value="dark">Dark</SelectItem>
-    <SelectItem value="system">System</SelectItem>
+  <SelectContent >
+    <SelectItem value="JAMB" >JAMB</SelectItem>
+    <SelectItem value="WAEC">WAEC</SelectItem>
+    <SelectItem value="NECO">NECO</SelectItem>
+    <SelectItem value="POST UTME">POST UTME</SelectItem>
+
   </SelectContent>
 </Select>
 </span>
@@ -133,14 +193,28 @@ Study Saved questions
 <span className="flex flex-col gap-[12px]"> 
 <Label className='tet-[18px] font-semibold'>Subject</Label>
 
-<Select>
+<Select onValueChange={handleSelectSubject}>
   <SelectTrigger className="md:w-[350px] w-[100%]">
     <SelectValue placeholder="All" />
   </SelectTrigger>
   <SelectContent>
-    <SelectItem value="light">Light</SelectItem>
-    <SelectItem value="dark">Dark</SelectItem>
-    <SelectItem value="system">System</SelectItem>
+    <SelectItem value="English Language">English Language</SelectItem>
+    <SelectItem value="Mathematics">Mathematics</SelectItem>
+    <SelectItem value="Biology">Biology</SelectItem>
+    <SelectItem value="Chemistry">Chemistry</SelectItem>
+    <SelectItem value="Physics">Phyics</SelectItem>
+    <SelectItem value="Literature">Literature</SelectItem>
+    <SelectItem value="Government">Government</SelectItem>
+    <SelectItem value="Accounting">Accounting</SelectItem>
+    <SelectItem value="Commerce">Commerce</SelectItem>
+    <SelectItem value="Agricultural Science">Agricultural Science</SelectItem>
+    <SelectItem value="Civic Education">Civic Education</SelectItem>
+    <SelectItem value="Economics">Economics</SelectItem>
+    <SelectItem value="Marketting">Marketting</SelectItem>
+    <SelectItem value="Computer science">Computer science</SelectItem>
+    <SelectItem value="Christian Religion Studies">Christian Religion Studies</SelectItem>
+    <SelectItem value="Islamic Religion Studies">Islamic Religion Studies</SelectItem>
+
   </SelectContent>
 </Select>
 </span>
@@ -148,21 +222,20 @@ Study Saved questions
 
 
 <span className="flex flex-col gap-[12px]"> 
-<Label className='tet-[18px] font-semibold'>Term</Label>
+<Label className='tet-[18px] font-semibold'>Question Type</Label>
 
-<Select>
+<Select onValueChange={handleSelectQuestionType}>
   <SelectTrigger className="md:w-[350px] w-[100%]">
     <SelectValue placeholder="All" />
   </SelectTrigger>
   <SelectContent>
-    <SelectItem value="light">Light</SelectItem>
-    <SelectItem value="dark">Dark</SelectItem>
-    <SelectItem value="system">System</SelectItem>
+    <SelectItem value="Objective">Objective</SelectItem>
+    <SelectItem value="Theory">Theory</SelectItem>
   </SelectContent>
 </Select>
 </span>
 <Input className='bg-[#FF5900] text-white text-center
- w-[148px] placeholder:text-white' placeholder='Search' />
+ w-[148px] placeholder:text-white' placeholder='Search' onSubmit={fetchPQByConditions}/>
 
 </div>
 

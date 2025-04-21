@@ -27,11 +27,13 @@ type PQItem = {
 
 export default function page() {
   const params = useParams();
-  let subject = params.subject as string;
-  const questionId = parseInt(params.questionId as string, 10);
+    let subject = params.subject as string;
+    const questionId = parseInt(params.questionId as string, 10);
     const [myData, setMyData] = useState<any>(null);
     const [error, setError] = useState<string>()
-  
+    const matched = subjects.find(subj => subj.url === subject);
+    const form = {subject:`${matched?.name}`}
+
     useEffect(() => {
       const fetchPQ = async () => {
         if (!subject) return; // Wait until subject is available
@@ -39,11 +41,12 @@ export default function page() {
         setError("");
     
         try {
-          const response = await fetch(`https://citadel-i-project.onrender.com/api/v1/exam_prep/view-answer/${subject}/${questionId}`, {
+          const response = await fetch(`https://citadel-i-project.onrender.com/api/v1/past-question/view-answer/${questionId}`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
             },
+            body:JSON.stringify(form)
           });
     
           const result = await response.json();
@@ -58,7 +61,6 @@ export default function page() {
       fetchPQ();
     }, [myData]);
   
-    const matched = subjects.find(subj => subj.url === subject);
 
   return (
     <main className="md:px-[100px] py-3 px-[16px]">
