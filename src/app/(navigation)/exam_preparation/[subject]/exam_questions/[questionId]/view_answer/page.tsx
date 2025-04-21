@@ -32,8 +32,11 @@ export default function page() {
     const [myData, setMyData] = useState<any>(null);
     const [error, setError] = useState<string>()
     const matched = subjects.find(subj => subj.url === subject);
-    const form = {subject:`${matched?.name}`}
-
+    
+    const [form, setForm] = useState({
+      subject:(matched?.name)
+    })
+    console.log(form)
     useEffect(() => {
       const fetchPQ = async () => {
         if (!subject) return; // Wait until subject is available
@@ -42,7 +45,7 @@ export default function page() {
     
         try {
           const response = await fetch(`https://citadel-i-project.onrender.com/api/v1/past-question/view-answer/${questionId}`, {
-            method: "GET",
+            method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
@@ -59,7 +62,7 @@ export default function page() {
       };
     
       fetchPQ();
-    }, [myData]);
+    }, [myData, form]);
   
 
   return (

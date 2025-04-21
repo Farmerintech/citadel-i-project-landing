@@ -22,7 +22,6 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
-  
   export const subjects =[
     {
       name:'Mathematics',
@@ -30,7 +29,7 @@ import {
       image:Maths
     },
     {
-      name:'English',
+      name:'English Language',
       url:'english',
       image:Maths
 
@@ -101,7 +100,7 @@ import {
 
     },
     {
-      name:'Islamic Religion studies',
+      name:'Islamic Religious studies',
       url:'agricultural-science',
       image:Maths
 

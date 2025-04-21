@@ -25,7 +25,7 @@ import {
     subject:string,
     id:number
   };
-  import { useSearchParams } from 'next/navigation';
+  import { useSearchParams, useRouter } from 'next/navigation';
 import { subjects } from '../../page'
 
 export default function Page() {
@@ -37,53 +37,52 @@ export default function Page() {
   const [error, setError] = useState<string>()
   const [totalPage, setTotalPage] = useState<number>(1)
   const [loading, setIsLoading] = useState<boolean>(true);
+  const matched = subjects.find(subj => subj.url === subject);
+
   const [formData, setFormData] = useState<any>({
-    subject:"",
+    
+    subject:`${matched?.name}`,
     examType:"",
-    questionType:""
+    questionTypes:""
   });
  
   const handleSelectExamType = (value:string) =>{
-    setFormData({examType:value})
+    setFormData({...formData, examType:value})
   }
   const handleSelectSubject = (value:string) =>{
-    setFormData({subject:value})
+    setFormData({...formData, subject:value});
+    const matched = subjects.find(subj => subj.name === value);
+    const subjectUrl = matched?.url
+    router.push(`/exam_preparation/${subjectUrl}/exam_questions`)
   }
   const handleSelectQuestionType = (value:string) =>{
-    setFormData({questionType:value})
+    setFormData({...formData, questionTypes:value})
   }
-console.log(params)
-const matched = subjects.find(subj => subj.url === subject);
 
- const form = {subject:`${matched?.name}`}
-console.log(form)
-     
-useEffect(() => {
+  const [isManualSubmit, setIsManualSubmit] = useState(false);
+   
   const fetchPQ = async () => {
-    if (!subject) return;
-    if(!currentPage) return 
+    if (!subject || !currentPage) return;
     setError("");
-    setIsLoading(true)
-
-   let offset= (currentPage * 10)-10 
+    setIsLoading(true);
+    let offset = (currentPage * 10) - 10;
+  
     try {
       const res = await fetch(
         `https://citadel-i-project.onrender.com/api/v1/past-question?page=${currentPage}&offset=${offset}`,
         {
-          method: "GET",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body:JSON.stringify(form)
-        
+          body: JSON.stringify(formData),
         }
       );
-
+  
       const result = await res.json();
-
+      console.log(result)
       if (!res.ok) {
-        throw new Error(result.message || "Failed to Question");
-        setError(result.message)
+        throw new Error(result.message || "Failed to fetch question");
       }
   
       setData(result);
@@ -91,52 +90,35 @@ useEffect(() => {
     } catch (err: any) {
       console.error(err);
       setError(err.message || "Error connecting to server");
-    } finally{
+    } finally {
       setIsLoading(false);
-  
     }
-    };
-
-  fetchPQ();
-}, [subject, currentPage]);
-  
-const fetchPQByConditions = async () => {
-  if (!subject) return;
-  if(!currentPage) return 
-  setError("");
-  setIsLoading(true)
-
- let offset= (currentPage * 10)-10 
-  try {
-    const res = await fetch(
-      `https://citadel-i-project.onrender.com/api/v1/past-question?page=${currentPage}&offset=${offset}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body:JSON.stringify(formData)
-      
-      }
-    );
-
-    const result = await res.json();
-
-    if (!res.ok) {
-      throw new Error(result.message || "Failed to Question");
-      setError(result.message)
-    }
-
-    setData(result);
-    console.log("Fetched:", result);
-  } catch (err: any) {
-    console.error(err);
-    setError(err.message || "Error connecting to server");
-  } finally{
-    setIsLoading(false);
-
-  }
   };
+
+  useEffect(() => {
+    if (isManualSubmit) {
+      fetchPQ();
+      setIsManualSubmit(false); // reset after manual fetch
+      return;
+    }
+  
+    // Auto-fetch only when there's no manual submit in progress
+    fetchPQ();
+  }, [subject, currentPage]);
+  
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsManualSubmit(true); // mark manual submit
+    fetchPQ();
+  };
+  
+
+  
+
+  const router = useRouter()
+
+
+  
 
  
     return (
@@ -154,13 +136,42 @@ Study Saved questions
 <section className=" flex gap-[20px] md:flex-row flex-col pt-[50px] ">
 <aside className="md:w-[836px] bg-[#FFFFFF] flex flex-col gap-[48px] md:px-[32px]  pb-[40px]">
 
-<div className="grid grid-cols-2 gap-[24px] py-4">
+<form className="grid grid-cols-2 gap-[24px] py-4" onSubmit={handleSubmit} >
+<span className="flex flex-col gap-[12px]"> 
+<Label className='tet-[18px] font-semibold'>Subject</Label>
+
+<Select onValueChange={handleSelectSubject}>
+  <SelectTrigger className="md:w-[350px] w-[100%]">
+    <SelectValue placeholder={matched?.name} />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="English Language">English Language</SelectItem>
+    <SelectItem value="Mathematics">Mathematics</SelectItem>
+    <SelectItem value="Biology">Biology</SelectItem>
+    <SelectItem value="Chemistry">Chemistry</SelectItem>
+    <SelectItem value="Physics">Phyics</SelectItem>
+    <SelectItem value="Literature">Literature</SelectItem>
+    <SelectItem value="Government">Government</SelectItem>
+    <SelectItem value="Accounting">Accounting</SelectItem>
+    <SelectItem value="Commerce">Commerce</SelectItem>
+    <SelectItem value="Agricultural Science">Agricultural Science</SelectItem>
+    <SelectItem value="Civic Education">Civic Education</SelectItem>
+    <SelectItem value="Economics">Economics</SelectItem>
+    <SelectItem value="Marketting">Marketting</SelectItem>
+    <SelectItem value="Computer science">Computer science</SelectItem>
+    <SelectItem value="Christian Religion Studies">Christian Religion Studies</SelectItem>
+    <SelectItem value="Islamic Religion Studies">Islamic Religion Studies</SelectItem>
+
+  </SelectContent>
+</Select>
+</span>
+
 <span className="flex flex-col gap-[12px]"> 
 <Label className='tet-[18px] font-semibold'>Exam Type</Label>
 
 <Select onValueChange={handleSelectExamType} >
   <SelectTrigger className="md:w-[350px] w-[100%]">
-    <SelectValue placeholder="All" />
+    <SelectValue placeholder={formData.examType ? formData.examType: "All"} />
   </SelectTrigger>
   <SelectContent >
     <SelectItem value="JAMB" >JAMB</SelectItem>
@@ -190,43 +201,15 @@ Study Saved questions
   
 
   
-<span className="flex flex-col gap-[12px]"> 
-<Label className='tet-[18px] font-semibold'>Subject</Label>
-
-<Select onValueChange={handleSelectSubject}>
-  <SelectTrigger className="md:w-[350px] w-[100%]">
-    <SelectValue placeholder="All" />
-  </SelectTrigger>
-  <SelectContent>
-    <SelectItem value="English Language">English Language</SelectItem>
-    <SelectItem value="Mathematics">Mathematics</SelectItem>
-    <SelectItem value="Biology">Biology</SelectItem>
-    <SelectItem value="Chemistry">Chemistry</SelectItem>
-    <SelectItem value="Physics">Phyics</SelectItem>
-    <SelectItem value="Literature">Literature</SelectItem>
-    <SelectItem value="Government">Government</SelectItem>
-    <SelectItem value="Accounting">Accounting</SelectItem>
-    <SelectItem value="Commerce">Commerce</SelectItem>
-    <SelectItem value="Agricultural Science">Agricultural Science</SelectItem>
-    <SelectItem value="Civic Education">Civic Education</SelectItem>
-    <SelectItem value="Economics">Economics</SelectItem>
-    <SelectItem value="Marketting">Marketting</SelectItem>
-    <SelectItem value="Computer science">Computer science</SelectItem>
-    <SelectItem value="Christian Religion Studies">Christian Religion Studies</SelectItem>
-    <SelectItem value="Islamic Religion Studies">Islamic Religion Studies</SelectItem>
-
-  </SelectContent>
-</Select>
-</span>
 
 
 
 <span className="flex flex-col gap-[12px]"> 
 <Label className='tet-[18px] font-semibold'>Question Type</Label>
 
-<Select onValueChange={handleSelectQuestionType}>
+<Select onValueChange={handleSelectQuestionType} >
   <SelectTrigger className="md:w-[350px] w-[100%]">
-    <SelectValue placeholder="All" />
+    <SelectValue placeholder={formData?.questionTypes ?formData?.questionTypes: "All"} />
   </SelectTrigger>
   <SelectContent>
     <SelectItem value="Objective">Objective</SelectItem>
@@ -235,9 +218,9 @@ Study Saved questions
 </Select>
 </span>
 <Input className='bg-[#FF5900] text-white text-center
- w-[148px] placeholder:text-white' placeholder='Search' onSubmit={fetchPQByConditions}/>
+ w-[148px] placeholder:text-white' placeholder='Search' type='submit'/>
 
-</div>
+</form>
 
 
 
@@ -262,7 +245,7 @@ Study Saved questions
   <p className="mt-6 w-full text-center text-[18px] font-[500] text-black">{error}</p>
  )}
 {
-  !loading  && data?.Questions?.length > 0 &&
+  !loading  && data?.Questions?.length > 0 && !error &&
   data?.Questions?.map((pq: PQItem, index: number) => (
     <>
     <span className="flex items-center gap-2" key={index}>
