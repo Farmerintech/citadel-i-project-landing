@@ -188,7 +188,7 @@ export default function page() {
   
 
   return (
-    <section className="md:px-[100px] px-[16px] flex gap-[20px] md:flex-row flex-col ">
+    <section className="xl:px-[100px] px-[16px] flex gap-[20px] md:flex-row flex-col ">
  <aside className="md:w-[836px] bg-[#FFFFFF] flex flex-col gap-[48px] md:px-[32px] pt-[16px] pb-[40px]">
     <span className="gap-[24px] flex flex-col">
 <h2 className="md:text-[32px] text-[24px] font-bold">Exam Preparation & Practice: Get Ready to Succeed!</h2>
@@ -215,7 +215,7 @@ export default function page() {
 
 </div>
 
-<div className="grid grid-cols-2 gap-[24px]">
+{/* <div className="grid grid-cols-2 gap-[24px]">
 <span className="flex flex-col gap-[12px]"> 
 <Label className='tet-[18px] font-semibold'>Class Category</Label>
 
@@ -234,7 +234,6 @@ export default function page() {
 
 <span className="flex flex-col gap-[12px]"> 
 <Label className='tet-[18px] font-semibold'>Year</Label>
-
 <Select>
   <SelectTrigger className="md:w-[350px] w-[100%]">
     <SelectValue placeholder="All" />
@@ -283,7 +282,7 @@ export default function page() {
 <Input className='bg-[#FF5900] text-white text-center
  w-[148px] placeholder:text-white' placeholder='Search' />
 
-</div>
+</div> */}
 
 
 <div className="flex flex-col gap-[12px]">
@@ -329,7 +328,8 @@ export default function page() {
   <Button variant="outline" className='w-[113px] border border-[#FF5900] text-[#FF5900]'>Go to Lesson</Button>
   <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>
   <Link href={`/exam_preparation/${subject.url}/exam_questions`} >Study Past Questions</Link></Button>
-
+  <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>
+  <Link href={`/exam_preparation/${subject.url}/cbt`} >Practice CBT</Link></Button>
 </span>
 </article>
 
