@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 
 
 import { toggle } from '@/lib/utils';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 
@@ -11,6 +11,50 @@ export default function Main(){
     // const router = useRouter()
     // const {role} = router.query
     const subjects = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] 
+     const [data, setData] = useState<any>()
+     const [error, setError] = useState<any>()
+     const [loading, setLoading] = useState<boolean>()
+     useEffect(()=>{
+       const fetchResources= async () => {
+         setError("");
+         setData(null);
+   
+         try {
+           const res = await fetch(
+             `https://citadel-i-project.onrender.com/api/v1/resources/:students`,
+             {
+               method: "POST",
+               headers: {
+                 "Content-Type": "application/json",
+               },
+               body: JSON.stringify({resourceFor:"Teachers"}),
+             }
+           );
+   
+           const result = await res.json();
+   
+           if (!res.ok) {
+             throw new Error(result.message || "Failed to fetch class material");
+             setError(result.message);
+           }
+   
+           setData(result.data);
+           console.log("Fetched:", result);
+         } catch (err: any) {
+           console.error(err);
+           setError(err.message || "Error connecting to server");
+         } finally {
+           setLoading(false);
+         }
+       };
+       fetchResources()
+     })
+     type resourceItem = {
+       title: string;
+       description: string;
+       link: string;
+       filePath: any;
+     };
  
     return(
            <>
@@ -27,16 +71,16 @@ export default function Main(){
                 </div>
                 <h3 className="text-[24px] font-[600]">A curated list of all necessary resources to aid your teaching</h3>
                 <div className="md:gap-[48px] gap-[40px] grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 py-[32px]  ">
-                       {
-                        subjects.map((subject)=>(
+                {
+                        data && data.map((resources:resourceItem)=>(
                           <div className="">
                               <div className="flex items-center justify-center w-full h-[200px] bg-[#FFCCB0] ">
                              
                               </div>
                             <div className="flex gap-[16px] flex-col">
-                              <p className="font-[500] text-[16px]">The Ultimate guide to using Online tools for teaching students</p>
-                              <p className="font-[400] text-[14px]">As earth aged, human beings evolve in the way the do things and solve problem...</p>
-                              <a className="text-[#002BAD] font-[400] text-[14px]">www.teachingaid.com</a>
+                              <p className="font-[500] text-[16px]">{resources.title}</p>
+                              <p className="font-[400] text-[14px]">{resources.description}</p>
+                              <a className="text-[#002BAD] font-[400] text-[14px]">{resources.link}</a>
                             </div>
                           </div>
                         ))
