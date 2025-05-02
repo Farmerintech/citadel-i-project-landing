@@ -42,7 +42,7 @@ export default function Page() {
   const [formData, setFormData] = useState<any>({
     subject: `${matched?.name}`,
     examType: "",
-    questionTypes: "",
+    questionType: "",
   });
 
   const handleSelectExamType = (value: string) => {
@@ -55,7 +55,7 @@ export default function Page() {
     router.push(`/exam_preparation/${subjectUrl}/exam_questions`);
   };
   const handleSelectQuestionType = (value: string) => {
-    setFormData({ ...formData, questionTypes: value });
+    setFormData({ ...formData, questionType: value });
   };
 
   const [isManualSubmit, setIsManualSubmit] = useState(false);
@@ -180,7 +180,7 @@ export default function Page() {
                 <SelectTrigger className="lg:w-[250px] md:w-[150px] w-[100%]">
                   <SelectValue
                     placeholder={
-                      formData?.questionTypes ? formData?.questionTypes : "All"
+                      formData?.questionType ? formData?.questionType : "All"
                     }
                   />
                 </SelectTrigger>
@@ -257,7 +257,7 @@ export default function Page() {
                         className="border border-[#FF5900] text-[#FF5900]"
                       >
                         <Link
-                          href={`/exam_preparation/${matched?.url}/exam_questions/${pq.id}/view_answer`}
+                          href={`/exam_preparation/${pq.subject}/exam_questions/${pq.id}/view_answer`}
                         >
                           {" "}
                           View Answer
