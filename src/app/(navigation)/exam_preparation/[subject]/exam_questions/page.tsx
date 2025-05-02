@@ -257,7 +257,7 @@ export default function Page() {
                         className="border border-[#FF5900] text-[#FF5900]"
                       >
                         <Link
-                          href={`/exam_preparation/${pq.subject}/exam_questions/${pq.id}/view_answer`}
+                          href={`/exam_preparation/${matched?.url}/exam_questions/${pq.id}/view_answer`}
                         >
                           {" "}
                           View Answer

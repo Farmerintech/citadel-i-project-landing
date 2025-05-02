@@ -21,7 +21,7 @@ export default function Main(){
    
          try {
            const res = await fetch(
-             `https://citadel-i-project.onrender.com/api/v1/resources/:students`,
+             `https://citadel-i-project.onrender.com/api/v1/resources`,
              {
                method: "POST",
                headers: {
@@ -48,7 +48,7 @@ export default function Main(){
          }
        };
        fetchResources()
-     })
+     }, [data])
      type resourceItem = {
        title: string;
        description: string;
@@ -70,6 +70,16 @@ export default function Main(){
                   <span className="text-[#FF5900] text-[16px] font-[500]">Teacher</span>
                 </div>
                 <h3 className="text-[24px] font-[600]">A curated list of all necessary resources to aid your teaching</h3>
+                {loading && (
+              <p className="mt-[50px] md:mt-[0px] text-center w-full text-[18px] ">Loading material...</p>
+            )}
+
+          {!loading && error && (
+           <p className="mt-[50px] md:mt-[0px] w-full text-center text-[18px] font-[500] text-black">
+                {error}
+            </p>
+          )}
+
                 <div className="md:gap-[48px] gap-[40px] grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 py-[32px]  ">
                 {
                         data && data.map((resources:resourceItem)=>(

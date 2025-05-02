@@ -100,10 +100,9 @@ export default function Myclass (){
         const result = await res.json();
 
         if (!res.ok) {
-          throw new Error(result.message || "Failed to fetch class material");
           setError(result.message);
+          throw new Error(result.message || "Failed to fetch class material");
         }
-
         setData(result.data);
         console.log("Fetched:", result);
       } catch (err: any) {
@@ -136,7 +135,7 @@ export default function Myclass (){
   const handleSelectSubject = (value: string) => {
     setForm({
       ...form,
-      subjct: value,
+      subject: value,
     });
   };
   const handleSelectTerm = (value: string) => {
@@ -167,7 +166,7 @@ export default function Myclass (){
     setData(null);
     try {
       const res = await fetch(
-        `https://citadel-i-project.onrender.com/api/v1/note/get_note_by_subject/`,
+        `https://citadel-i-project.onrender.com/api/v1/note/get_note_by_subject`,
         {
           method: "POST",
           headers: {
@@ -178,7 +177,7 @@ export default function Myclass (){
       );
 
       const result = await res.json();
-
+      console.log(result)
       if (!res.ok) {
         throw new Error(result.message || "Failed to fetch class material");
         setError(result.message);
