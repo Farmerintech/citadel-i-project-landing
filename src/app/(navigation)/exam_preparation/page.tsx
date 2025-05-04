@@ -188,10 +188,10 @@ export default function page() {
   
 
   return (
-    <section className="xl:px-[100px] px-[16px] flex gap-[20px] md:flex-row flex-col ">
- <aside className="md:w-[836px] bg-[#FFFFFF] flex flex-col gap-[48px] md:px-[32px] pt-[16px] pb-[40px]">
+    <section className="xl:px-[100px] px-[16px] flex gap-[20px] md:flex-row flex-col bg-[#F3F3F3] py-[24px]">
+ <aside className="lg:w-[836px] bg-[#FFFFFF] flex flex-col gap-[48px] lg:px-[32px] px-[16px]  pb-[40px]">
     <span className="gap-[24px] flex flex-col">
-<h2 className="md:text-[32px] text-[24px] font-bold">Exam Preparation & Practice: Get Ready to Succeed!</h2>
+<h2 className="lg:text-[32px] text-[24px] font-bold">Exam Preparation & Practice: Get Ready to Succeed!</h2>
 <p className="text-[18px] text-[#101828]">
     Preparing for Exams can be demanding, but with the ight resources,
      success is within reach! Our Exam Preparation & Practice section
@@ -342,7 +342,7 @@ export default function page() {
 
  </aside>
 
-<aside className="w-[370px] flex flex-col gap-[40px]">
+<aside className="lg:w-[370px] flex flex-col gap-[40px]">
 <article className="flex flex-col gap-[24px]">    
 <div className="grid grid-cols-5 pt-3 gap-[20px]">
   {

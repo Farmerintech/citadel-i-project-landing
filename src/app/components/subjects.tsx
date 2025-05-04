@@ -9,7 +9,7 @@ export const subjects =[
 
     },
     {
-      name:'Civi Education',
+      name:'Civic Education',
       url:'civic-education',
     },
     {

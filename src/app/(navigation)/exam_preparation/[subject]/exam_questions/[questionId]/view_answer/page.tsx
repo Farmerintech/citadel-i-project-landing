@@ -51,13 +51,16 @@ export default function page() {
   
 
   return (
-    <main className="md:px-[100px] py-3 px-[16px]">
-      <div className="flex items-center justify-between">
+    <main className="xl:px-[100px] md:px-[24px] py-3 px-[16px] bg-[#F3F3F3] py-[24px]">
+      <div className="flex md:flex-row flex-col md:items-center justify-between gap-[7px]">
         <span className="">
-          <p className="text-[#FF5900] text-[16px]">
+          <p className='flex gap-[8px]'>
+          <span className="text-[#FF5900] text-[16px]">
             {matched ? `${matched.name} Past Question` : "Loading..."}
+          </span>
           </p>
-          <p className="md:text-[32px] text-[12px] font-bold">
+         
+          <p className="md:text-[32px] text-[24px] font-bold">
             {matched ? `${matched.name} Past Question` : "Loading..."}
           </p>
         </span>
@@ -71,8 +74,8 @@ export default function page() {
           </Link>{" "}
         </Button>
       </div>
-      <section className=" flex gap-[20px] md:flex-row flex-col pt-[50px] ">
-        <aside className="md:w-[836px] bg-[#FFFFFF] flex flex-col gap-[48px] md:px-[32px]  pb-[40px]">
+      <section className=" flex gap-[20px] md:flex-row flex-col pt-[24px] ">
+        <aside className="lg:w-[836px] bg-[#FFFFFF] flex flex-col gap-[48px] md:px-[32px] py-[24px] p-[8px]">
           <article className="flex flex-col gap-[24px]">
             <div className="flex flex-col gap-2.5">
               {data ? (
@@ -139,7 +142,7 @@ export default function page() {
               <span className="flex flex-col gap-2">
                 <Label className="text-[18px]">Post Your contributions</Label>
                 <Textarea
-                  className="md:w-[772px] border border-[#919191] h-[123px]"
+                  className="lg:w-[772px] border border-[#919191] h-[123px]"
                   placeholder="Type here..."
                 />{" "}
               </span>
@@ -149,9 +152,9 @@ export default function page() {
           </article>
         </aside>
 
-        <aside className="w-[370px] flex flex-col gap-[40px]">
-          <div className="md:flex flex-col gap-2.5 hidden">
-            <h2 className="w-[338px] h-[54px] text-white p-[16px] text-[18px] rounded-[4px] bg-[#3E414A]">
+        <aside className="md:w-[370px] flex flex-col gap-[40px] pb-[40px]">
+          <div className="md:flex flex-col gap-2.5 hidden bg-[#FFFBF9] p-[16px]">
+            <h2 className="lg:w-[338px] h-[54px] text-white p-[16px] text-[18px] rounded-[4px] bg-[#3E414A]">
               Subjects
             </h2>
             <span className="flex flex-col gap-[20px]">
