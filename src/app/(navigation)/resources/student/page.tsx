@@ -2,6 +2,8 @@
 import { useRouter } from "next/router"
 import { toggle } from '@/lib/utils';
 import { useEffect, useState } from "react";
+import { ResourcesImages } from "@/app/components/resourcesImage";
+import Image from "next/image";
 
 
 
@@ -46,9 +48,9 @@ export default function Main(){
         }
       };
       fetchResources()
-    }, [data])
+    }, [])
     type resourceItem = {
-      title: string;
+      source: string;
       description: string;
       link: string;
       filePath: any;
@@ -79,14 +81,17 @@ export default function Main(){
           )}
                 <div className="md:gap-[48px] gap-[40px] grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 py-[32px]  ">
                        
-                       {
+                       { !loading &&
                         data && data.map((resources:resourceItem)=>(
                           <div className="">
-                              <div className="flex items-center justify-center w-full h-[200px] bg-[#FFCCB0] ">
-                             
+                              <div className="flex items-center justify-center w-full h-[200px] ">
+                                {ResourcesImages.map(image => image.name === resources.source ?
+                                  <Image src={image.image} alt={image.name}/>:
+                                  ''
+                                )}
                               </div>
                             <div className="flex gap-[16px] flex-col">
-                              <p className="font-[500] text-[16px]">{resources.title}</p>
+                              <p className="font-[500] text-[16px]">{resources.source}</p>
                               <p className="font-[400] text-[14px]">{resources.description}</p>
                               <a className="text-[#002BAD] font-[400] text-[14px]">{resources.link}</a>
                             </div>

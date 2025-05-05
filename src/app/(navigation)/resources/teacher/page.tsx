@@ -1,15 +1,15 @@
 "use client"
-import { useRouter } from "next/router"
 
 
+import { ResourcesImages } from '@/app/components/resourcesImage';
 import { toggle } from '@/lib/utils';
+import Image from 'next/image';
 import { useEffect, useState } from "react";
 
 
 
-export default function Main(){
-    // const router = useRouter()
-    // const {role} = router.query
+export default function page(){
+  
     const subjects = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] 
      const [data, setData] = useState<any>()
      const [error, setError] = useState<any>()
@@ -18,7 +18,8 @@ export default function Main(){
        const fetchResources= async () => {
          setError("");
          setData(null);
-   
+         setLoading(true);
+
          try {
            const res = await fetch(
              `https://citadel-i-project.onrender.com/api/v1/resources`,
@@ -32,13 +33,13 @@ export default function Main(){
            );
    
            const result = await res.json();
-   
+           setData(result.data);
+
            if (!res.ok) {
              throw new Error(result.message || "Failed to fetch class material");
              setError(result.message);
            }
    
-           setData(result.data);
            console.log("Fetched:", result);
          } catch (err: any) {
            console.error(err);
@@ -48,9 +49,9 @@ export default function Main(){
          }
        };
        fetchResources()
-     }, [data])
+     }, [])
      type resourceItem = {
-       title: string;
+       source: string;
        description: string;
        link: string;
        filePath: any;
@@ -81,14 +82,18 @@ export default function Main(){
           )}
 
                 <div className="md:gap-[48px] gap-[40px] grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 py-[32px]  ">
-                {
+                       
+                       { !loading &&
                         data && data.map((resources:resourceItem)=>(
                           <div className="">
-                              <div className="flex items-center justify-center w-full h-[200px] bg-[#FFCCB0] ">
-                             
+                              <div className="flex items-center justify-center w-full h-[200px] ">
+                                {ResourcesImages.map(image => image.name === resources.source ?
+                                  <Image src={image.image} alt={image.name}/>:
+                                  ''
+                                )}
                               </div>
                             <div className="flex gap-[16px] flex-col">
-                              <p className="font-[500] text-[16px]">{resources.title}</p>
+                              <p className="font-[500] text-[16px]">{resources.source}</p>
                               <p className="font-[400] text-[14px]">{resources.description}</p>
                               <a className="text-[#002BAD] font-[400] text-[14px]">{resources.link}</a>
                             </div>
