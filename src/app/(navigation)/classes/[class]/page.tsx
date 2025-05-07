@@ -357,7 +357,7 @@ export default function Myclass (){
                   </div>
                </div>
              <div className="bg-[#3E414A] h-[40px] w-full text-center text-white flex items-center justify-center">
-             <Link href={`/${material.filePath}`}>{material.subject}</Link>
+             <Link href={`/classes/${material.classFor}/${material.subject}`}>{material.subject}</Link>
           </div>
        </div>
        ))

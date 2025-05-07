@@ -4,6 +4,7 @@ import counsel from "@/app/assets/student.jpg"
 import chat from "@/app/assets/chat.svg"
 import Image from "next/image";
 import { Beneficiaries } from "@/app/components/beneficiaries";
+import partner from "@/app/assets/partner.jpg"
 export default function Counselling (){
      
     return(
@@ -99,10 +100,12 @@ export default function Counselling (){
         </aside>
          </div>
         </section>
-        <section className=" bg-[#FFFBF9] lg:px-[100px] py-[64px]">
+        <section className=" bg-[#FFFBF9] lg:px-[100px] pt-[40px]">
         <Beneficiaries/>
         </section>
-
+        {/* <section className="flex justify-center items-center w-[240px] h-[120px]">
+            <Image src={partner} alt="partner"/>
+        </section> */}
         </>
     )
 }

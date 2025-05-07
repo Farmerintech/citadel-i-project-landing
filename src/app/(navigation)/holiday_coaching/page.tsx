@@ -7,7 +7,9 @@ import { useRouter } from 'next/navigation';
 import { toggle } from "@/lib/utils";
 import holiday from '@/app/assets/holiday.png'
 import Image from 'next/image'
-
+import stem from "@/app/assets/stem.png"
+import graphics from "@/app/assets/graphic.png"
+import coding from "@/app/assets/coding.png"
 export default function Coaching (){
     return(
         <>
@@ -48,14 +50,14 @@ export default function Coaching (){
             </button>
             <div className="flex  gap-[48px] md:gap-[56px] flex-col md:flex-row">
                 <div className="flex flex-col gap0 ">
-                    <Image src={holiday} alt={""} sizes="300" height={300}/>
+                    <Image src={stem} alt={""} sizes="300" height={300}/>
                     <p className="bg-[#3E414A] px-[24px] py-[16px] text-white">STEM Class</p>
                 </div>
                 <div className="flex flex-col -gap-10 ">
-                    <Image src={holiday} alt={""} sizes="300" height={300}/>
+                    <Image src={graphics} alt={""} sizes="300" height={300}/>
                     <p className="bg-[#3E414A] px-[24px] py-[16px] text-white">Graphic Design Class</p>
                 </div><div className="flex flex-col -gap-10 ">
-                    <Image src={holiday} alt={""} sizes="300" height={300}/>
+                    <Image src={coding} alt={""} sizes="300" height={300}/>
                     <p className="bg-[#3E414A] px-[24px] py-[16px] text-white">Coding</p>
                 </div>
             </div>
