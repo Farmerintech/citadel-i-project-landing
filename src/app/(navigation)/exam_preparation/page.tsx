@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import Maths from '@/app/assets/maths.png'
 import { FiPhoneOutgoing } from 'react-icons/fi'
 import EXamt from '@/app/assets/examtuto.png'
+import image from "@/app/assets/imageholder.png"
 
 import {
   Accordion,
@@ -15,13 +16,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select"
   export const subjects =[
     {
       name:'Mathematics',
@@ -106,9 +100,7 @@ import {
 
     },
   ]
-
-export default function page() {
-  const Schools = [
+  export const Schools = [
     {
       name:'UNILAG',
       bgColor1:'bg-[#A6A8AC]',
@@ -185,11 +177,13 @@ export default function page() {
       bgColor2:'bg-[#3E414A] '
     },
   ]
+
+export default function page() {
   
 
   return (
     <section className="xl:px-[100px] px-[16px] flex gap-[20px] md:flex-row flex-col bg-[#F3F3F3] py-[24px]">
- <aside className="lg:w-[836px] bg-[#FFFFFF] flex flex-col gap-[48px] lg:px-[32px] px-[16px]  pb-[40px]">
+ <aside className="lg:w-[836px] bg-[#FFFFFF] flex flex-col gap-[48px] lg:px-[32px] px-[16px]  py-[40px]">
     <span className="gap-[24px] flex flex-col">
 <h2 className="lg:text-[32px] text-[24px] font-bold">Exam Preparation & Practice: Get Ready to Succeed!</h2>
 <p className="text-[18px] text-[#101828]">
@@ -374,7 +368,7 @@ export default function page() {
 
 <div className="md:flex hidden">
   <span className="">  
-<Image src={EXamt} alt='' layout='' />
+<Image src={image} alt='' layout='' />
 <figcaption className='text-center pt-2.5'>
   <Link className='underline text-[#097647]' href=''>Sign Up for Our Various Holiday Classes</Link>
 </figcaption>
