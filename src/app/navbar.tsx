@@ -38,6 +38,7 @@ export default function Header() {
   const pathname = usePathname(); 
   const [isClassesDropdownOpen, setIsClassesDropdownOpen] = useState(false);
   const [isResourcesDropdownOpen, setIsResourcesDropdownOpen] = useState(false);
+  const [isExamDropDown, setIsExamDropDown] = useState(false);
 
          const [showReg, setShowReg] = useState(false)
          const [showLogin, setShowLogin] = useState(false)
@@ -173,17 +174,17 @@ export default function Header() {
           <Link href={'#'}>Classes</Link>
           {isClassesDropdownOpen && (
 
-            <div className="absolute -left-5 top-[100%] flex flex-col bg-white shadow-md w-[120px]">
-              <Link href="/classes/KS1" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
+            <div className="absolute -left-5 top-[100%] flex flex-col bg-white shadow-md w-[120px] z-19">
+              <Link href="/classes/KS1" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"  onClick={() => setCurrentNav(1)}>
                 KS1
               </Link>
-              <Link href="/classes/KS2" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
+              <Link href="/classes/KS2" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"  onClick={() => setCurrentNav(1)}>
                 KS2
               </Link>
-              <Link href="/classes/KS3" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
+              <Link href="/classes/KS3" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"  onClick={() => setCurrentNav(1)}>
                 KS3
               </Link>
-              <Link href="/classes/SSCE_GCE" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
+              <Link href="/classes/SSCE_GCE" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"  onClick={() => setCurrentNav(1)}>
                 SSCE/GCE
               </Link>
             </div>
@@ -253,12 +254,32 @@ export default function Header() {
         <ul className="flex justify-center gap-[32px]">
           {/* Resources Dropdown */}
           <li
-          className={`text-[16px] border-[#FF5900] py-[3px] font-normal hover:text-[#FF5900] hover:border-b-[3px] ${
+          className={`relative text-[16px] border-[#FF5900] font-normal flex items-center gap-[4px] hover:text-[#FF5900] hover ${
             currentNav === 5 ? "text-[#FF5900] border-b-[3px]" : "text-black"
           }`}
-          onClick={() => setCurrentNav(5)}
-        >
-          <Link href="/exam_preparation">Exam Preparation</Link>
+          onMouseEnter={() => setIsExamDropDown(true)}
+          onMouseLeave={() => setIsExamDropDown(false)}
+        >Exam Preparation
+          {isExamDropDown && (
+              <div className="absolute left-0 top-[100%] flex flex-col bg-white shadow-md  w-[150px]" >
+                <Link
+                  href="/exam_preparation"
+                  className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black w-full"
+                  onClick={() => setCurrentNav(5)}
+
+                >
+                  Past Question
+                </Link>
+                <Link
+                  href="/exam_preparation/cbt"
+                  className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"
+                  onClick={() => setCurrentNav(5)}
+                >
+                  CBT Simulator
+                </Link>
+              </div>
+            )}
+
         </li>
           
 

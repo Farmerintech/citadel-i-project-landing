@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { FiPhoneOutgoing } from 'react-icons/fi';
-import jamb from '@/app/assets/jamb.png';
 import image from '@/app/assets/imageholder.png';
 import { Schools, subjects } from '../page';
 import {
@@ -14,6 +13,8 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
+import { useUser } from '@/app/context/reducer';
+import { useRouter } from 'next/navigation';
 
 export default function Page() {
   const [checkedSubjects, setCheckedSubjects] = useState<string[]>(['English Language']); // always selected
@@ -35,7 +36,35 @@ export default function Page() {
       }
     });
   };
+  const { state, dispatch } = useUser();
+const [mode, setMode] = useState('')
+  const handleValuChange =(value:string)=>{
+    setMode(value)
+  }
+  const router = useRouter()
 
+const handleNavigate = () =>{
+  const email =''
+  const firstName=''
+  const lastName =''
+  const token =''
+  const role=''
+  dispatch({
+           type: 'CBT',
+           payload: {
+             email,
+             firstName,
+             lastName,
+             token,
+             role,
+             subjects:checkedSubjects,
+             examMode:mode
+           }
+         });
+ console.log(state)
+         // Redirect to dashboard after login
+         router.push('/exam_preparation/jamb_simulator/exam_instructions')
+}
   return (
     <>
       <section className="flex flex-col md:flex-row gap-[12px] justify-between bg-[#F3F3F3] xl:px-[100px] px-[16px] py-[24px]">
@@ -54,7 +83,7 @@ export default function Page() {
             for you because it is compulsory. Select three other subjects of
             your choice.
           </p>
-          <form className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2">
             {subjects.map((subject, index) => (
               <span key={index} className="flex gap-2 items-center">
                 <input
@@ -69,7 +98,7 @@ export default function Page() {
             ))}
             <div className='flex flex-col gap-[12px] mt-[12px]'>
             <p>Select Test Mode</p>
-           <Select>
+           <Select onValueChange={handleValuChange}>
                 <SelectTrigger className="w-full md:w-[257px]">
                     <SelectValue placeholder="Select Test Mode" />
                 </SelectTrigger>
@@ -78,10 +107,12 @@ export default function Page() {
                     <SelectItem value='Exam Mode'>Exam Mode</SelectItem>
                 </SelectContent>
             </Select>
-          <button className='px-[24px] py-[12px] rounded-[8px] bg-[#FF5900] w-[171px] text-white'>Next</button>
+          <button className='px-[24px] py-[12px] rounded-[8px] bg-[#FF5900] w-[171px] text-white' onClick={handleNavigate}>Next
+            {/* <Link href={'/exam_preparation/jamb_simulator/exam_instructions'}>Next</Link> */}
+          </button>
 
             </div>
-          </form>
+          </div>
 
           </aside>
 
