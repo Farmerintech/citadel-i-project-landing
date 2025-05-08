@@ -12,6 +12,8 @@ import { usePathname } from 'next/navigation';
 import { toggle } from "@/lib/utils";
 import SignUpPage from "./authPage/signup/signupPage";
 import SignInPage from "./authPage/signin/signinPage";
+import { useUser } from "./context/reducer";
+import { FaUser } from "react-icons/fa";
  
 // import {
 //   Avatar,
@@ -39,7 +41,7 @@ export default function Header() {
   const [isClassesDropdownOpen, setIsClassesDropdownOpen] = useState(false);
   const [isResourcesDropdownOpen, setIsResourcesDropdownOpen] = useState(false);
   const [isExamDropDown, setIsExamDropDown] = useState(false);
-
+  const {state} = useUser()
          const [showReg, setShowReg] = useState(false)
          const [showLogin, setShowLogin] = useState(false)
          const showRegPage = () =>{
@@ -115,7 +117,12 @@ export default function Header() {
                   </Label>
                 </span>
         
-        <span className="flex items-center gap-[5px]">
+       {state.isLoggedIn ?
+       <span className="flex items-center w-[30px] h-[30px] rounded-full justify-center border-1 border-orange-500">
+        <FaUser/>
+       </span>
+       :
+       <span className="flex items-center gap-[5px]">
         <Button className="bg-[#FF5900] w-[97px] h-[35px] text-[16px] text-white"  onClick={()=>{showRegPage()}}>
          Register 
           </Button>
@@ -123,7 +130,7 @@ export default function Header() {
          Log in  
           </Button>
 
-        </span>
+        </span>}
           </div>
           <nav className="px-[100px] md:px-[32px] over-flow-x-hidden py-[16px] bg-[#FFFFFF] flex xl:flex-row xl:gap-[24px] xl:justify-center flex-col gap-[24px] items-between justify-between">      {/* Left Section - Navigation Links */}
       <ul className="flex justify-center md:gap-[32px] xl:gap-[42px]">
@@ -356,9 +363,35 @@ export default function Header() {
         <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
           <Link href="/holiday_coaching">Holiday Coaching</Link>
         </li>
-        <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
-          <Link href="/exam_preparation">Exam Preparation</Link>
+        <li
+          className={`relative text-[16px] border-[#FF5900] font-normal flex items-center gap-[4px] hover:text-[#FF5900] hover ${
+            currentNav === 5 ? "text-[#FF5900] border-b-[3px]" : "text-black"
+          }`}
+          onMouseEnter={() => setIsExamDropDown(true)}
+          onMouseLeave={() => setIsExamDropDown(false)}
+        >Exam Preparation
+          {isExamDropDown && (
+              <div className="absolute left-0 top-[100%] flex flex-col bg-white shadow-md  w-[150px]" >
+                <Link
+                  href="/exam_preparation"
+                  className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black w-full"
+                  onClick={() => setCurrentNav(5)}
+
+                >
+                  Past Question
+                </Link>
+                <Link
+                  href="/exam_preparation/cbt"
+                  className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"
+                  onClick={() => setCurrentNav(5)}
+                >
+                  CBT Simulator
+                </Link>
+              </div>
+            )}
+
         </li>
+          
         <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]"
          onMouseEnter={() => setIsResourcesDropdownOpen(true)}
          onMouseLeave={() => setIsResourcesDropdownOpen(false)}
@@ -389,10 +422,16 @@ export default function Header() {
           <li>
           </li>
         </ul>
+       { 
+              state.isLoggedIn ?
+                <span className="flex items-center justify-center w-[50px] h-[50px] rounded-full justify-center border-1 border-orange-500">
+                 <FaUser/>
+                </span>
+         :
         <span className="flex justify-center flex-col items-center gap-[5px]">
           <Button className="bg-[#FF5900] text-[16px] text-white w-full" variant="outline" onClick={()=>{showRegPage()}}>Register</Button>
           <Button className="border-[1px] text-[16px] bg-transparent text-black border-black w-full" variant='default' onClick={()=>{showLoginPage()}}>Log in</Button>
-        </span>
+        </span>}
       </div>
         )}
       </nav>

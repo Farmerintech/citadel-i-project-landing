@@ -23,7 +23,7 @@ export default function Page() {
       <section className="xl:px-[100px] px-[16px]  gap-[20px] bg-[#F3F3F3] py-[24px]">
         <main className='flex flex-col justify-center items-center gap-[16px] bg-white pb-[24px]'>
         <main className=' flex md:flex-row flex-col bg-white px-[16px] py-[32px] gap-[32px] rounded-[4px] w-full'>
-        <aside className="bg-[#FFFFFF] flex flex-col gap-[16px] lg:px-[32px] px-[16px] py-[40px] rounded-[8px] md:w-[25%] border-1 border-[#E7E7E7]">
+        <aside className="bg-[#FFFFFF] flex flex-col gap-[16px] lg:px-[32px] px-[16px] py-[40px] rounded-[8px] md:w-[25%] w-full border-1 border-[#E7E7E7]">
             <p className='border-b-[1px] font-[500]'>Candidate details</p>
             <div className='flex justify-center items-center w-[80px] h-[80px] rounded-full border-1 border-[#E7E7E7]'>
             <FaUser/>
@@ -41,10 +41,10 @@ export default function Page() {
                 </ul>
             </div>
         </aside>
-        <aside className="bg-[#FFFFFF] flex flex-col gap-[48px] lg:px-[32px] px-[16px] py-[40px] w-[45%] rounded-[8px] border-1 border-[#E7E7E7]">
+        <aside className="bg-[#FFFFFF] flex flex-col gap-[48px] lg:px-[32px] px-[16px] py-[40px] md:w-[45%] rounded-[8px] border-1 border-[#E7E7E7]">
             <p className='border-b-[1px] font-[500]'>Exam Instructions</p>
         </aside>
-        <aside className="bg-[#FFFFFF] flex flex-col gap-[48px] lg:px-[32px] px-[16px] py-[40px] w-[30%] rounded-[8px] border-1 border-[#E7E7E7]">
+        <aside className="bg-[#FFFFFF] flex flex-col gap-[48px] lg:px-[32px] px-[16px] py-[40px] md:w-[30%] rounded-[8px] border-1 border-[#E7E7E7]">
         <p className='border-b-[1px] font-[500]'>Keyboard Usage</p>
         <div className='flex flex-col gap-[16px]'>
             <div className='flex gap-[16px]'>
