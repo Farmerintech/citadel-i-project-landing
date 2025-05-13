@@ -100,7 +100,7 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className=" md:flex w-[100%] gap-5 flex-col hidden">
           
-          <div className="flex justify-between  items-center md:gap-[16px] h-[100px] md:px-[50px] px-[100px] bg-[#FEF6E6]">
+          <div className="flex justify-between text-black items-center md:gap-[16px] h-[100px] md:px-[50px] px-[100px] bg-[#FEF6E6]">
           <div className=" flex gap-[15px] md:gap-[8px]  items-center">
             <span className="lg:h-[43px] lg:w-[235.64px] md:w-[180px] "> 
               <Image src={Logo} alt="" layout="responsive"/> </span>
@@ -117,7 +117,7 @@ export default function Header() {
                   </Label>
                 </span>
         
-       {state.isLoggedIn ?
+       {state.isLoggedIn && state.firstName!=='' ?
        <span className="flex items-center w-[30px] h-[30px] rounded-full justify-center border-1 border-orange-500">
         <FaUser/>
        </span>
