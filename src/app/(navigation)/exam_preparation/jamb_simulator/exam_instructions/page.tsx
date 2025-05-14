@@ -88,7 +88,9 @@ export default function Page() {
         </div>
         </aside>
         </main>
-        <button className='w-[278px] py-[12px] px-[24px] text-white bg-[#FF5900] rounded-[8px]'>Start Exam</button>
+        <button className='w-[278px] py-[12px] px-[24px] text-white bg-[#FF5900] rounded-[8px]'>
+          <Link href={'/exam_preparation/jamb_simulator/exam'}>Start Exam</Link>
+          </button>
         </main>
       </section>
     </>
