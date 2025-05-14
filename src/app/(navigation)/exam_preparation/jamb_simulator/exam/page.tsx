@@ -116,7 +116,7 @@ export default function Page (){
                     data.map((data, index) =>(
                         <div className="flex gap-[8px]">
                             <button 
-                            onClick={()=>{setqustionIndex(index)}}
+                            onClick={()=>{setqustionIndex(index+1)}}
                             className={`${index+1 === questionIndex ? 'bg-[#F1A500] text-white':'bg-[#D0D5DD] '} rounded-[4px] w-[24px] h-[24px] p-[4px] gap-[4px] flex justify-center items-center`}>{index+1}</button>
                         </div>
                     ))
