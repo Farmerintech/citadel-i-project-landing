@@ -60,10 +60,10 @@ export default function Page() {
         score += 1;
       }
     });
-    // alert(`Your score is ${score} out of ${data.length}`);
+    alert(`Your score is ${score} out of ${data.length}`);
   };
 
-//   calculateScore()
+//calculateScore()
   return (
     <section className="flex flex-col gap-[12px] justify-between bg-[#F3F3F3] xl:px-[100px] px-[16px] py-[24px]">
       <aside className="bg-white py-[16px] px-[8px] flex gap-[24px] flex-col justify-between w-full">
@@ -158,7 +158,14 @@ export default function Page() {
             </button>
           ))}
         </div>
+         {
+        questionIndex === data.length &&
+        <div className="flex justify-center ">
+         <button onClick={calculateScore} className="bg-orange-500 text-white rounded-[8px] py-[12px] px-[24px] gap-[8px] w-[120px]">Submit</button>
+        </div>
+     }
       </aside>
+    
     </section>
   );
 }
