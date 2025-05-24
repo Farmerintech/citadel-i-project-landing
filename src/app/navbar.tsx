@@ -117,7 +117,7 @@ export default function Header() {
                   </Label>
                 </span>
         
-       {state.isLoggedIn && state.firstName!=='' ?
+       {state.isLoggedIn && state.firstName!==null ?
        <span className="flex items-center w-[30px] h-[30px] rounded-full justify-center border-1 border-orange-500">
         <FaUser/>
        </span>

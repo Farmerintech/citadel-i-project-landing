@@ -9,6 +9,7 @@ export default function Page() {
   const [currentSubject, setCurrentSubject] = useState<string>('English Language');
   const [questionIndex, setQuestionIndex] = useState(1);
   const [answers, setAnswers] = useState<{ [key: number]: string }>({});
+  const [answeredQues, setAnswered] = useState<any[]>([])
   const { state } = useUser();
 
   const data = [
@@ -45,14 +46,22 @@ export default function Page() {
       setQuestionIndex(index - 1);
     }
   };
+ 
+  useEffect(()=>{
+
+  }, [answeredQues])
 
   const handleOption = (event: ChangeEvent<HTMLInputElement>, index: number) => {
+    setAnswered(prev=>(
+        [...prev, index]
+    ))
     setAnswers(prev => ({
       ...prev,
       [index]: event.target.value
     }));
   };
 
+//   alert(answeredQues)
   const calculateScore = () => {
     let score = 0;
     data.forEach((item, idx) => {
@@ -62,6 +71,7 @@ export default function Page() {
     });
     alert(`Your score is ${score} out of ${data.length}`);
   };
+
 
 //calculateScore()
   return (
@@ -151,7 +161,7 @@ export default function Page() {
             <button
               key={index}
               onClick={() => setQuestionIndex(index + 1)}
-              className={`${index + 1 === questionIndex ? 'bg-[#F1A500] text-white' : 'bg-[#D0D5DD]'
+              className={`${index + 1 === questionIndex ? 'bg-[#F1A500] text-white' : answeredQues.includes(index+1) ? "bg-green-500 text-white" : 'bg-[#D0D5DD]' 
                 } rounded-[4px] w-[24px] h-[24px] p-[4px] gap-[4px] flex justify-center items-center`}
             >
               {index + 1}
@@ -169,3 +179,4 @@ export default function Page() {
     </section>
   );
 }
+//: answeredQues.includes(index+1) ? "bg-green-500 text-white":

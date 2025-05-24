@@ -115,6 +115,7 @@ export default function Myclass (){
 
     // Determine classIndex on mount
     const matchIndex = menuItems.findIndex((item) => item.name === theClass);
+    // const matchedSubject = 
     if (matchIndex !== -1) setClassIndex(matchIndex);
     fetchClassNote();
   }, [params.class, yearIndex, term]);
@@ -357,7 +358,10 @@ export default function Myclass (){
                   </div>
                </div>
              <div className="bg-[#3E414A] h-[40px] w-full text-center text-white flex items-center justify-center">
-             <Link href={`/classes/${material.classFor}/${material.subject}`}>{material.subject}</Link>
+           <Link
+                  href={`/classes/${theClass}/${subjects.find(sub => sub.name === material.subject)?.url}?id=${material.id}`}>
+                  {material.subject}
+            </Link>
           </div>
        </div>
        ))

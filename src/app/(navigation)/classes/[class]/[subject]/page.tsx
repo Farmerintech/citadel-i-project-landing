@@ -1,62 +1,114 @@
+"use client";
 
-"use client"
-
-
-
-// export default function page (){
-//     const [text, setText] = useState<any>()
-//     const fetchContent = async()=>{
-//         const result = await mammoth.convertToHtml({ path:'..app/assets/adeyemo CHAPTER ONE.docx'});
-//         setText(result?.value);
-//         console.log(result.value)
-
-//     }
-//     fetchContent()
-//     const params = useParams()
-//     let theClass = params.class as string; //
-//     let subject = params.subject as string
-   
-//     return(
-//         <section className="lg:px-[100px] md:px-[50px] py-[16px] px-[16px] bg-[#F3F3F3] flex gap-[24px] justify-between">
-//             <aside className="w-[297px] h-auto py-[24px] px-[12px] flex - flex-col gap-[16px] bg-white">
-//                 <p className="p-[8px] gap-[10] bg-[#FBE3B0]">Lesson Contents</p>
-//             </aside>
-//             <main className="w-full p-[24px] rounded-[2px] bg-white">
-//                 {
-//                     text!=='' ? text :""
-//                 }
-//             </main>
-//         </section>
-//     )
-// }
-
-// 'use client';
-
-import { useParams } from 'next/navigation';
+import { subjects } from '@/app/components/subjects';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
+interface Section {
+  heading: string;
+  content: string;
+}
+
 export default function Page() {
-  const [text, setText] = useState('');
+  const [sections, setSections] = useState<Record<string, Section> | null>(null);
+  const [rawContent, setRawContent] = useState<string>('');
+  const [data, setData] = useState<any>(null);
+  const [error, setError] = useState<string>();
+  const [loading, setLoading] = useState<boolean>(true);
+
   const params = useParams();
+  const searchParams = useSearchParams();
   const theClass = params.class as string;
   const subject = params.subject as string;
+  const id = searchParams.get('id');
+  const theSubject = subjects.find(sub => sub.url === subject)?.name;
 
   useEffect(() => {
     const fetchContent = async () => {
-      const res = await fetch('./app/api/convert-doc');
-      const data = await res.json();
-      setText(data.html || '');
+      setLoading(true);
+      setError("");
+      setData(null);
+      try {
+        const res = await fetch(
+          `https://citadel-i-project.onrender.com/api/v1/note/get_note/${id}/${theSubject}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        const result = await res.json();
+        if (!res.ok) {
+          throw new Error(result.message || "Failed to fetch class material");
+        }
+
+        const htmlContent = result.data?.content || '';
+        setRawContent(htmlContent);
+        setData(result.data);
+      } catch (err: any) {
+        console.error(err);
+        setError(err.message || "Error connecting to server");
+      } finally {
+        setLoading(false);
+      }
     };
+
     fetchContent();
   }, []);
 
+  // Parse TOC safely
+  let TOC: string[] = [];
+  if (data?.tableOfContent) {
+    try {
+      TOC = JSON.parse(data.tableOfContent);
+    } catch (e) {
+      console.warn("Invalid TOC format:", e);
+    }
+  }
+
   return (
     <section className="lg:px-[100px] md:px-[50px] py-[16px] px-[16px] bg-[#F3F3F3] flex gap-[24px] justify-between">
-      <aside className="w-[297px] h-auto py-[24px] px-[12px] flex flex-col gap-[16px] bg-white">
+      <aside className="w-[297px] h-[300px] py-[24px] px-[12px] flex flex-col gap-[16px] bg-white">
         <p className="p-[8px] gap-[10px] bg-[#FBE3B0]">Lesson Contents</p>
+        <div>
+          {loading ? (
+            <p>Loading...</p>
+          ) : error ? (
+            <p className="text-red-500">{error}</p>
+          ) : TOC.length > 0 ? (
+            TOC.map((content: string, index: number) => (
+              <p key={index}>{content}</p>
+            ))
+          ) : (
+            <p>No Table of Content available</p>
+          )}
+        </div>
       </aside>
+
       <main className="w-full p-[24px] rounded-[2px] bg-white">
-        <div dangerouslySetInnerHTML={{ __html: text }} />
+        {
+          data && 
+          <div>
+            <p className='font-bold text-[18px]'>Subject: {data.subject}</p>
+            <p className='font-bold text-[18px]'>Class: {data.class} / <span>{data.year}</span></p>
+            <p className='font-bold text-[18px]'>Term: {data.term}</p>
+            <p className='font-bold text-[18px]'>Topic: {data.topic}</p>
+          </div>
+        }
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p className="text-red-500">{error}</p>
+        ) : (
+          <div
+            dangerouslySetInnerHTML={{ __html: rawContent }}
+            className="p-8"
+          />
+        )}
+
+        <p className="mt-6 text-gray-500">{data?.term}</p>
       </main>
     </section>
   );
