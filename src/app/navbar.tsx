@@ -322,99 +322,102 @@ export default function Header() {
 
           </nav>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-        <div
-        id="mobile-menu"
-        className="absolute bg-[white] top-[80px] right-0 w-[215px] h-[662px] flex-col p-6 z-10  md:hidden"
+{/* Mobile Menu */}
+{isMobileMenuOpen && (
+  <div
+    id="mobile-menu"
+    className="absolute bg-[white] top-[80px] right-0 w-[215px] h-[662px] flex-col p-6 z-10  md:hidden"
+  >
+    <ul className="flex flex-col gap-[32px]">
+      <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
+        <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+      </li>
+      <li
+        className="leading-[20.02px] text-[18px] font-normal text-[#130F26]"
+        onMouseEnter={() => setIsClassesDropdownOpen(true)}
+        onMouseLeave={() => setIsClassesDropdownOpen(false)}
       >
-        <ul className="flex flex-col   gap-[32px]">
-        <li className=" leading-[20.02px] text-[18px] font-normal text-[#130F26]" onClick={()=> setIsMobileMenuOpen(false)}>
-          <Link href="/">Home</Link>
-        </li>
-        <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]"
-         onMouseEnter={() => setIsClassesDropdownOpen(true)}
-         onMouseLeave={() => setIsClassesDropdownOpen(false)}
-        >
-          <Link href="">Classes</Link>
-          {isClassesDropdownOpen && (
-            <div className="flex flex-col bg-white shadow-md w-[120px]" onClick={()=> setIsMobileMenuOpen(false)}>
-              <Link href="/classes/ks1" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
-                KS1
-              </Link>
-              <Link href="/classes/ks2" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
-                KS2
-              </Link>
-              <Link href="/classes/ks3" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
-                KS3
-              </Link>
-              <Link href="/classes/ssce" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
-                SSCE/GCE
-              </Link>
-            </div>
-          )}
-        </li>
-        <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]" onClick={()=> setIsMobileMenuOpen(false)}>
-          <Link href="/admission_info">Admission Info</Link>
-        </li>
-        <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]" onClick={()=> setIsMobileMenuOpen(false)}>
-          <Link href="/counselling">Counselling</Link>
-        </li>
-        <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]" onClick={()=> setIsMobileMenuOpen(false)}>
-          <Link href="/holiday_coaching">Holiday Coaching</Link>
-        </li>
-        <li
-          className={`relative text-[16px] border-[#FF5900] font-normal flex items-center gap-[4px] hover:text-[#FF5900] hover ${
-            currentNav === 5 ? "text-[#FF5900] border-b-[3px]" : "text-black"
-          }`}
-          onMouseEnter={() => setIsExamDropDown(true)}
-          onMouseLeave={() => setIsExamDropDown(false)}
-        >Exam Preparation
-          {isExamDropDown && (
-              <div className="absolute left-0 top-[100%] flex flex-col bg-white shadow-md  w-[150px]" onClick={()=> setIsMobileMenuOpen(false)} >
-                <Link
-                  href="/exam_preparation"
-                  className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black w-full"
-                  onClick={() => setCurrentNav(5)}
-
-                >
-                  Past Question
-                </Link>
-                <Link
-                  href="/exam_preparation/cbt"
-                  className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"
-                  onClick={() => setCurrentNav(5)}
-                >
-                  CBT Simulator
-                </Link>
-              </div>
-            )}
-
-        </li>
-          
-        <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]"
-         onMouseEnter={() => setIsResourcesDropdownOpen(true)}
-         onMouseLeave={() => setIsResourcesDropdownOpen(false)}
-        >
-          <Link href="">Resources</Link>
-          {isResourcesDropdownOpen && (
-              <div className="flex flex-col bg-white shadow-md  w-[120px] mt-[16px]" onClick={()=> setIsMobileMenuOpen(false)}>
-                <Link
-                  href="/resources/teacher"
-                  className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black "
-                >
-                  Teacher
-                </Link>
-                <Link
-                  href="/resources/student"
-                  className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"
-                >
-                  Student
-                </Link>
-              </div>
-            )}
-
-        </li>
+        <Link href="#">Classes</Link>
+        {isClassesDropdownOpen && (
+          <div className="flex flex-col bg-white shadow-md w-[120px]" onClick={() => setIsMobileMenuOpen(false)}>
+            <Link href="/classes/ks1" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
+              KS1
+            </Link>
+            <Link href="/classes/ks2" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
+              KS2
+            </Link>
+            <Link href="/classes/ks3" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
+              KS3
+            </Link>
+            <Link href="/classes/ssce" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
+              SSCE/GCE
+            </Link>
+          </div>
+        )}
+      </li>
+      <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
+        <Link href="/admission_info" onClick={() => setIsMobileMenuOpen(false)}>Admission Info</Link>
+      </li>
+      <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
+        <Link href="/counselling" onClick={() => setIsMobileMenuOpen(false)}>Counselling</Link>
+      </li>
+      <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
+        <Link href="/holiday_coaching" onClick={() => setIsMobileMenuOpen(false)}>Holiday Coaching</Link>
+      </li>
+      <li
+        className={`relative text-[16px] border-[#FF5900] font-normal flex items-center gap-[4px] hover:text-[#FF5900] hover ${
+          currentNav === 5 ? "text-[#FF5900] border-b-[3px]" : "text-black"
+        }`}
+        onMouseEnter={() => setIsExamDropDown(true)}
+        onMouseLeave={() => setIsExamDropDown(false)}
+      >
+        Exam Preparation
+        {isExamDropDown && (
+          <div className="absolute left-0 top-[100%] flex flex-col bg-white shadow-md w-[150px]" onClick={() => setIsMobileMenuOpen(false)}>
+            <Link
+              href="/exam_preparation"
+              className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black w-full"
+              onClick={() => setCurrentNav(5)}
+            >
+              Past Question
+            </Link>
+            <Link
+              href="/exam_preparation/cbt"
+              className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"
+              onClick={() => setCurrentNav(5)}
+            >
+              CBT Simulator
+            </Link>
+          </div>
+        )}
+      </li>
+      <li
+        className="leading-[20.02px] text-[18px] font-normal text-[#130F26]"
+        onMouseEnter={() => setIsResourcesDropdownOpen(true)}
+        onMouseLeave={() => setIsResourcesDropdownOpen(false)}
+      >
+        <Link href="#">Resources</Link>
+        {isResourcesDropdownOpen && (
+          <div className="flex flex-col bg-white shadow-md w-[120px] mt-[16px]" onClick={() => setIsMobileMenuOpen(false)}>
+            <Link
+              href="/resources/teacher"
+              className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"
+            >
+              Teacher
+            </Link>
+            <Link
+              href="/resources/student"
+              className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"
+            >
+              Student
+            </Link>
+          </div>
+        )}
+      </li>
+      <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
+        <Link href="/sponsor" onClick={() => setIsMobileMenuOpen(false)}>Sponsor a student</Link>
+      </li>
+    </ul>
         
         <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]" onClick={()=> setIsMobileMenuOpen(false)}>
           <Link href="/sponsor">Sponsor a student</Link>
