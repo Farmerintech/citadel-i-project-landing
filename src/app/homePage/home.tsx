@@ -27,6 +27,16 @@ export default function home() {
 
   return (
     <>
+                {showReg  && 
+      <div className='md:fixed absolute pl-5 pr-5 pt-5 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50  z-40'>
+        <SignUpPage setShowReg={setShowReg}/>
+      </div>
+      }
+      {showLogin  && 
+      <div className='md:fixed absolute p-10 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50  z-40'>
+        <SignInPage setShowLogin={setShowLogin}/>
+      </div>
+
       <main className="py-[32px] flex  md:flex-row flex-col  md:px-[100px] px-[24px]  bg-[#F4B733] ">
         <div className="md:w-[585px] flex flex-col gap-[32px] md:h-[286px]h-auto">
           <h2 className="text-[32px] max-w-[585px] font-semibold leading-[38.73px]">
@@ -39,7 +49,7 @@ export default function home() {
               top-quality learning materials, structured lesson plans, and
               expert guidance to help your child excel academically.
             </p>
-            <Button className="w-[197px] h-[48px] text-[18px] bg-[#FF5900]" onClick={()=>{showReg()}>
+            <Button className="w-[197px] h-[48px] text-[18px] bg-[#FF5900]"  onClick={()=>{showRegPage()}}>
               Register Now
             </Button>
           </span>
@@ -400,7 +410,7 @@ export default function home() {
           <span className=" flex flex-col md:flex-row gap-[20px]">
             <Button
               variant="outline"
-              className="hover:bg-black h-[48px] text-[18px] hover:text-white bg-[#FF5900] text-white" onClick={()=>{showReg()}>
+              className="hover:bg-black h-[48px] text-[18px] hover:text-white bg-[#FF5900] text-white"  onClick={()=>{showRegPage()}}>
               
               Become a Tutor Now!
             </Button>
