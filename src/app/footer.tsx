@@ -52,7 +52,7 @@ Info@citadelprojects.com              </p>
             </ul>
           </aside>
 
-          <aside className="flex flex-col gap-[16px] flex-1">
+          <aside className="flex flex-col gap-[16px] md:flex-1 w-full">
             <p className="text-white font-bold text-[16px]">
               Send Us a Message
             </p>
@@ -61,7 +61,7 @@ Info@citadelprojects.com              </p>
             <Button className="bg-[#FF5900] text-white">Submit</Button>
           </aside>
         </div>
-        <div className="md:flex md:justify-between  mt-8">
+        <div className="flex md:flex-col-reverse md:justify-between  mt-8">
           <p className="text-white text-[14px] text-center">
             Copyright &copy; 2025 Citadel-i-Projects
           </p>
