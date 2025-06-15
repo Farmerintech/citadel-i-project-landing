@@ -330,7 +330,7 @@ export default function Header() {
   >
     <ul className="flex flex-col gap-[32px]">
       <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
-        <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+        <Link href="/" onClick={() => {setIsMobileMenuOpen(false)}}>Home</Link>
       </li>
       <li
         className="leading-[20.02px] text-[18px] font-normal text-[#130F26]"
@@ -339,7 +339,7 @@ export default function Header() {
       >
         <Link href="#">Classes</Link>
         {isClassesDropdownOpen && (
-          <div className="flex flex-col bg-white shadow-md w-[120px]" onClick={() => setIsMobileMenuOpen(false)}>
+          <div className="flex flex-col bg-white shadow-md w-[120px]" onClick={() => {setIsMobileMenuOpen(false)}}>
             <Link href="/classes/ks1" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
               KS1
             </Link>
@@ -356,13 +356,13 @@ export default function Header() {
         )}
       </li>
       <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
-        <Link href="/admission_info" onClick={() => setIsMobileMenuOpen(false)}>Admission Info</Link>
+        <Link href="/admission_info" onClick={() => {setIsMobileMenuOpen(false)}}>Admission Info</Link>
       </li>
       <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
-        <Link href="/counselling" onClick={() => setIsMobileMenuOpen(false)}>Counselling</Link>
+        <Link href="/counselling" onClick={() => {setIsMobileMenuOpen(false)}}>Counselling</Link>
       </li>
       <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
-        <Link href="/holiday_coaching" onClick={() => setIsMobileMenuOpen(false)}>Holiday Coaching</Link>
+        <Link href="/holiday_coaching" onClick={() => {setIsMobileMenuOpen(false)}}>Holiday Coaching</Link>
       </li>
       <li
         className={`relative text-[16px] border-[#FF5900] font-normal flex items-center gap-[4px] hover:text-[#FF5900] hover ${
@@ -373,7 +373,7 @@ export default function Header() {
       >
         Exam Preparation
         {isExamDropDown && (
-          <div className="absolute left-0 top-[100%] flex flex-col bg-white shadow-md w-[150px]" onClick={() => setIsMobileMenuOpen(false)}>
+          <div className="absolute left-0 top-[100%] flex flex-col bg-white shadow-md w-[150px]" onClick={() => {setIsMobileMenuOpen(false)}}>
             <Link
               href="/exam_preparation"
               className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black w-full"
@@ -398,7 +398,7 @@ export default function Header() {
       >
         <Link href="#">Resources</Link>
         {isResourcesDropdownOpen && (
-          <div className="flex flex-col bg-white shadow-md w-[120px] mt-[16px]" onClick={() => setIsMobileMenuOpen(false)}>
+          <div className="flex flex-col bg-white shadow-md w-[120px] mt-[16px]" onClick={() => {setIsMobileMenuOpen(false)}}>
             <Link
               href="/resources/teacher"
               className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"
@@ -415,7 +415,7 @@ export default function Header() {
         )}
       </li>
       <li className="leading-[20.02px] text-[18px] font-normal text-[#130F26]">
-        <Link href="/sponsor" onClick={() => setIsMobileMenuOpen(false)}>Sponsor a student</Link>
+        <Link href="/sponsor" onClick={() => {setIsMobileMenuOpen(false)}}>Sponsor a student</Link>
       </li>
     </ul>
         
