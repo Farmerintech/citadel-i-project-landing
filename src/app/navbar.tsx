@@ -45,7 +45,7 @@ export default function Header() {
   return (
     <>
  {showReg  && 
-      <div className='fixed absolute pl-5 pr-5 pt-5 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50  z-40'>
+      <div className='fixed absolute h-auto pl-5 pr-5 pt-5 pb-10 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50  z-40'>
         <SignUpPage setShowReg={setShowReg}/>
       </div>
       }
