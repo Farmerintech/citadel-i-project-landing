@@ -33,8 +33,8 @@ export default function SignInPage({ setShowLogin }: SignInPageProps) {
   };
 
   return (
-    <section className="flex items-start md:items-center justify-center md:h-screen h-[100vh]">
-      <div className="md:flex w-full md:w-full md:max-w-4xl h-[65vh] md:h-[85vh] rounded-lg shadow md:overflow-hidden">
+    <section className="flex items-start md:items-center justify-center h-screen ">
+      <div className="md:flex w-full md:w-full md:max-w-4xl h-[35vh] md:h-[85vh] rounded-lg shadow md:overflow-hidden">
         {/* Left Side */}
         <AuthPage />
 
