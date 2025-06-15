@@ -11,8 +11,8 @@ import sponsor from '@/app/assets/sponsor.jpg'
 import Star from '@/app/assets/glowing-star.png'
 import Link from 'next/link'
 import { useEffect, useState } from "react";
-import SignUpPage from "./authPage/signup/signupPage";
-import SignInPage from "./authPage/signin/signinPage";
+import SignUpPage from '../authPage/signup/signupPage'
+import SignInPage from "../authPage/signin/signinPage";
 
 export default function home() {
            const [showReg, setShowReg] = useState(false)
