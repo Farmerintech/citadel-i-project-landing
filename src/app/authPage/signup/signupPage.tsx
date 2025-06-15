@@ -35,8 +35,8 @@ export default function SignUpPage({ setShowReg }: SignUpPageProps) {
   };
 
   return (
-    <section className="flex items-start md:items-center justify-center md:h-screen h-[100vh]">
-      <div className="md:flex w-full md:max-w-4xl h-[65vh] md:h-[85vh] md:rounded-lg shadow md:overflow-hidden">
+    <section className="flex items-start md:items-center justify-center h-screen">
+      <div className="md:flex w-full md:max-w-4xl h-[40vh] md:h-[85vh] md:rounded-lg shadow md:overflow-hidden">
         <AuthPage />
         <div className="w-full md:w-1/2 flex flex-col justify-center p-6 md:p-15 bg-orange-50 rounded-b-lg md:rounded-b-none gap-3">
           <div
