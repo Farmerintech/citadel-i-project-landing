@@ -5,9 +5,9 @@ import { Button } from '@/components/ui/button'
 import Waec from '@/app/assets/Frame 70.png'
 import { Checkbox } from '@/components/ui/checkbox'
 import Client from '@/app/assets/Attending the Client 1.png'
-import Whatsapp from '@/app/assets/WhatsApp Image 2025-02-16 at 10.40.54_70d95c85.png'
+import newasset from '@/app/assets/assetnew.jpg'
 import Frame from '@/app/assets/Frame 99.png'
-import Frame7 from '@/app/assets/Frame 97.png'
+import sponsor from '@/app/assets/sponsor.jpg'
 import Star from '@/app/assets/glowing-star.png'
 export default function home() {
   return (
@@ -173,7 +173,7 @@ export default function home() {
             Educational & Career Counselling
           </h2>
           <span
-            className="flex w-auto lg:w-[541px] lg:h-[194px] rounded-[8px]   flex-col bg-[#F6C354] p-[16px]
+            className="flex w-auto lg:w-[541px] lg:h-[194px] rounded-[8px]   flex-col bg-[#3E414A] p-[16px]
      gap-[8px]"
           >
             <h3 className="text-[18px] font-semibold">
@@ -270,7 +270,7 @@ export default function home() {
 
       <main className="flex lg:px-[100px] bg-[#FFF8EA] items-center py-[24px] md:flex-row flex-col md:py-[64px] md:min-h-[662px]  px-[24px] justify-center md:pt-[100px] gap-[56px]">
         <div className="md:w-[471px]  lg:h-auto w-full">
-          <Image src={Whatsapp} alt="" layout="responsive" />
+          <Image src={newasset} alt="" layout="responsive" />
         </div>
         <div className="md:w-[581px] flex flex-col gap-[38px] md:h-auto">
           <h2 className="font-semibold text-[24px]">
@@ -456,7 +456,7 @@ export default function home() {
         </div>
 
         <div className="w-[313px]  h-[600.12px] ">
-          <Image src={Frame7} alt="" layout="responsive" />
+          <Image src={sponsor} alt="" layout="responsive" />
         </div>
       </main>
     </>
