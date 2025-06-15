@@ -173,7 +173,7 @@ export default function home() {
             Educational & Career Counselling
           </h2>
           <span
-            className="flex w-auto lg:w-[541px] lg:h-[194px] rounded-[8px]   flex-col bg-[#3E414A] p-[16px]
+            className="flex w-auto lg:w-[541px] lg:h-[194px] rounded-[8px]   flex-col bg-[#3E414A] text-white p-[16px]
      gap-[8px]"
           >
             <h3 className="text-[18px] font-semibold">
