@@ -61,7 +61,7 @@ Info@citadelprojects.com              </p>
             <Button className="bg-[#FF5900] text-white">Submit</Button>
           </aside>
         </div>
-        <div className="flex md:flex-col-reverse md:justify-between  mt-8">
+        <div className="flex md:flex-row flex-col-reverse md:justify-between  mt-8">
           <p className="text-white text-[14px] text-center">
             Copyright &copy; 2025 Citadel-i-Projects
           </p>
