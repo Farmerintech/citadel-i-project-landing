@@ -330,11 +330,11 @@ export default function home() {
         </div>
       </main>
 
-      <main className="flex lg:px-[100px] bg-[#FFFBF9] px-[24px] md:flex-row flex-col s py-[32px]  justify-center items-center md:py-[100px] gap-[56px]">
+      <main className="flex lg:px-[100px] bg-[#FFFBF9] px-[24px] md:flex-row flex-col  py-[32px]  justify-center items-center md:py-[100px] gap-[56px]">
         <div className="md:w-[471px] w-full h-auto">
           <Image src={Frame} alt="" layout="responsive" />
         </div>
-        <div className="lg:w-[581px] md:w-[420px] flex-1  flex flex-col gap-[16px]  md:h-[455px] px-[24px]">
+        <div className="lg:w-[581px] md:w-[420px] flex-1  flex flex-col gap-[16px]  md:h-[455px] mx:px-[24px] px-[16px]">
           <h2 className="font-semibold text-[24px]">Book a Tutor</h2>
           <span className="flex flex-col gap-[10px]">
             <h3 className="text-[18px] font-semibold">
@@ -378,7 +378,7 @@ export default function home() {
             </span>
           </span>
 
-          <span className=" flex gap-[20px]">
+          <span className=" flex flex-col md:flex-row gap-[20px]">
             <Button
               variant="outline"
               className="hover:bg-black h-[48px] text-[18px] hover:text-white bg-[#FF5900] text-white">
