@@ -40,7 +40,7 @@ export default function AdmissionInfo (){
                 </span>
                 <p className="text-[24px] text-[#0F0F0F] font-[600]">Admission Process</p>
             </div>
-            <div className="flex flex-col gap-[24px] md:px-8">
+            <div className="flex flex-col gap-[24px] px-8">
                     <p className="font-[600] text-[20px] text-[#0F0F0F]">Step-by-Step Guide to Securing Admission</p>
                     <ul className="flex gap-[12px] flex-col list-decimal">
                         <li className="text-[18px] ">
@@ -190,7 +190,7 @@ export default function AdmissionInfo (){
             </div>
             {
                 courses.map(courseItems=>courseItems.course.toLocaleLowerCase().includes(coursedata.toLocaleLowerCase()) || courseItems.course.toLocaleLowerCase() === (coursedata.toLocaleLowerCase())?
-                    <div className="hidden text-[#0F0F0F] bg-[#FFFFFF] p-[16px] rounded-[4px] md:flex flex-col gap-[12px]">
+                    <div className=" text-[#0F0F0F] bg-[#FFFFFF] p-[16px] rounded-[4px] md:flex flex-col gap-[12px]">
                     <h4 className="font-[600] text-[20px]">{courseItems.course}</h4>
                 
                     <p className="text-[12px]">Minimum of Credit score in the following Subjects</p>
