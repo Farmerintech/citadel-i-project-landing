@@ -9,7 +9,21 @@ import newasset from '@/app/assets/assetnew.jpg'
 import Frame from '@/app/assets/Frame 99.png'
 import sponsor from '@/app/assets/sponsor.jpg'
 import Star from '@/app/assets/glowing-star.png'
+import Link from 'next/link'
+import { useEffect, useState } from "react";
+import SignUpPage from "./authPage/signup/signupPage";
+import SignInPage from "./authPage/signin/signinPage";
+
 export default function home() {
+           const [showReg, setShowReg] = useState(false)
+         const [showLogin, setShowLogin] = useState(false)
+         const showRegPage = () =>{
+           toggle(setShowReg, showReg); // then toggle the registration page
+         }
+         const showLoginPage = () =>{
+          toggle(setShowLogin, showLogin); // then toggle the registration page
+        }
+
   return (
     <>
       <main className="py-[32px] flex  md:flex-row flex-col  md:px-[100px] px-[24px]  bg-[#F4B733] ">
@@ -24,7 +38,7 @@ export default function home() {
               top-quality learning materials, structured lesson plans, and
               expert guidance to help your child excel academically.
             </p>
-            <Button className="w-[197px] h-[48px] text-[18px] bg-[#FF5900]">
+            <Button className="w-[197px] h-[48px] text-[18px] bg-[#FF5900]" onClick={()=>{showReg()}>
               Register Now
             </Button>
           </span>
@@ -154,13 +168,15 @@ export default function home() {
             </div>
             <span className=" flex  xl:flex-row flex-col gap-[20px] pt-8 ">
               <Button className="w-auto md:text-[18px] text-[12px]  bg-[#FF5900]">
-                Access Guide and Past Questions
+                <Link href="/exam_preparation"> Access Guide and Past Questions</Link>
+               
               </Button>
               <Button
                 variant="outline"
                 className="hover:bg-black w-auto md:text-[18px] text-[12px] hover:text-white border-[1px] border-black"
               >
-                Book a free consultation
+                <Link href="/bookings">Book a free consultation</Link>
+                
               </Button>
             </span>
           </div>
@@ -258,7 +274,8 @@ export default function home() {
               variant="outline"
               className="hover:bg-black hover:text-white border-[1px] border-black"
             >
-              Book a Free Counselling Session Today
+           <Link href="/bookings">Book a Free Counselling Session Today</Link>
+              
             </Button>
           </span>
         </div>
@@ -324,7 +341,8 @@ export default function home() {
           <span className=" flex gap-[20px]">
             <Button
               className=" h-[48px] text-[18px] hover:text-white bg-[#FF5900] text-white">
-              Register Now to Secure a Spot
+              <Link href="/classes/KS1">Register Now to Secure a Spot</Link>
+              
             </Button>
           </span>
         </div>
@@ -381,7 +399,8 @@ export default function home() {
           <span className=" flex flex-col md:flex-row gap-[20px]">
             <Button
               variant="outline"
-              className="hover:bg-black h-[48px] text-[18px] hover:text-white bg-[#FF5900] text-white">
+              className="hover:bg-black h-[48px] text-[18px] hover:text-white bg-[#FF5900] text-white" onClick={()=>{showReg()}>
+              
               Become a Tutor Now!
             </Button>
 
@@ -450,7 +469,8 @@ export default function home() {
               className="hover:bg-[#3E414A] h-[48px] w-[305px] text-[18px] hover:text-white
   bg-[#FF5900] text-white"
             >
-              Sponsor A Student Today!
+           <Link href="/sponsor">Sponsor A Student Today!</Link>
+              
             </Button>
           </span>
         </div>
