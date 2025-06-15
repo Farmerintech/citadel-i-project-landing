@@ -51,7 +51,7 @@ export default function home() {
               top-quality learning materials, structured lesson plans, and
               expert guidance to help your child excel academically.
             </p>
-            <Button className="w-[197px] h-[48px] text-[18px] bg-[#FF5900]"  onClick={()=>{showRegPage()}}>
+            <Button className="w-[197px] h-[48px] text-[18px] bg-[#FF5900]"  onClick={()=>showRegPage()}>
               Register Now
             </Button>
           </span>
@@ -353,8 +353,8 @@ export default function home() {
 
           <span className=" flex gap-[20px]">
             <Button
-              className=" h-[48px] text-[18px] hover:text-white bg-[#FF5900] text-white">
-              <Link href="/classes/KS1">Register Now to Secure a Spot</Link>
+              className=" h-[48px] text-[18px] hover:text-white bg-[#FF5900] text-white" onClick={()=>showRegPage()}>
+             Register Now to Secure a Spot
               
             </Button>
           </span>
@@ -412,7 +412,7 @@ export default function home() {
           <span className=" flex flex-col md:flex-row gap-[20px]">
             <Button
               variant="outline"
-              className="hover:bg-black h-[48px] text-[18px] hover:text-white bg-[#FF5900] text-white"  onClick={()=>{showRegPage()}}>
+              className="hover:bg-black h-[48px] text-[18px] hover:text-white bg-[#FF5900] text-white"  onClick={()=>showRegPage()}>
               
               Become a Tutor Now!
             </Button>
