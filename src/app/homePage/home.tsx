@@ -393,7 +393,7 @@ export default function home() {
           </span>
         </div>
       </main>
-      <main className="flex md:flex-row bg-[#F6F6F6]  py-[24px] items-center  flex-col-reverse lg:px-[100px] px-[24px] pb-[100px] justify-center gap-[56px]">
+      <main className="flex md:flex-row bg-[#F6F6F6]  py-[24px] items-center  flex-col lg:px-[100px] px-[24px] pb-[100px] justify-center gap-[56px]">
         <div className="md:w-[719px]  flex flex-col gap-[16px] md:h-auto">
           <h2 className="font-semibold text-[40px]">Sponsor A Candidate</h2>
           <span className="flex flex-col gap-[24px] rounded-[8px] bg-[#3E414A] p-[24px] text-white">
