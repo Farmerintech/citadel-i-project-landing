@@ -27,15 +27,17 @@ export default function home() {
 
   return (
     <>
-                {showReg  && 
-      <div className='md:fixed absolute pl-5 pr-5 pt-5 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50  z-40'>
-        <SignUpPage setShowReg={setShowReg}/>
-      </div>
-      }
-      {showLogin  && 
-      <div className='md:fixed absolute p-10 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50  z-40'>
-        <SignInPage setShowLogin={setShowLogin}/>
-      </div>
+       {showReg && (
+        <div className='md:fixed absolute pl-5 pr-5 pt-5 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50 z-40'>
+          <SignUpPage setShowReg={setShowReg} />
+        </div>
+      )}
+
+      {showLogin && (
+        <div className='md:fixed absolute p-10 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50 z-40'>
+          <SignInPage setShowLogin={setShowLogin} />
+        </div>
+      )}
 
       <main className="py-[32px] flex  md:flex-row flex-col  md:px-[100px] px-[24px]  bg-[#F4B733] ">
         <div className="md:w-[585px] flex flex-col gap-[32px] md:h-[286px]h-auto">
