@@ -44,16 +44,17 @@ export default function Header() {
   }, [pathname]); 
   return (
     <>
- {showReg  && 
-      <div className='md:fixed absolute pl-5 pr-5 pt-5 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50  z-40'>
-        <SignUpPage setShowReg={setShowReg}/>
-      </div>
-      }
-      {showLogin  && 
-      <div className='md:fixed absolute p-10 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50  z-40'>
-        <SignInPage setShowLogin={setShowLogin}/>
-      </div>
-      }    
+ {showReg && (
+        <div className='fixed pl-5 pr-5 pt-5 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50 z-40'>
+          <SignUpPage setShowReg={setShowReg} />
+        </div>
+      )}
+
+      {showLogin && (
+        <div className='fixed pl-5 pr-5 pt-5 md:p-0 inset-0 bg-[#0000008F] bg-opacity-50 z-40'>
+          <SignInPage setShowLogin={setShowLogin} />
+        </div>
+      )}
     <header className=" flex  w-[100%] bg-[#FEF6E6] md:bg-[#FFFFFF]" >
       <nav className=" p-[24px] md:p-0  flex justify-between w-[100%] ">
         {/* Logo */}
