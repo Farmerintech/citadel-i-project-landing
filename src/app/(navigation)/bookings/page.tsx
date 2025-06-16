@@ -16,22 +16,22 @@ export default function page (){
             <button className="bg-[#FF5900] text-white px-[24px] py-[12px] gap-[8px] rounded-[8px]">Book a Tutor Now</button>
             <div className="flex items-center gap-[80px] md:gap-[50px] flex-col md:flex-row">
                 <div className="lg:w-[287px] md:w-[250px] ">
-                    <div className="h-[292px] bg-white ">
-                    <Image src={Bookings1} alt=""/>
+                    <div className="bg-white bg-white rounded-[8px] ">
+                    <Image src={Bookings1} alt="" className="h-[292px] "/>
                     </div>
                     <p className="mt-5 font-[600]">Mr. Adeniji</p>
                     <span>A veterian teacher with over 2 decades of experience in the filed of education </span>
                 </div>
                     <div className="lg:w-[287px] md:w-[250px]   ">
-                    <div className="h-[292px] bg-white ">
-                    <Image src={Bookings1} alt=""/>
+                    <div className="h-[292px] bg-white rounded-[8px]">
+                    <Image src={Bookings1} alt="" className="h-[292px] "/>
                     </div>
                     <p className="mt-5 font-[600]">Mr. Adeniji</p>
                     <span>A veterian teacher with over 2 decades of experience in the filed of education </span>
                 </div>
                 <div className="lg:w-[287px] md:w-[250px]   ">
-                    <div className="h-[292px] bg-white ">
-                    <Image src={Bookings1} alt=""/>
+                    <div className="h-[292px] bg-white rounded-[8px]">
+                    <Image src={Bookings1} alt="" className="h-[292px] "/>
                     </div>
                     <p className="mt-5 font-[600]">Mr. Adeniji</p>
                     <span>A veterian teacher with over 2 decades of experience in the filed of education </span>
