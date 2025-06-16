@@ -13,7 +13,7 @@ import { toggle } from "@/lib/utils";
 import SignUpPage from "./authPage/signup/signupPage";
 import SignInPage from "./authPage/signin/signinPage";
 import { useUser } from "./context/reducer";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaUserCircle } from "react-icons/fa";
 export default function Header() {
   // State to manage mobile menu visibility
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -103,9 +103,11 @@ export default function Header() {
                 </span>
         
        {state.isLoggedIn && state.firstName!==null ?
-       <span className="flex items-center w-[30px] h-[30px] rounded-full justify-center border-1 border-orange-500">
-        <FaUser/>
-       </span>
+                <div className=" py-10 flex gap-[12px] items-center">
+                 <p className="flex items-center justify-center w-[50px] h-[50px] rounded-full justify-center">   <FaUserCircle color="orange" size={20}/></p>
+                 <p>Hello, {state?.firstName || ''} {state?.lastName || ""} 
+                 </p>
+                </div>
        :
        <span className="flex items-center gap-[5px]">
         <Button className="bg-[#FF5900] w-[97px] h-[35px] text-[16px] text-white"  onClick={()=>{showRegPage()}}>
@@ -382,11 +384,16 @@ export default function Header() {
           <li>
           </li>
         </ul>
+         <Button className="block text-[#FF5900] text-[16px] bg-[#FFEEE6] hover:text-white">
+          <Link href="/bookings">Book a Tutor</Link>
+        </Button>
        { 
               state.isLoggedIn ?
-                <span className="flex items-center justify-center w-[50px] h-[50px] rounded-full justify-center border-1 border-orange-500">
-                 <FaUser/>
-                </span>
+                <div className=" py-10 flex gap-[12px] items-center">
+                 <p className="flex items-center justify-center w-[50px] h-[50px] rounded-full justify-center">   <FaUserCircle color="orange" size={20}/></p>
+                 <p>Hello, {state?.firstName || ''} {state?.lastName || ""} 
+                 </p>
+                </div>
          :
         <span className="flex justify-center flex-col items-center gap-[5px]">
           <Button className="bg-[#FF5900] text-[16px] text-white w-full" variant="outline" onClick={()=>{showRegPage()}}>Register</Button>
@@ -399,3 +406,8 @@ export default function Header() {
     </>
   );
 }
+
+
+
+
+
