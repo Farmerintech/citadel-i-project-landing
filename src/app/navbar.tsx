@@ -105,7 +105,7 @@ export default function Header() {
        {state.isLoggedIn && state.firstName!==null ?
                 <div className=" py-10 flex gap-[12px] items-center">
                  <p className="flex items-center justify-center w-[50px] h-[50px] rounded-full justify-center">   <FaUserCircle color="orange" size={20}/></p>
-                 <p>Hello, {state?.firstName || ''} {state?.lastName || ""} 
+                 <p>Hello, {state?.firstName  || ''} {state?.lastName || ""} 
                  </p>
                 </div>
        :
@@ -388,14 +388,14 @@ export default function Header() {
           <Link href="/bookings">Book a Tutor</Link>
         </Button>
        { 
-              state.isLoggedIn ?
+              state.isLoggedIn  && state.firstName!==null ?
                 <div className=" py-10 flex gap-[12px] items-center">
                  <p className="flex items-center justify-center w-[50px] h-[50px] rounded-full justify-center">   <FaUserCircle color="orange" size={20}/></p>
                  <p>Hello, {state?.firstName || ''} {state?.lastName || ""} 
                  </p>
                 </div>
          :
-        <span className="flex justify-center flex-col items-center gap-[5px]">
+        <span className="py-10 flex justify-center flex-col items-center gap-[5px]">
           <Button className="bg-[#FF5900] text-[16px] text-white w-full" variant="outline" onClick={()=>{showRegPage()}}>Register</Button>
           <Button className="border-[1px] text-[16px] bg-transparent text-black border-black w-full" variant='default' onClick={()=>{showLoginPage()}}>Log in</Button>
         </span>}
