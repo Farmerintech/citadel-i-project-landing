@@ -31,9 +31,11 @@ export default function Header() {
          const [showLogin, setShowLogin] = useState(false)
          const showRegPage = () =>{
            toggle(setShowReg, showReg); // then toggle the registration page
+           toggleMobileMenu()
          }
          const showLoginPage = () =>{
           toggle(setShowLogin, showLogin); // then toggle the registration page
+          toggleMobileMenu()
         }
   
   useEffect(() => {
@@ -385,7 +387,7 @@ export default function Header() {
           </li>
         </ul>
          <Button className="block text-[#FF5900] text-[16px] bg-[#FFEEE6] hover:text-white">
-          <Link href="/bookings">Book a Tutor</Link>
+          <Link href="/bookings" onClick={()=> toggleMobileMenu()}>Book a Tutor</Link>
         </Button>
        { 
               state.isLoggedIn  && state.firstName!==null ?
