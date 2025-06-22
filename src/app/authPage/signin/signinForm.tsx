@@ -6,7 +6,7 @@ import { Eye, EyeOff, ChevronsRight } from "lucide-react";
 import googleLogo from "@/app/assets/google.svg";
 
 export const SignInForm = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<any>({
     email: "",
     password: "",
   });
@@ -35,7 +35,7 @@ export const SignInForm = () => {
     if (password.length < 8) return setError("Password must be at least 8 characters");
 
     try {
-      const res = await fetch("/api/auth/signin", {
+      const res = await fetch("https://citadel-i-project.onrender.com/api/v1/user/api/auth/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
