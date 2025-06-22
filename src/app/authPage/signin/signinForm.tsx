@@ -62,7 +62,7 @@ export const SignInForm = () => {
         // Redirect or save token if needed
         router.push(pathname);
         dispatch({
-    type: 'Login',
+    type: 'LOGIN',
     payload: {
       email,
       firstName,
