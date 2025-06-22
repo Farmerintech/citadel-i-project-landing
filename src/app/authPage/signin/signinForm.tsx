@@ -64,11 +64,13 @@ export const SignInForm = () => {
         dispatch({
     type: 'LOGIN',
     payload: {
-      email,
-      firstName,
-      lastName,
-      token,
-      role,
+      email:result.user.email,
+      firstName:result.user.firstName,
+      lastName:result.user.lastName,
+      token:result.user.token,
+      role:result.user.role,
+      subjects:[],
+      examMode:''
     },
   });
       } else {
