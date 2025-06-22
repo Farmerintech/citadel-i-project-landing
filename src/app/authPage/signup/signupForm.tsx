@@ -1,85 +1,114 @@
 "use client";
 
 import Image from "next/image";
-import { Eye, EyeOff, ChevronsRight } from "lucide-react";
 import { useState } from "react";
+import { Eye, EyeOff, ChevronsRight } from "lucide-react";
 import googleLogo from "@/app/assets/google.svg";
 
-interface SignUpFormProps {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleForm: (e: React.FormEvent<HTMLFormElement>) => void;
-  handleCheck: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  message?: string;
-  error?: string;
-  isChecked: boolean;
-}
+export const SignUpForm = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+  });
 
-export const SignUpForm: React.FC<SignUpFormProps> = ({
-  email,
-  password,
-  firstName,
-  lastName,
-  handleInput,
-  handleForm,
-  handleCheck,
-  message,
-  error,
-  isChecked,
-}) => {
+  const [isChecked, setIsChecked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(e.target.checked);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError("");
+    setMessage("");
+
+    const { firstName, lastName, email, password } = formData;
+
+    // Basic validation
+    if (!firstName.trim()) return setError("First Name cannot be empty");
+    if (!lastName.trim()) return setError("Last Name cannot be empty");
+    if (!email.trim()) return setError("Email cannot be empty");
+    if (password.length < 8) return setError("Password is too short");
+
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+
+      if (res.status === 201) {
+        setMessage(result?.message || "Account created successfully");
+        setFormData({ email: "", password: "", firstName: "", lastName: "" });
+        setIsChecked(false);
+      } else {
+        setError(result?.message || "Something went wrong");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Error connecting to server");
+    }
+  };
 
   return (
-    <form className="space-y-3" onSubmit={handleForm}>
+    <form className="space-y-3" onSubmit={handleSubmit}>
       <p className="text-green-500 text-sm">{message}</p>
 
       <div className="md:flex gap-3">
         <div className="md:flex-1">
           <label className="text-sm">First Name</label>
           <input
-            value={firstName}
+            value={formData.firstName}
             type="text"
             name="firstName"
             onChange={handleInput}
             placeholder="First Name"
-            className="w-full p-2 border outline-none rounded-[8px] text-sm border-gray-500 focus:border-black"
+            className="w-full p-2 border rounded-[8px] text-sm border-gray-500 outline-none focus:border-black"
           />
         </div>
         <div className="flex-1">
           <label className="text-sm">Last Name</label>
           <input
-            value={lastName}
+            value={formData.lastName}
             type="text"
             name="lastName"
             onChange={handleInput}
             placeholder="Last Name"
-            className="w-full p-2 border outline-none rounded-[8px] text-sm border-gray-500 focus:border-black"
+            className="w-full p-2 border rounded-[8px] text-sm border-gray-500 outline-none focus:border-black"
           />
         </div>
       </div>
 
       <label className="text-sm">Email Address</label>
       <input
-        value={email}
+        value={formData.email}
         type="email"
         name="email"
         onChange={handleInput}
         placeholder="Email Address"
-        className="w-full p-2 border outline-none rounded-[8px] text-sm border-gray-500 focus:border-black"
+        className="w-full p-2 border rounded-[8px] text-sm border-gray-500 outline-none focus:border-black"
       />
 
       <div className="relative">
         <label className="text-sm">Password</label>
         <input
           type={showPassword ? "text" : "password"}
-          value={password}
+          value={formData.password}
           name="password"
           onChange={handleInput}
           placeholder="Password"
-          className="w-full p-2 border outline-none rounded-[8px] text-sm border-gray-500 focus:border-black"
+          className="w-full p-2 border rounded-[8px] text-sm border-gray-500 outline-none focus:border-black"
         />
         <button
           type="button"
@@ -106,6 +135,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({
       </div>
 
       <button
+        type="submit"
         disabled={!isChecked}
         className={`w-full ${
           isChecked ? "bg-orange-500" : "bg-gray-400"
@@ -124,7 +154,10 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({
       </div>
 
       <div className="flex items-center justify-center w-full">
-        <button className="w-full rounded-[8px] border border-gray-300 py-2 flex items-center justify-center text-sm">
+        <button
+          type="button"
+          className="w-full rounded-[8px] border border-gray-300 py-2 flex items-center justify-center text-sm"
+        >
           <Image
             src={googleLogo}
             alt="Google"
