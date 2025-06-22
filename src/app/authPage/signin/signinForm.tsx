@@ -1,34 +1,64 @@
 "use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import { Eye, EyeOff, ChevronsRight } from "lucide-react";
-import { useState, ChangeEvent, FormEvent } from "react";
 import googleLogo from "@/app/assets/google.svg";
 
-interface SignInFormProps {
-  email: string;
-  password: string;
-  handleInput: (event: ChangeEvent<HTMLInputElement>) => void;
-  handleForm: (event: FormEvent<HTMLFormElement>) => void;
-  handleCheck: (event: ChangeEvent<HTMLInputElement>) => void;
-  message?: string;
-  error?: string;
-  isChecked: boolean;
-}
+export const SignInForm = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
-export const SignInForm = ({
-  email,
-  password,
-  handleInput,
-  handleForm,
-  handleCheck,
-  message,
-  error,
-  isChecked,
-}: SignInFormProps) => {
+  const [isChecked, setIsChecked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(e.target.checked);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError("");
+    setMessage("");
+
+    const { email, password } = formData;
+
+    if (!email.trim()) return setError("Email is required");
+    if (password.length < 8) return setError("Password must be at least 8 characters");
+
+    try {
+      const res = await fetch("/api/auth/signin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+
+      if (res.status === 200) {
+        setMessage(result?.message || "Login successful");
+        setFormData({ email: "", password: "" });
+        setIsChecked(false);
+        // You can redirect here or store token if needed
+      } else {
+        setError(result?.message || "Invalid credentials");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Error connecting to server");
+    }
+  };
 
   return (
-    <form className="space-y-3" onSubmit={handleForm}>
+    <form className="space-y-3" onSubmit={handleSubmit}>
       {message && <p className="text-green-500 text-sm">{message}</p>}
 
       <label className="text-sm">Email Address</label>
@@ -36,7 +66,7 @@ export const SignInForm = ({
         type="email"
         className="w-full p-2 border outline-none rounded-lg text-sm border-gray-500 focus:border-black"
         placeholder="Email Address"
-        value={email}
+        value={formData.email}
         name="email"
         onChange={handleInput}
       />
@@ -47,7 +77,7 @@ export const SignInForm = ({
           type={showPassword ? "text" : "password"}
           className="w-full p-2 border outline-none rounded-lg text-sm border-gray-500 focus:border-black"
           placeholder="Password"
-          value={password}
+          value={formData.password}
           name="password"
           onChange={handleInput}
         />
@@ -60,21 +90,19 @@ export const SignInForm = ({
         </button>
       </div>
 
-      <div className="flex items-center text-xs">
-        <input
-          type="checkbox"
-          className="mr-2 bg-gray-300 rounded"
-          onChange={handleCheck}
-          checked={isChecked}
-        />
-        <div className="flex justify-between w-full">
-          <p>Remember me</p>
-          <p>
-            <a href="#" className="text-orange-500">
-              Forgot password?
-            </a>
-          </p>
-        </div>
+      <div className="flex items-center text-xs justify-between">
+        <label className="flex items-center">
+          <input
+            type="checkbox"
+            className="mr-2 bg-gray-300 rounded"
+            onChange={handleCheck}
+            checked={isChecked}
+          />
+          Remember me
+        </label>
+        <a href="#" className="text-orange-500">
+          Forgot password?
+        </a>
       </div>
 
       <button
@@ -96,7 +124,10 @@ export const SignInForm = ({
       </div>
 
       <div className="flex items-center justify-center w-full">
-        <button className="w-full rounded-[8px] border border-gray-300 py-2 flex items-center justify-center text-sm">
+        <button
+          type="button"
+          className="w-full rounded-[8px] border border-gray-300 py-2 flex items-center justify-center text-sm"
+        >
           <Image
             src={googleLogo}
             alt="Google"
@@ -109,7 +140,7 @@ export const SignInForm = ({
       </div>
 
       <p className="text-center text-xs text-gray-500 mt-2">
-        Don't have an account?{" "}
+        Don’t have an account?{" "}
         <a href="/signup" className="text-orange-500">
           Register now!
         </a>
