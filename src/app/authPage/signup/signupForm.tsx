@@ -40,7 +40,7 @@ export const SignUpForm = () => {
     if (password.length < 8) return setError("Password is too short");
 
     try {
-      const res = await fetch("https://citadel-i-project.onrender.com/api/v1/user/api/auth/signup", {
+      const res = await fetch("https://citadel-i-project.onrender.com/api/v1/user/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
