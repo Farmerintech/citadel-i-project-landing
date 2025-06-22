@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Eye, EyeOff, ChevronsRight } from "lucide-react";
+import { Eye, EyeOff, ChevronsRight, Loader2 } from "lucide-react";
 import googleLogo from "@/app/assets/google.svg";
 
 export const SignUpForm = () => {
-  const [formData, setFormData] = useState<any>({
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
     firstName: "",
@@ -17,6 +17,7 @@ export const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,14 +31,26 @@ export const SignUpForm = () => {
     e.preventDefault();
     setError("");
     setMessage("");
+    setIsLoading(true);
 
     const { firstName, lastName, email, password } = formData;
 
-    // Basic validation
-    if (!firstName.trim()) return setError("First Name cannot be empty");
-    if (!lastName.trim()) return setError("Last Name cannot be empty");
-    if (!email.trim()) return setError("Email cannot be empty");
-    if (password.length < 8) return setError("Password is too short");
+    if (!firstName.trim()) {
+      setIsLoading(false);
+      return setError("First Name cannot be empty");
+    }
+    if (!lastName.trim()) {
+      setIsLoading(false);
+      return setError("Last Name cannot be empty");
+    }
+    if (!email.trim()) {
+      setIsLoading(false);
+      return setError("Email cannot be empty");
+    }
+    if (password.length < 8) {
+      setIsLoading(false);
+      return setError("Password must be at least 8 characters");
+    }
 
     try {
       const res = await fetch("https://citadel-i-project.onrender.com/api/v1/user/auth/signup", {
@@ -53,17 +66,21 @@ export const SignUpForm = () => {
         setFormData({ email: "", password: "", firstName: "", lastName: "" });
         setIsChecked(false);
       } else {
-        setError(result?.message || "Something went wrong");
+        const errMsg =
+          typeof result.message === "string" ? result.message : "Something went wrong";
+        setError(errMsg);
       }
-    } catch (err) {
-      console.error(err);
-      setError("Error connecting to server");
+    } catch (err: any) {
+      console.error("Signup error:", err);
+      setError("Unable to connect to the server.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <form className="space-y-3" onSubmit={handleSubmit}>
-      <p className="text-green-500 text-sm">{message}</p>
+      {message && <p className="text-green-500 text-sm">{message}</p>}
 
       <div className="md:flex gap-3">
         <div className="md:flex-1">
@@ -136,16 +153,25 @@ export const SignUpForm = () => {
 
       <button
         type="submit"
-        disabled={!isChecked}
+        disabled={!isChecked || isLoading}
         className={`w-full ${
           isChecked ? "bg-orange-500" : "bg-gray-400"
         } text-white py-2 rounded-[8px] text-sm flex gap-3 items-center justify-center`}
       >
-        Create Account
-        <ChevronsRight size={24} />
+        {isLoading ? (
+          <>
+            <Loader2 size={18} className="animate-spin" />
+            Creating Account...
+          </>
+        ) : (
+          <>
+            Create Account
+            <ChevronsRight size={24} />
+          </>
+        )}
       </button>
 
-      <p className="text-red-500 text-sm">{error}</p>
+      {error && <p className="text-red-500 text-sm">{error}</p>}
 
       <div className="flex items-center my-2">
         <hr className="flex-grow border-gray-300" />
