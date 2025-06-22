@@ -69,8 +69,8 @@ export default function Page() {
   }
 
   return (
-    <section className="lg:px-[100px] md:px-[50px] w-full overflow-x-hidden py-[16px] px-[16px] bg-[#F3F3F3] flex flex-col md:flex-row gap-[24px] justify-between">
-      <aside className="md:w-[300px] w-full h-auto py-[24px] px-[12px] flex flex-col gap-[16px] bg-white">
+    <section className="lg:px-[100px] md:px-[20px] w-full overflow-x-hidden py-[16px] px-[16px] bg-[#F3F3F3] flex flex-col md:flex-row gap-[24px] justify-between">
+      <aside className="md:w-[300px] w-full md:h-[500px] h-auto py-[24px] px-[12px] flex flex-col gap-[16px] bg-white">
         <p className="p-[8px] gap-[10px] bg-[#FBE3B0]">Lesson Contents</p>
         <div>
           {loading ? (
