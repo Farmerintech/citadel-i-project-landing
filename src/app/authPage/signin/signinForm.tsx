@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Eye, EyeOff, ChevronsRight } from "lucide-react";
+import { Eye, EyeOff, ChevronsRight, Loader2 } from "lucide-react";
 import googleLogo from "@/app/assets/google.svg";
 
 export const SignInForm = () => {
-  const [formData, setFormData] = useState<any>({
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
@@ -15,6 +15,7 @@ export const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,11 +29,18 @@ export const SignInForm = () => {
     e.preventDefault();
     setError("");
     setMessage("");
+    setIsLoading(true);
 
     const { email, password } = formData;
 
-    if (!email.trim()) return setError("Email is required");
-    if (password.length < 8) return setError("Password must be at least 8 characters");
+    if (!email.trim()) {
+      setIsLoading(false);
+      return setError("Email is required");
+    }
+    if (password.length < 8) {
+      setIsLoading(false);
+      return setError("Password must be at least 8 characters");
+    }
 
     try {
       const res = await fetch("https://citadel-i-project.onrender.com/api/v1/user/auth/signin", {
@@ -43,17 +51,23 @@ export const SignInForm = () => {
 
       const result = await res.json();
 
-      if (res.status === 200) {
-        setMessage(result?.message || "Login successful");
+      if (res.ok) {
+        setMessage(typeof result.message === "string" ? result.message : "Login successful");
         setFormData({ email: "", password: "" });
         setIsChecked(false);
-        // You can redirect here or store token if needed
+        // Redirect or save token if needed
       } else {
-        setError(result?.message || "Invalid credentials");
+        const errorMsg =
+          typeof result.message === "string"
+            ? result.message
+            : "Invalid credentials or server error.";
+        setError(errorMsg);
       }
-    } catch (err) {
-      console.error(err);
-      setError("Error connecting to server");
+    } catch (err: any) {
+      console.error("Login error:", err);
+      setError("Unable to connect to server. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -106,13 +120,23 @@ export const SignInForm = () => {
       </div>
 
       <button
+        type="submit"
         className={`w-full ${
           isChecked ? "bg-orange-500" : "bg-gray-400"
         } text-white py-2 rounded-lg text-sm flex gap-3 items-center justify-center`}
-        disabled={!isChecked}
+        disabled={!isChecked || isLoading}
       >
-        Login
-        <ChevronsRight size={24} className="text-white" />
+        {isLoading ? (
+          <>
+            <Loader2 size={18} className="animate-spin" />
+            Logging in...
+          </>
+        ) : (
+          <>
+            Login
+            <ChevronsRight size={20} />
+          </>
+        )}
       </button>
 
       {error && <p className="text-red-500 text-sm">{error}</p>}
