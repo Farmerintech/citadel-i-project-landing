@@ -4,13 +4,17 @@ import Image from "next/image";
 import { useState } from "react";
 import { Eye, EyeOff, ChevronsRight, Loader2 } from "lucide-react";
 import googleLogo from "@/app/assets/google.svg";
+import { useRouter, usePathname } from "next/navigation";
+import { useUser } from "@/app/context/reducer";
 
 export const SignInForm = () => {
+   const router = useRouter();
+  const pathname = usePathname();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
+  const { dispatch } = useUser();
   const [isChecked, setIsChecked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
@@ -56,6 +60,17 @@ export const SignInForm = () => {
         setFormData({ email: "", password: "" });
         setIsChecked(false);
         // Redirect or save token if needed
+        router.push(pathname);
+        dispatch({
+    type: 'Login',
+    payload: {
+      email,
+      firstName,
+      lastName,
+      token,
+      role,
+    },
+  });
       } else {
         const errorMsg =
           typeof result.message === "string"
