@@ -304,13 +304,13 @@ export default function Header() {
           <Link href="">Classes</Link>
           {isClassesDropdownOpen && (
             <div onClick={()=> toggleMobileMenu()} className="flex flex-col bg-white shadow-md w-[120px]">
-              <Link href="/classes/ks1" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
+              <Link href="/classes/KS1" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
                 KS1
               </Link>
-              <Link href="/classes/ks2" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
+              <Link href="/classes/KS2" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
                 KS2
               </Link>
-              <Link href="/classes/ks3" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
+              <Link href="/classes/KS3" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
                 KS3
               </Link>
               <Link href="/classes/ssce" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
