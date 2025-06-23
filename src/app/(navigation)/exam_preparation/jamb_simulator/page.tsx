@@ -34,10 +34,7 @@ export default function Page() {
           alert('You can only select four subjects (English + 3 others)');
           return prev;
         }
-           if (prev.length !== 4) {
-          alert('Please select up to four subjects (English + 3 others)');
-          return prev;
-        }
+        
         return [...prev, subject];
       }
     });
@@ -60,6 +57,10 @@ const handleNavigate = () =>{
   const lastName =''
   const token =''
   const role=''
+    if (checkedSubjects.length !== 4) {
+          alert('Please select up to four subjects (English + 3 others)');
+          return checkedSubjects;
+        }
   dispatch({
            type: 'CBT',
            payload: {
