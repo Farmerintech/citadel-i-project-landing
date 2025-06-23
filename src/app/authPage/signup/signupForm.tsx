@@ -4,8 +4,16 @@ import Image from "next/image";
 import { useState } from "react";
 import { Eye, EyeOff, ChevronsRight, Loader2 } from "lucide-react";
 import googleLogo from "@/app/assets/google.svg";
+import { useRouter, usePathname } from "next/navigation";
+import { useUser } from "@/app/context/reducer";
+
+ 
 
 export const SignUpForm = () => {
+    const router = useRouter();
+  const pathname = usePathname();
+    const { dispatch } = useUser();
+  
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -65,6 +73,21 @@ export const SignUpForm = () => {
         setMessage(result?.message || "Account created successfully");
         setFormData({ email: "", password: "", firstName: "", lastName: "" });
         setIsChecked(false);
+                  router.push(pathname);
+           dispatch({
+    type: 'LOGIN',
+    payload: {
+      email:result.user.email,
+      firstName:result.user.firstName,
+      lastName:result.user.lastName,
+      token:result.user.token,
+      role:result.user.role,
+      subjects:[],
+      examMode:''
+    },
+  });
+    window.location.reload();
+
       } else {
         const errMsg =
           typeof result.message === "string" ? result.message : "Something went wrong";
