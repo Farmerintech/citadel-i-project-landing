@@ -157,7 +157,7 @@ export default function Header() {
                 KS3
               </Link>
               <Link href="/classes/SSCE/IGCE" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"  onClick={() => setCurrentNav(1)}>
-                SSCE/GCE
+                SSCE/IGCE
               </Link>
             </div>
           )}
