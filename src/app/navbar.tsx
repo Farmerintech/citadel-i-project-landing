@@ -156,7 +156,7 @@ export default function Header() {
               <Link href="/classes/KS3" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"  onClick={() => setCurrentNav(1)}>
                 KS3
               </Link>
-              <Link href="/classes/SSCE_GCE" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"  onClick={() => setCurrentNav(1)}>
+              <Link href="/classes/SSCE/IGCE" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black"  onClick={() => setCurrentNav(1)}>
                 SSCE/GCE
               </Link>
             </div>
@@ -313,7 +313,7 @@ export default function Header() {
               <Link href="/classes/KS3" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
                 KS3
               </Link>
-              <Link href="/classes/ssce" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
+              <Link href="/classes/SSCE/IGCE" className="px-4 py-2 hover:bg-[#FF5900] hover:text-white text-black">
                 SSCE/GCE
               </Link>
             </div>
