@@ -76,7 +76,7 @@ export default function Myclass (){
     const year = formatYear(yearIndex);
 
     const body = {
-      class: theClass,
+      class: decodeURIComponent(theClass),
       year,
       term,
     };
