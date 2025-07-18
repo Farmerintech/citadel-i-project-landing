@@ -15,22 +15,26 @@ const menuItems =[
         {
             id:0,
             name:"KS1",
-            years:["Year1", "Year2"]
+            years:["Year1", "Year2"],
+            uri:"KS1"
         },
         {
             id:1,
             name:"KS2",
             years:["Year1", "Year2", "Year3", "Year4", "Year5", "Year6"], 
+            uri:"KS2"
         },
         {
             id:2,
             name:"KS3",
             years:["Year1", "Year2", "Year3", "Year4", "Year5", "Year6"], 
+            uri:"KS3"
         },
         {
             id:3,
-            name:"SSCE%2FIGCE",
-            years:[], 
+            name:"SSCE/IGCE",
+            years:[],
+            uri:"SSCE%2FIGCE"
         },
     ]
 const Terms=[
@@ -124,7 +128,7 @@ export default function Myclass (){
     subject: "",
     term,
     year: "year1",
-    class: theClass,
+    class: decodeURIComponent(theClass),
   });
 
   const handleSelectYear = (value: string) => {
@@ -264,7 +268,7 @@ export default function Myclass (){
                         <li className="cursor-pointer" onClick={()=>{setClassIndex(menu.id)}} key={menu.id}>
                             <div >
                                 <div className={`flex justify-between items-center ${classIndex == menu.id ? "bg-[#F6C354]":''} w-[132px] px-[8px] py-[12px]`} >
-                                    <Link href={`/classes/${menu.name}`}>{menu.name}</Link>
+                                    <Link href={`/classes/${menu.uri}`}>{menu.name}</Link>
                                 </div>                      
                                  <ul  className={` ${classIndex == menu.id ? 'block': 'hidden' }`}>
                                     {menu.years.map((year)=>(
@@ -288,7 +292,7 @@ export default function Myclass (){
                     <li className="cursor-pointer z-[80px]  " onClick={()=>{setClassIndex(menu.id)}} key={menu.id}>
                         <div className=''>
                             <div className={`flex justify-between items-center  ${classIndex == menu.id ? "bg-[#F6C354]":'bg-white'} px-[8px] py-[12px] `} >
-                            <Link href={`/classes/${menu.name}`}>{menu.name}</Link>
+                            <Link href={`/classes/${menu.uri}`}>{menu.name}</Link>
                             </div>                      
                              <ul  className={` ${classIndex == menu.id ? 'block': 'hidden' }`}>
                                 {menu.years.map((year)=>(
