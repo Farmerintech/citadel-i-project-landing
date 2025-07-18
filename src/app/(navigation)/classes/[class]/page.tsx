@@ -306,7 +306,7 @@ export default function Myclass (){
             }
             <li className={`w-full px-[8px] py-[12px] bg-[#F6C354] flex items-center justify-between ${!showMenu ? "block":"hidden"}`}>
                 
-                <span>{theClass}</span>
+                <span>{decodeURIComponent(theClass)}</span>
                 <span className="text-black"></span>
 
             </li>
