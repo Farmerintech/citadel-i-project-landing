@@ -29,7 +29,7 @@ const menuItems =[
         },
         {
             id:3,
-            name:"SSCE/IGCE",
+            name:"SSCE%2FIGCE",
             years:[], 
         },
     ]
