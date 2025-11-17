@@ -76,11 +76,6 @@ useEffect(() => {
   fetchData();
 }, [selectedCourse, selectedSchool, year]);
 
-    if (selectedCourse || selectedSchool || year) {
-      fetchData();
-    }
-  }, [selectedCourse, selectedSchool, year]);
-
     return(
         <section className=" md:bg-[#F3F3F3] md:px-6 lg:px-[100px] py-2 flex flex-col-reverse md:flex-row items-start justify-between gap-2">
         <aside className=" bg-white flex flex-col gap-[53px] px-4 py-2 md:rounded-[4px] md:w-2/3 custom-scrollbar md:overflow-y-scroll md:h-[900px] lg:h-[800px]">
@@ -235,7 +230,9 @@ useEffect(() => {
         </aside>
            {/* <RightSide/> */}
                   <aside className="p-[16px] bg-[#F9D68A] lg:rounded-[4px] w-full md:w-1/3 flex-col flex gap-[24px] custom-scrollbar md:overflow-y-scroll md:h-[900px] lg:h-[800px]">
-        <div className="flex flex-col gap-[16px]">
+                    {apiData.length > 0 ? 
+                      
+                      (<div className="flex flex-col gap-[16px]">
           {/* School Select */}
           <div className="flex flex-col gap-2">
             <label className="font-[600] text-[16px]">Select School</label>
@@ -300,7 +297,20 @@ useEffect(() => {
           >
             {loading ? "Searching..." : "Search Admission"}
           </Button>
-        </div>
+        </div>):(
+                  <div className="bg-[#FFFBF9] p-[16px] flex gap-[10px] rounded-[4px]">
+                <input onChange= {(handleSearch)} type="text" placeholder="Search for course" className=" border-1 border-[#101828] px-[8px] py-[4px] rounded-[8px] w-full"/>
+                <button onClick={(displaySearch)} className="bg-[#FF5900] py-[8px] px-[16px] md:w-auto lg:w-1/3 flex items-center justify-center gap-[2px] text-white rounded-[8px]">
+                    <span className="md:hidden lg:block">Search</span>
+                    <span>
+                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21.5 21.4453L17.15 17.0953M19.5 11.4453C19.5 15.8636 15.9183 19.4453 11.5 19.4453C7.08172 19.4453 3.5 15.8636 3.5 11.4453C3.5 7.02703 7.08172 3.44531 11.5 3.44531C15.9183 3.44531 19.5 7.02703 19.5 11.4453Z" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+
+                    </span>
+                </button>
+            </div>
+        )
 
         {/* Display Results */}
         <div className="mt-4 flex flex-col gap-[12px]">
