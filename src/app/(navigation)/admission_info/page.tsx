@@ -38,7 +38,7 @@ type AdmissionFilters = {
 const fetchAdmission = async (filters: AdmissionFilters) => {
   try {
     const response = await fetch(
-      "citadel-i-project.onrender.com/api/v1/admin/admission_requirements/filter",
+      "https://citadel-i-project.onrender.com/api/v1/admin/admission_requirements/filter",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
