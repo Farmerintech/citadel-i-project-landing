@@ -377,9 +377,9 @@ export default function AdmissionInfo() {
               .filter((item) =>
                 item.course.toLowerCase().includes(courseSearch.toLowerCase())
               )
-              .map((courseItem) => (
+              .map((courseItem, index:number) => (
                 <div
-                  key={courseItem.id}
+                  key={index}
                   className="text-[#0F0F0F] bg-[#FFFFFF] p-[16px] rounded-[4px] flex flex-col gap-[12px]"
                 >
                   <h4 className="font-[600] text-[20px]">{courseItem.course}</h4>
