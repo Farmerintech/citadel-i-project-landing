@@ -38,7 +38,7 @@ type AdmissionFilters = {
 const fetchAdmission = async (filters: AdmissionFilters) => {
   try {
     const response = await fetch(
-      "http://localhost:8000/api/admission/filter",
+      "citadel-i-project.onrender.com/api/v1/admin/admission_requirements/filter",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -290,8 +290,8 @@ export default function AdmissionInfo() {
                   <SelectValue placeholder="Choose your course" />
                 </SelectTrigger>
                 <SelectContent>
-                  {courses.map((item) => (
-                    <SelectItem key={item.id} value={item.course}>
+                  {courses.map((item:any, index:number) => (
+                    <SelectItem key={index} value={item.course}>
                       {item.course}
                     </SelectItem>
                   ))}
