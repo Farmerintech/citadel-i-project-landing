@@ -377,7 +377,7 @@ export default function AdmissionInfo() {
               .filter((item) =>
                 item.course.toLowerCase().includes(courseSearch.toLowerCase())
               )
-              .map((courseItem, index:number) => (
+              .map((courseItem:any, index:number) => (
                 <div
                   key={index}
                   className="text-[#0F0F0F] bg-[#FFFFFF] p-[16px] rounded-[4px] flex flex-col gap-[12px]"
