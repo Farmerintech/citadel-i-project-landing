@@ -1,26 +1,85 @@
-"use client"
-import { ChangeEvent, useState } from "react"
-import { courses } from "./courses"
+"use client";
 
+import { useState, useEffect } from "react";
+import { courses } from "./courses";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
 
-type courseItems ={
-    course:string,
-    OLevel:string[],
-    Jamb:string[],
-    PostUTME:string[]
-}
+type CourseItem = {
+  course: string;
+  OLevel: string[];
+  Jamb: string[];
+  PostUTME: string[];
+  id: string;
+  school?: string;
+  year?: string;
+  requirements?: string;
+  additional?: string;
+};
 
+const fetchAdmission = async (filters: any) => {
+  try {
+    const response = await fetch("http://localhost:8000/api/admission/filter", { // corrected 'addmission'
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(filters),
+    });
 
-export default function AdmissionInfo (){
-  const [coursedata, setCourse] = useState<string>("Medicine And Surgery")
+    const result = await response.json();
 
-  const handleSearch = (event:ChangeEvent<HTMLInputElement>) =>{
-      if(event.target.value !== ""){
-          setCourse(event.target.value)
-      }
+    if (!response.ok) {
+      throw new Error(result.message || "Failed to fetch data");
+    }
+
+    return result.data as CourseItem[];
+  } catch (error) {
+    console.error("Error fetching admission:", error);
+    return null;
   }
-  const displaySearch = () =>{
-  }
+};
+
+export default function AdmissionInfo() {
+  const [courseSearch, setCourseSearch] = useState<string>("Medicine And Surgery");
+  const [apiData, setApiData] = useState<CourseItem[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const [selectedSchool, setSelectedSchool] = useState("");
+  const [selectedCourse, setSelectedCourse] = useState("");
+  const [year, setYear] = useState("");
+
+  const schools = ["Unilorin", "OAU", "FUTA", "ABU"];
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCourseSearch(e.target.value);
+  };
+
+  const displaySearch = () => {
+    console.log("Search triggered for:", courseSearch);
+  };
+useEffect(() => {
+  if (!selectedCourse && !selectedSchool && !year) return;
+
+  const fetchData = async () => {
+    setLoading(true);
+    const data = await fetchAdmission({ course: selectedCourse, school: selectedSchool, year });
+    setApiData(data || []);
+    setLoading(false);
+  };
+
+  fetchData();
+}, [selectedCourse, selectedSchool, year]);
+
+    if (selectedCourse || selectedSchool || year) {
+      fetchData();
+    }
+  }, [selectedCourse, selectedSchool, year]);
 
     return(
         <section className=" md:bg-[#F3F3F3] md:px-6 lg:px-[100px] py-2 flex flex-col-reverse md:flex-row items-start justify-between gap-2">
@@ -175,55 +234,128 @@ export default function AdmissionInfo (){
             </section>
         </aside>
            {/* <RightSide/> */}
-           <aside className="p-[16px] bg-[#F9D68A] lg:rounded-[4px] w-full md:w-1/3 flex-col flex gap-[24px] custom-scrollbar md:overflow-y-scroll md:h-[900px] lg:h-[800px]">
-            <div className="bg-[#FFFBF9] p-[16px] flex gap-[10px] rounded-[4px]">
-                <input onChange= {(handleSearch)} type="text" placeholder="Search for course" className=" border-1 border-[#101828] px-[8px] py-[4px] rounded-[8px] w-full"/>
-                <button onClick={(displaySearch)} className="bg-[#FF5900] py-[8px] px-[16px] md:w-auto lg:w-1/3 flex items-center justify-center gap-[2px] text-white rounded-[8px]">
-                    <span className="md:hidden lg:block">Search</span>
-                    <span>
-                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21.5 21.4453L17.15 17.0953M19.5 11.4453C19.5 15.8636 15.9183 19.4453 11.5 19.4453C7.08172 19.4453 3.5 15.8636 3.5 11.4453C3.5 7.02703 7.08172 3.44531 11.5 3.44531C15.9183 3.44531 19.5 7.02703 19.5 11.4453Z" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                  <aside className="p-[16px] bg-[#F9D68A] lg:rounded-[4px] w-full md:w-1/3 flex-col flex gap-[24px] custom-scrollbar md:overflow-y-scroll md:h-[900px] lg:h-[800px]">
+        <div className="flex flex-col gap-[16px]">
+          {/* School Select */}
+          <div className="flex flex-col gap-2">
+            <label className="font-[600] text-[16px]">Select School</label>
+            <Select value={selectedSchool} onValueChange={setSelectedSchool}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Choose your school" />
+              </SelectTrigger>
+              <SelectContent>
+                {schools.map((school) => (
+                  <SelectItem key={school} value={school}>
+                    {school}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
 
-                    </span>
-                </button>
-            </div>
-            {
-                courses.map(courseItems=>courseItems.course.toLocaleLowerCase().includes(coursedata.toLocaleLowerCase()) || courseItems.course.toLocaleLowerCase() === (coursedata.toLocaleLowerCase())?
-                    <div className=" text-[#0F0F0F] bg-[#FFFFFF] p-[16px] rounded-[4px] md:flex flex-col gap-[12px]">
-                    <h4 className="font-[600] text-[20px]">{courseItems.course}</h4>
-                
-                    <p className="text-[12px]">Minimum of Credit score in the following Subjects</p>
-                    <div>
-                        <p className="font-[500] text-[18px] bg-[#F6F6F6]">O’Level Requirements</p>
-                        <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                            {courseItems["O'Level Requirements"].map(olevel=>(
-                            <li>{olevel}</li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div>
-                        <p className="font-[500] text-[18px] bg-[#F6F6F6]">Jamb Requirements</p>
-                        <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                        {courseItems["JAMB Requirements"].map(jamb=>(
-                            <li>{jamb}</li>
-                            ))}     
-                        </ul>
-                    </div>
-                    <div>
-                        <p className="font-[500] text-[18px] bg-[#F6F6F6]">Post UTME Requirements</p>
-                        <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                        {courseItems["Post UTME Requirements"].map(postUTME=>(
-                            <li>{postUTME}</li>
-                            ))}
-                        </ul>
-                    </div>
+          {/* Course Select */}
+          <div className="flex flex-col gap-2">
+            <label className="font-[600] text-[16px]">Select Course</label>
+            <Select value={selectedCourse} onValueChange={setSelectedCourse}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Choose your course" />
+              </SelectTrigger>
+              <SelectContent>
+                {courses.map((courseItem) => (
+                  <SelectItem key={courseItem.id} value={courseItem.course}>
+                    {courseItem.course}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Year Select */}
+          <div className="flex flex-col gap-2">
+            <label className="font-[600] text-[16px]">Select Year</label>
+            <Select value={year} onValueChange={setYear}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Choose year" />
+              </SelectTrigger>
+              <SelectContent>
+                {["100", "200", "300", "400", "500"].map((yr) => (
+                  <SelectItem key={yr} value={yr}>
+                    {yr}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Submit Button */}
+          <Button
+            className="bg-[#FF5900] text-white mt-2"
+            onClick={async () => {
+              const filters = { school: selectedSchool, course: selectedCourse, year };
+              setLoading(true);
+              const data = await fetchAdmission(filters);
+              setApiData(data || []);
+              setLoading(false);
+            }}
+          >
+            {loading ? "Searching..." : "Search Admission"}
+          </Button>
+        </div>
+
+        {/* Display Results */}
+        <div className="mt-4 flex flex-col gap-[12px]">
+          {apiData.length > 0 ? (
+            apiData.map((item) => (
+              <div key={item.id} className="bg-white p-4 rounded-md">
+                <h4 className="font-[600]">{item.course} - {item.school} ({item.year})</h4>
+                <p>O’Level Requirements: {item.OLevel.join(", ")}</p>
+                <p>JAMB Requirements: {item.Jamb.join(", ")}</p>
+                <p>Post-UTME Requirements: {item.PostUTME.join(", ")}</p>
+              </div>
+            ))
+          ) : (
+            courses
+              .filter((courseItem) =>
+                courseItem.course.toLowerCase().includes(courseSearch.toLowerCase())
+              )
+              .map((courseItem) => (
+                <div
+                  key={courseItem.id}
+                  className="text-[#0F0F0F] bg-[#FFFFFF] p-[16px] rounded-[4px] flex flex-col gap-[12px]"
+                >
+                  <h4 className="font-[600] text-[20px]">{courseItem.course}</h4>
+                  <p className="text-[12px]">Minimum of Credit score in the following Subjects</p>
+                  <div>
+                    <p className="font-[500] text-[18px] bg-[#F6F6F6]">O’Level Requirements</p>
+                    <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
+                      {courseItem.OLevel.map((olevel, idx) => (
+                        <li key={idx}>{olevel}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-[500] text-[18px] bg-[#F6F6F6]">JAMB Requirements</p>
+                    <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
+                      {courseItem.Jamb.map((jamb, idx) => (
+                        <li key={idx}>{jamb}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-[500] text-[18px] bg-[#F6F6F6]">Post UTME Requirements</p>
+                    <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
+                      {courseItem.PostUTME.map((post, idx) => (
+                        <li key={idx}>{post}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                 :("")
-                )
-            }
-        </aside>
-  
+              ))
+          )}
+        </div>
+      </aside>
+
+          
         </section>
     )
 }
