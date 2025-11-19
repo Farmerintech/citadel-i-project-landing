@@ -385,7 +385,7 @@ export default function AdmissionInfo() {
           <div>
             <p className="font-[500] text-[18px] bg-[#F6F6F6]">O’Level Requirements</p>
             <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-              {courseItem["O'Level Requirements"].map((o: string, idx: number) => (
+              {courseItem["O'Level Requirements"]?.map((o: string, idx: number) => (
                 <li key={idx}>{o}</li>
               ))}
             </ul>
@@ -394,7 +394,7 @@ export default function AdmissionInfo() {
           <div>
             <p className="font-[500] text-[18px] bg-[#F6F6F6]">JAMB Requirements</p>
             <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-              {courseItem["JAMB Requirements"].map((j: string, idx: number) => (
+              {courseItem["JAMB Requirements"]?.map((j: string, idx: number) => (
                 <li key={idx}>{j}</li>
               ))}
             </ul>
@@ -403,7 +403,7 @@ export default function AdmissionInfo() {
           <div>
             <p className="font-[500] text-[18px] bg-[#F6F6F6]">Post UTME Requirements</p>
             <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-              {courseItem["Post UTME Requirements"].map((p: string, idx: number) => (
+              {courseItem["Post UTME Requirements"]?.map((p: string, idx: number) => (
                 <li key={idx}>{p}</li>
               ))}
             </ul>
