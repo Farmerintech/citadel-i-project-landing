@@ -258,151 +258,161 @@ export default function AdmissionInfo() {
       {/* ======================================================
           IF API DATA AVAILABLE => SHOW FILTER BOX + API RESULTS
       ======================================================= */}
-      {apiData && apiData.length > 0 ? (
-        <>
-          {/* FILTERS */}
-          <div className="flex flex-col gap-[16px]">
-
-            {/* School */}
-            <div className="flex flex-col gap-2">
-              <label className="font-[600] text-[16px]">Select School</label>
-              <Select value={selectedSchool} onValueChange={setSelectedSchool}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Choose your school" />
-                </SelectTrigger>
-                <SelectContent>
-                  {schools.map((school) => (
-                    <SelectItem key={school} value={school}>
-                      {school}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Course */}
-            <div className="flex flex-col gap-2">
-              <label className="font-[600] text-[16px]">Select Course</label>
-              <Select value={selectedCourse} onValueChange={setSelectedCourse}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Choose your course" />
-                </SelectTrigger>
-                <SelectContent>
-                  {Array.isArray(courses) && courses.map((item: any, index: number) =>  (
-                    <SelectItem key={index} value={item.course}>
-                      {item.course}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Year */}
-            <div className="flex flex-col gap-2">
-              <label className="font-[600] text-[16px]">Select Year</label>
-              <Select value={year} onValueChange={setYear}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Choose year" />
-                </SelectTrigger>
-                <SelectContent>
-                  {["2020", "2021", "2022", "2023", "2024", "2025", "2026"].map((yr) => (
-                    <SelectItem key={yr} value={yr}>
-                      {yr}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Button */}
-            <Button
-              disabled={loading}
-              className="bg-[#FF5900] text-white mt-2"
-              onClick={async () => {
-                setLoading(true);
-                const data = await fetchAdmission({
-                  school: selectedSchool,
-                  course: selectedCourse,
-                  year,
-                });
-                setApiData(data || []);
-                setLoading(false);
-              }}
-            >
-              {loading ? "Searching..." : "Search Admission"}
-            </Button>
-          </div>
-
-          {/* API RESULTS */}
-          <div className="mt-4 flex flex-col gap-[12px]">
-            {apiData?.length > 0 && apiData.map((item) => (
-              <div key={item?.id} className="bg-white p-4 rounded-md">
-                <h4 className="font-[600]">
-                  {item?.course} - {item?.school} ({item?.year})
-                </h4>
-                <p>{item?.requirements}</p>
-              </div>
+     {apiData && apiData.length > 0 ? (
+  <>
+    {/* FILTERS */}
+    <div className="flex flex-col gap-[16px]">
+      {/* School */}
+      <div className="flex flex-col gap-2">
+        <label className="font-[600] text-[16px]">Select School</label>
+        <Select value={selectedSchool} onValueChange={setSelectedSchool}>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Choose your school" />
+          </SelectTrigger>
+          <SelectContent>
+            {schools.map((school) => (
+              <SelectItem key={school} value={school}>
+                {school}
+              </SelectItem>
             ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Course */}
+      <div className="flex flex-col gap-2">
+        <label className="font-[600] text-[16px]">Select Course</label>
+        <Select value={selectedCourse} onValueChange={setSelectedCourse}>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Choose your course" />
+          </SelectTrigger>
+          <SelectContent>
+            {Array.isArray(courses) &&
+              courses.map((item: any, index: number) => (
+                <SelectItem key={index} value={item.course}>
+                  {item.course}
+                </SelectItem>
+              ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Year */}
+      <div className="flex flex-col gap-2">
+        <label className="font-[600] text-[16px]">Select Year</label>
+        <Select value={year} onValueChange={setYear}>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Choose year" />
+          </SelectTrigger>
+          <SelectContent>
+            {["2020", "2021", "2022", "2023", "2024", "2025", "2026"].map((yr) => (
+              <SelectItem key={yr} value={yr}>
+                {yr}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <Button
+        disabled={loading}
+        className="bg-[#FF5900] text-white mt-2"
+        onClick={async () => {
+          setLoading(true);
+          const data = await fetchAdmission({
+            school: selectedSchool,
+            course: selectedCourse,
+            year,
+          });
+          setApiData(data || []);
+          setLoading(false);
+        }}
+      >
+        {loading ? "Searching..." : "Search Admission"}
+      </Button>
+    </div>
+
+    {/* API RESULTS */}
+    <div className="mt-4 flex flex-col gap-[12px]">
+      {apiData?.length > 0 &&
+        apiData.map((item) => (
+          <div key={item?.id} className="bg-white p-4 rounded-md">
+            <h4 className="font-[600]">
+              {item?.course} - {item?.school} ({item?.year})
+            </h4>
+            <p>{item?.requirements}</p>
           </div>
-        </>
-      ) : (
-        <>
-          {/* =====================================================
-              NO API RESULT => SHOW LOCAL SEARCH
-          ====================================================== */}
-        <div className="bg-[#FFFBF9] p-[16px] flex gap-[10px] rounded-[4px]">
-            <input
-              onChange={handleSearch}
-              type="text"
-              placeholder="Search for course"
-              className="border border-[#101828] px-[8px] py-[4px] rounded-[8px] w-full"
-            />
+        ))}
+    </div>
+  </>
+) : (
+  <>
+    {/* LOCAL SEARCH */}
+    <div className="bg-[#FFFBF9] p-[16px] flex gap-[10px] rounded-[4px]">
+      <input
+        onChange={handleSearch}
+        type="text"
+        placeholder="Search for course"
+        className="border border-[#101828] px-[8px] py-[4px] rounded-[8px] w-full"
+      />
 
-            <button
-              onClick={displaySearch}
-              className="bg-[#FF5900] py-[8px] px-[16px] flex items-center justify-center gap-[2px] text-white rounded-[8px]"
-            >
-              Search
-            </button>
+      <button
+        onClick={displaySearch}
+        className="bg-[#FF5900] py-[8px] px-[16px] flex items-center justify-center gap-[2px] text-white rounded-[8px]"
+      >
+        Search
+      </button>
+    </div>
+
+    {/* LOCAL DATA RESULTS */}
+    <div className="mt-4 flex flex-col gap-[12px]">
+      {courses
+        .filter((courseItems) => {
+          const name = courseItems.course.toLowerCase();
+          const query = courseSearch.toLowerCase();
+          return name.includes(query) || name === query;
+        })
+        .map((courseItems, index) => (
+          <div
+            key={index}
+            className="text-[#0F0F0F] bg-[#FFFFFF] p-[16px] rounded-[4px] md:flex flex-col gap-[12px]"
+          >
+            <h4 className="font-[600] text-[20px]">{courseItems.course}</h4>
+
+            <p className="text-[12px]">Minimum of Credit score in the following Subjects</p>
+
+            <div>
+              <p className="font-[500] text-[18px] bg-[#F6F6F6]">O’Level Requirements</p>
+              <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
+                {courseItems["O'Level Requirements"].map((olevel, idx) => (
+                  <li key={idx}>{olevel}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <p className="font-[500] text-[18px] bg-[#F6F6F6]">JAMB Requirements</p>
+              <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
+                {courseItems["JAMB Requirements"].map((jamb, idx) => (
+                  <li key={idx}>{jamb}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <p className="font-[500] text-[18px] bg-[#F6F6F6]">Post UTME Requirements</p>
+              <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
+                {courseItems["Post UTME Requirements"].map((post, idx) => (
+                  <li key={idx}>{post}</li>
+                ))}
+              </ul>
+            </div>
           </div>
+        ))}
+    </div>
+  </>
+)}
 
-          {/* LOCAL DATA RESULTS */}
-          <div className="mt-4 flex flex-col gap-[12px]">
-            {    courses.map(courseItems:any =>courseItems.course.toLocaleLowerCase().includes(courseSearch.toLocaleLowerCase()) 
-            || courseItems.course.toLocaleLowerCase() === (courseSearch.toLocaleLowerCase()) &&
-                    <div className=" text-[#0F0F0F] bg-[#FFFFFF] p-[16px] rounded-[4px] md:flex flex-col gap-[12px]">
-                    <h4 className="font-[600] text-[20px]">{courseItems.course}</h4>
-                
-                    <p className="text-[12px]">Minimum of Credit score in the following Subjects</p>
-                    <div>
-                        <p className="font-[500] text-[18px] bg-[#F6F6F6]">O’Level Requirements</p>
-                        <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                            {courseItems["O'Level Requirements"].map(olevel=>(
-                            <li>{olevel}</li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div>
-                        <p className="font-[500] text-[18px] bg-[#F6F6F6]">Jamb Requirements</p>
-                        <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                        {courseItems["JAMB Requirements"].map(jamb=>(
-                            <li>{jamb}</li>
-                            ))}     
-                        </ul>
-                    </div>
-                    <div>
-                        <p className="font-[500] text-[18px] bg-[#F6F6F6]">Post UTME Requirements</p>
-                        <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                        {courseItems["Post UTME Requirements"].map(postUTME=>(
-                            <li>{postUTME}</li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>  
-                  
-
-        </>
-      )}
     </aside> 
 </section>
     )
