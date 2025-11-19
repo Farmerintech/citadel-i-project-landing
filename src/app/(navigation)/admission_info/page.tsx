@@ -352,68 +352,7 @@ export default function AdmissionInfo() {
           {/* =====================================================
               NO API RESULT => SHOW LOCAL SEARCH
           ====================================================== */}
-          <div className="bg-[#FFFBF9] p-[16px] flex gap-[10px] rounded-[4px]">
-            <input
-              onChange={handleSearch}
-              type="text"
-              placeholder="Search for course"
-              className="border border-[#101828] px-[8px] py-[4px] rounded-[8px] w-full"
-            />
-
-            <button
-              onClick={displaySearch}
-              className="bg-[#FF5900] py-[8px] px-[16px] flex items-center justify-center gap-[2px] text-white rounded-[8px]"
-            >
-              Search
-            </button>
-          </div>
-
-          {/* LOCAL DATA RESULTS */}
-          <div className="mt-4 flex flex-col gap-[12px]">
-            {Array.isArray(courses) && courses
-            .filter((item:any) => item?.course?.toLowerCase().includes(courseSearch.toLowerCase()))
-            .map((courseItem:any, index:number) => (
-                <div
-                  key={index}
-                  className="text-[#0F0F0F] bg-[#FFFFFF] p-[16px] rounded-[4px] flex flex-col gap-[12px]"
-                >
-                  <h4 className="font-[600] text-[20px]">{courseItem.course}</h4>
-
-                  <div>
-                    <p className="font-[500] text-[18px] bg-[#F6F6F6]">
-                      O’Level Requirements
-                    </p>
-                    <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                      {courseItem["O'Level Requirements"].map((olevel:string, idx:number) => (
-                        <li key={idx}>{olevel}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <p className="font-[500] text-[18px] bg-[#F6F6F6]">
-                      JAMB Requirements
-                    </p>
-                    <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                      {courseItem["JAMB Requirements"].map((jamb:string, idx:number) => (
-                        <li key={idx}>{jamb}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <p className="font-[500] text-[18px] bg-[#F6F6F6]">
-                      Post UTME Requirements
-                    </p>
-                    <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                      {courseItem["PostUTME Requirements"].map((post:string, idx:number) => (
-                        <li key={idx}>{post}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-          </div>
+         
         </>
       )}
     </aside> 
