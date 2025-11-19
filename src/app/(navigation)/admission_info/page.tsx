@@ -64,7 +64,7 @@ const fetchAdmission = async (filters: AdmissionFilters) => {
 //   COMPONENT
 // =======================
 export default function AdmissionInfo() {
-  const [courseSearch, setCourseSearch] = useState<string>("Medicine And Surgery");
+  const [courseSearch, setCourseSearch] = useState<string>("Medicine and Surgery");
 
   const [apiData, setApiData] = useState<CourseItem[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -290,7 +290,7 @@ export default function AdmissionInfo() {
                   <SelectValue placeholder="Choose your course" />
                 </SelectTrigger>
                 <SelectContent>
-                  {courses.map((item:any, index:number) => (
+                  {courses?.map((item:any, index:number) => (
                     <SelectItem key={index} value={item.course}>
                       {item.course}
                     </SelectItem>
