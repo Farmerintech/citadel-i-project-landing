@@ -368,7 +368,7 @@ export default function AdmissionInfo() {
 
           {/* LOCAL DATA RESULTS */}
           <div className="mt-4 flex flex-col gap-[12px]">
-            {    courses.map(courseItems=>courseItems.course.toLocaleLowerCase().includes(coursedata.toLocaleLowerCase()) || courseItems.course.toLocaleLowerCase() === (coursedata.toLocaleLowerCase())?
+            {    courses.map(courseItems:any =>courseItems.course.toLocaleLowerCase().includes(courseSearch.toLocaleLowerCase()) || courseItems.course.toLocaleLowerCase() === (courseSearch.toLocaleLowerCase())?
                     <div className=" text-[#0F0F0F] bg-[#FFFFFF] p-[16px] rounded-[4px] md:flex flex-col gap-[12px]">
                     <h4 className="font-[600] text-[20px]">{courseItems.course}</h4>
                 
