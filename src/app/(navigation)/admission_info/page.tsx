@@ -260,7 +260,7 @@ export default function AdmissionInfo() {
       {/* ======================================================
           IF API DATA AVAILABLE => SHOW FILTER BOX + API RESULTS
       ======================================================= */}
-      {apiData.length > 0 ? (
+      {apiData && apiData.length > 0 ? (
         <>
           {/* FILTERS */}
           <div className="flex flex-col gap-[16px]">
@@ -337,7 +337,7 @@ export default function AdmissionInfo() {
 
           {/* API RESULTS */}
           <div className="mt-4 flex flex-col gap-[12px]">
-            {apiData?.map((item) => (
+            {apiData && apiData?.map((item) => (
               <div key={item?.id} className="bg-white p-4 rounded-md">
                 <h4 className="font-[600]">
                   {item?.course} - {item?.school} ({item?.year})
