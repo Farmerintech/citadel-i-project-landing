@@ -290,7 +290,8 @@ export default function AdmissionInfo() {
                   <SelectValue placeholder="Choose your course" />
                 </SelectTrigger>
                 <SelectContent>
-                  {courses?.map((item:any, index:number) => (
+                  {{Array.isArray(courses) &&
+  courses.map((item: any, index: number) => (
                     <SelectItem key={index} value={item.course}>
                       {item.course}
                     </SelectItem>
