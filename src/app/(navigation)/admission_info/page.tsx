@@ -368,50 +368,49 @@ export default function AdmissionInfo() {
 
           {/* LOCAL DATA RESULTS */}
           <div className="mt-4 flex flex-col gap-[12px]">
-            {Array.isArray(courses) &&  courses.map((courseItems:any, index:number)=>courseItems.course.toLocaleLowerCase().includes(courseSearch.toLocaleLowerCase()) 
-          || courseItems.course.toLocaleLowerCase() === (courseSearch.toLocaleLowerCase()) ?
-             (
-                <div
-                  key={index}
-                  className="text-[#0F0F0F] bg-[#FFFFFF] p-[16px] rounded-[4px] flex flex-col gap-[12px]"
-                >
-                  <h4 className="font-[600] text-[20px]">{courseItems.course}</h4>
-                  <p className="text-[12px]">Minimum of Credit score in the following Subjects</p>
-                  <div>
-                    <p className="font-[500] text-[18px] bg-[#F6F6F6]">
-                      O’Level Requirements
-                    </p>
-                    <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                      {courseItems["O'Level Requirements"].map((olevel:string, idx:number) => (
-                        <li key={idx}>{olevel}</li>
-                      ))}
-                    </ul>
-                  </div>
+  {Array.isArray(courses) &&
+    courses
+      .filter((courseItem: any) => {
+        const name = courseItem.course.toLowerCase();
+        const query = courseSearch.toLowerCase();
+        return name.includes(query) || name === query;
+      })?.map((courseItem: any, index: number) => (
+        <div
+          key={index}
+          className="text-[#0F0F0F] bg-[#FFFFFF] p-[16px] rounded-[4px] flex flex-col gap-[12px]"
+        >
+          <h4 className="font-[600] text-[20px]">{courseItem.course}</h4>
+          <p className="text-[12px]">Minimum of Credit score in the following Subjects</p>
 
-                  <div>
-                    <p className="font-[500] text-[18px] bg-[#F6F6F6]">
-                      JAMB Requirements
-                    </p>
-                    <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                      {courseItems["JAMB Requirements"].map((jamb:string, idx:number) => (
-                        <li key={idx}>{jamb}</li>
-                      ))}
-                    </ul>
-                  </div>
+          <div>
+            <p className="font-[500] text-[18px] bg-[#F6F6F6]">O’Level Requirements</p>
+            <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
+              {courseItem["O'Level Requirements"].map((o: string, idx: number) => (
+                <li key={idx}>{o}</li>
+              ))}
+            </ul>
+          </div>
 
-                  <div>
-                    <p className="font-[500] text-[18px] bg-[#F6F6F6]">
-                      Post UTME Requirements
-                    </p>
-                    <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                      {courseItems["PostUTME Requirements"].map((post:string, idx:number) => (
-                        <li key={idx}>{post}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              )  :(""))}
-          </div>        
+          <div>
+            <p className="font-[500] text-[18px] bg-[#F6F6F6]">JAMB Requirements</p>
+            <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
+              {courseItem["JAMB Requirements"].map((j: string, idx: number) => (
+                <li key={idx}>{j}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="font-[500] text-[18px] bg-[#F6F6F6]">Post UTME Requirements</p>
+            <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
+              {courseItem["Post UTME Requirements"].map((p: string, idx: number) => (
+                <li key={idx}>{p}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+</div>        
 
         </>
       )}
