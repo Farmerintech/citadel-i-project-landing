@@ -385,7 +385,7 @@ export default function AdmissionInfo() {
                       O’Level Requirements
                     </p>
                     <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                      {courseItems["O'Level Requirements"].map((olevel:string, idx:number) => (
+                      {courseItems["O'Level Requirements"]?.map((olevel:string, idx:number) => (
                         <li key={idx}>{olevel}</li>
                       ))}
                     </ul>
@@ -396,7 +396,7 @@ export default function AdmissionInfo() {
                       JAMB Requirements
                     </p>
                     <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                      {courseItems["JAMB Requirements"].map((jamb:string, idx:number) => (
+                      {courseItems["JAMB Requirements"]?.map((jamb:string, idx:number) => (
                         <li key={idx}>{jamb}</li>
                       ))}
                     </ul>
@@ -407,7 +407,7 @@ export default function AdmissionInfo() {
                       Post UTME Requirements
                     </p>
                     <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                      {courseItems["Post UTME Requirements"].map((post:string, idx:number) => (
+                      {courseItems["POST UTME Requirements"]?.map((post:string, idx:number) => (
                         <li key={idx}>{post}</li>
                       ))}
                     </ul>
