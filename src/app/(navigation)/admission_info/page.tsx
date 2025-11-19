@@ -337,15 +337,12 @@ export default function AdmissionInfo() {
 
           {/* API RESULTS */}
           <div className="mt-4 flex flex-col gap-[12px]">
-            {apiData.map((item) => (
-              <div key={item.id} className="bg-white p-4 rounded-md">
+            {apiData.map((item:any) => (
+              <div key={item?.id} className="bg-white p-4 rounded-md">
                 <h4 className="font-[600]">
-                  {item.course} - {item.school} ({item.year})
+                  {item?.course} - {item?.school} ({item?.year})
                 </h4>
-
-                <p>O’Level Requirements: {item.OLevel?.join(", ")}</p>
-                <p>JAMB Requirements: {item.Jamb?.join(", ")}</p>
-                <p>Post-UTME Requirements: {item.PostUTME?.join(", ")}</p>
+                <p>{item?.requirements}</p>
               </div>
             ))}
           </div>
@@ -374,8 +371,8 @@ export default function AdmissionInfo() {
           {/* LOCAL DATA RESULTS */}
           <div className="mt-4 flex flex-col gap-[12px]">
             {courses
-              .filter((item) =>
-                item.course.toLowerCase().includes(courseSearch.toLowerCase())
+              .filter((item:any) =>
+                item?.course.toLowerCase().includes(courseSearch.toLowerCase())
               )
               .map((courseItem:any, index:number) => (
                 <div
@@ -389,7 +386,7 @@ export default function AdmissionInfo() {
                       O’Level Requirements
                     </p>
                     <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                      {courseItem.["O'Level Requirements"].map((olevel, idx) => (
+                      {courseItem["O'Level Requirements"].map((olevel:string, idx:number) => (
                         <li key={idx}>{olevel}</li>
                       ))}
                     </ul>
@@ -400,7 +397,7 @@ export default function AdmissionInfo() {
                       JAMB Requirements
                     </p>
                     <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                      {courseItem.["JAMB Requirements"].map((jamb, idx) => (
+                      {courseItem["JAMB Requirements"].map((jamb:string, idx:number) => (
                         <li key={idx}>{jamb}</li>
                       ))}
                     </ul>
@@ -411,7 +408,7 @@ export default function AdmissionInfo() {
                       Post UTME Requirements
                     </p>
                     <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                      {courseItem.["PostUTME Requirements"].map((post, idx) => (
+                      {courseItem["PostUTME Requirements"].map((post:string, idx:number) => (
                         <li key={idx}>{post}</li>
                       ))}
                     </ul>
@@ -421,9 +418,7 @@ export default function AdmissionInfo() {
           </div>
         </>
       )}
-    </aside>
-  );
-}   
+    </aside> 
 </section>
     )
 }
