@@ -368,51 +368,36 @@ export default function AdmissionInfo() {
 
           {/* LOCAL DATA RESULTS */}
           <div className="mt-4 flex flex-col gap-[12px]">
-            {Array.isArray(courses) &&  
-            courses.map((courseItems, index:number)=>courseItems.course.toLocaleLowerCase()
-            .includes(courseSearch.toLocaleLowerCase()) || 
-            courseItems.course.toLocaleLowerCase() === 
-            (courseSearch.toLocaleLowerCase()) &&
-             (
-                <div
-                  key={index}
-                  className="text-[#0F0F0F] bg-[#FFFFFF] p-[16px] rounded-[4px] flex flex-col gap-[12px]"
-                >
-                  <h4 className="font-[600] text-[20px]">{courseItems.course}</h4>
-
-                  <div>
-                    <p className="font-[500] text-[18px] bg-[#F6F6F6]">
-                      O’Level Requirements
-                    </p>
-                    <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                      {courseItems["O'Level Requirements"]?.map((olevel:string, idx:number) => (
-                        <li key={idx}>{olevel}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <p className="font-[500] text-[18px] bg-[#F6F6F6]">
-                      JAMB Requirements
-                    </p>
-                    <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                      {courseItems["JAMB Requirements"]?.map((jamb:string, idx:number) => (
-                        <li key={idx}>{jamb}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <p className="font-[500] text-[18px] bg-[#F6F6F6]">
-                      Post UTME Requirements
-                    </p>
-                    <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
-                      {courseItems["POST UTME Requirements"]?.map((post:string, idx:number) => (
-                        <li key={idx}>{post}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+            {    courses.map(courseItems=>courseItems.course.toLocaleLowerCase().includes(coursedata.toLocaleLowerCase()) || courseItems.course.toLocaleLowerCase() === (coursedata.toLocaleLowerCase())?
+                    <div className=" text-[#0F0F0F] bg-[#FFFFFF] p-[16px] rounded-[4px] md:flex flex-col gap-[12px]">
+                    <h4 className="font-[600] text-[20px]">{courseItems.course}</h4>
+                
+                    <p className="text-[12px]">Minimum of Credit score in the following Subjects</p>
+                    <div>
+                        <p className="font-[500] text-[18px] bg-[#F6F6F6]">O’Level Requirements</p>
+                        <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
+                            {courseItems["O'Level Requirements"].map(olevel=>(
+                            <li>{olevel}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div>
+                        <p className="font-[500] text-[18px] bg-[#F6F6F6]">Jamb Requirements</p>
+                        <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
+                        {courseItems["JAMB Requirements"].map(jamb=>(
+                            <li>{jamb}</li>
+                            ))}     
+                        </ul>
+                    </div>
+                    <div>
+                        <p className="font-[500] text-[18px] bg-[#F6F6F6]">Post UTME Requirements</p>
+                        <ul className="list-disc p-[12px] flex flex-col gap-[12px]">
+                        {courseItems["Post UTME Requirements"].map(postUTME=>(
+                            <li>{postUTME}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>  
               ))}
           </div>        
     
