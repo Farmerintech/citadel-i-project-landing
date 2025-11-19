@@ -357,7 +357,6 @@ export default function AdmissionInfo() {
       />
 
       <button
-        onClick={displaySearch}
         className="bg-[#FF5900] py-[8px] px-[16px] flex items-center justify-center gap-[2px] text-white rounded-[8px]"
       >
         Search
