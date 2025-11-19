@@ -307,7 +307,7 @@ export default function AdmissionInfo() {
                   <SelectValue placeholder="Choose year" />
                 </SelectTrigger>
                 <SelectContent>
-                  {["100", "200", "300", "400", "500"].map((yr) => (
+                  {["2020", "2021", "2022", "2023", "2024", "2025", "2026"].map((yr) => (
                     <SelectItem key={yr} value={yr}>
                       {yr}
                     </SelectItem>
@@ -337,7 +337,7 @@ export default function AdmissionInfo() {
 
           {/* API RESULTS */}
           <div className="mt-4 flex flex-col gap-[12px]">
-            {apiData.map((item:any) => (
+            {apiData?.map((item) => (
               <div key={item?.id} className="bg-white p-4 rounded-md">
                 <h4 className="font-[600]">
                   {item?.course} - {item?.school} ({item?.year})
