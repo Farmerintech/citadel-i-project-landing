@@ -64,7 +64,7 @@ const fetchAdmission = async (filters: AdmissionFilters) => {
 //   COMPONENT
 // =======================
 export default function AdmissionInfo() {
-  const [courseSearch, setCourseSearch] = useState<string>("Medicine and Surgery");
+  const [courseSearch, setCourseSearch] = useState<string>("Medicine And Surgery");
 
   const [apiData, setApiData] = useState<CourseItem[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -79,9 +79,7 @@ export default function AdmissionInfo() {
     setCourseSearch(e.target.value);
   };
 
-  const displaySearch = () => {
-    console.log("Search triggered for:", courseSearch);
-  };
+
 
   // AUTO FETCH WHEN FILTERS CHANGE
   useEffect(() => {
@@ -371,14 +369,14 @@ export default function AdmissionInfo() {
           {/* LOCAL DATA RESULTS */}
           <div className="mt-4 flex flex-col gap-[12px]">
             {Array.isArray(courses) &&  courses.map((courseItems:any, index:number)=>courseItems.course.toLocaleLowerCase().includes(courseSearch.toLocaleLowerCase()) 
-          || courseItems.course.toLocaleLowerCase() === (courseSearch.toLocaleLowerCase()) &&
+          || courseItems.course.toLocaleLowerCase() === (courseSearch.toLocaleLowerCase()) ?
              (
                 <div
                   key={index}
                   className="text-[#0F0F0F] bg-[#FFFFFF] p-[16px] rounded-[4px] flex flex-col gap-[12px]"
                 >
                   <h4 className="font-[600] text-[20px]">{courseItems.course}</h4>
-
+                  <p className="text-[12px]">Minimum of Credit score in the following Subjects</p>
                   <div>
                     <p className="font-[500] text-[18px] bg-[#F6F6F6]">
                       O’Level Requirements
@@ -412,7 +410,7 @@ export default function AdmissionInfo() {
                     </ul>
                   </div>
                 </div>
-              ))}
+              )  :(""))}
           </div>        
 
         </>
