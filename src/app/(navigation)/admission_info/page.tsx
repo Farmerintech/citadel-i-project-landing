@@ -290,8 +290,7 @@ export default function AdmissionInfo() {
                   <SelectValue placeholder="Choose your course" />
                 </SelectTrigger>
                 <SelectContent>
-                  {{Array.isArray(courses) &&
-  courses.map((item: any, index: number) => (
+                  {Array.isArray(courses) && courses.map((item: any, index: number) =>  (
                     <SelectItem key={index} value={item.course}>
                       {item.course}
                     </SelectItem>
@@ -371,11 +370,9 @@ export default function AdmissionInfo() {
 
           {/* LOCAL DATA RESULTS */}
           <div className="mt-4 flex flex-col gap-[12px]">
-            {courses
-              .filter((item:any) =>
-                item?.course.toLowerCase().includes(courseSearch.toLowerCase())
-              )
-              .map((courseItem:any, index:number) => (
+            {Array.isArray(courses) && courses
+            .filter((item:any) => item?.course?.toLowerCase().includes(courseSearch.toLowerCase()))
+            .map((courseItem:any, index:number) => (
                 <div
                   key={index}
                   className="text-[#0F0F0F] bg-[#FFFFFF] p-[16px] rounded-[4px] flex flex-col gap-[12px]"
