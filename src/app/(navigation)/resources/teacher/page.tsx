@@ -6,7 +6,9 @@ import { toggle } from '@/lib/utils';
 import Image from 'next/image';
 import { useEffect, useState } from "react";
 
-
+export const metadata = {
+  title: "Resources - Teachers || Citadel-i",
+};
 
 export default function page(){
   

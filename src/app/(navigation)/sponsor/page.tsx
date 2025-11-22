@@ -5,6 +5,10 @@ import chat from "@/app/assets/chat.svg"
 import Image from "next/image";
 import { Beneficiaries } from "@/app/components/beneficiaries";
 import partner from "@/app/assets/partner.jpg"
+
+export const metadata = {
+  title: "Sponsor|| Citadel-i",
+};
 export default function Counselling (){
      
     return(

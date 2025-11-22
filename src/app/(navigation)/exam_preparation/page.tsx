@@ -177,7 +177,9 @@ import {
       bgColor2:'bg-[#3E414A] '
     },
   ]
-
+export const metadata = {
+  title: "Exam prepearations || Citadel-i",
+};
 export default function page() {
   
 

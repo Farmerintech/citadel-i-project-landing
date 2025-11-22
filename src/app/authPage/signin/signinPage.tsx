@@ -8,6 +8,10 @@ interface SignInPageProps {
   setShowLogin: (show: boolean) => void;
 }
 
+export const metadata = {
+  title: "Sign in – Citadel-i",
+};
+
 export default function SignInPage({ setShowLogin }: SignInPageProps) {
   return (
     <section className="flex items-start md:items-center justify-center h-screen">

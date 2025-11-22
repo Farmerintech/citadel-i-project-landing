@@ -7,6 +7,9 @@ import { toggle } from "@/lib/utils";
 import { RightSide } from "./rightSide";
 import { LeftSide } from "./leftSide";
 
+export const metadata = {
+  title: "Counselling – Citadel-i",
+};
 export default function Counselling (){
       const [showReg, setShowReg] = useState(false)
       const [showLogin, setShowLogin] = useState(false)

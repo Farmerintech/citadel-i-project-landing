@@ -25,7 +25,9 @@ import {
   } from "@/components/ui/select"
 import { Schools } from '../page'
 
-
+export const metadata = {
+  title: "CBT – Citadel-i",
+};
 export default function page (){
 
     return (

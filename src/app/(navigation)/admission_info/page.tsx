@@ -32,13 +32,17 @@ type AdmissionFilters = {
   year?: string;
 };
 
+export const metadata = {
+  title: "Admission Information – Citadel-i",
+};
+
 // =======================
 //   API CALL
 // =======================
 const fetchAdmission = async (filters: AdmissionFilters) => {
   try {
     const response = await fetch(
-      "https://citadel-i-project.onrender.com/api/v1/admin/admission_requirements/filter",
+      "https://citadel-i.com.ng/api/v1/admin/admission_requirements/filter",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

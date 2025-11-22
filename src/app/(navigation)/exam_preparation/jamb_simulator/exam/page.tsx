@@ -5,6 +5,9 @@ import { ChangeEvent, useEffect, useState } from "react"
 import { FaCalculator, FaChevronLeft, FaChevronRight } from "react-icons/fa"
 import { FiClock } from "react-icons/fi"
 
+export const metadata = {
+  title: "JAMB Simulator || CBT – Citadel-i",
+};
 export default function Page() {
   const [currentSubject, setCurrentSubject] = useState<string>('English Language');
   const [questionIndex, setQuestionIndex] = useState(1);
@@ -27,7 +30,7 @@ console.log(formData)
     const fetchQuestion = async () => {
       setError("");
       try {
-        const res = await fetch(`https://citadel-i-project.onrender.com/api/v1/cbt/jamb`, {
+        const res = await fetch(`https://citadel-i.com.ng/api/v1/cbt/jamb`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

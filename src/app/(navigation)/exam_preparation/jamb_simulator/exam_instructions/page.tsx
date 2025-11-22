@@ -6,6 +6,9 @@ import { Button } from '@/components/ui/button';
 import { FaChevronDown, FaChevronLeft, FaChevronRight, FaChevronUp, FaUser } from 'react-icons/fa';
 import { useUser } from '@/app/context/reducer';
 
+export const metadata = {
+  title: "Exam prepearations || CBT – Citadel-i",
+};
 export default function Page() {
   const {state} = useUser()
 

@@ -9,6 +9,9 @@ interface Section {
   content: string;
 }
 
+export const metadata = {
+  title: "Classes – Citadel-i",
+};
 export default function Page() {
   const [sections, setSections] = useState<Record<string, Section> | null>(null);
   const [rawContent, setRawContent] = useState<string>('');
@@ -23,6 +26,7 @@ export default function Page() {
   const id = searchParams.get('id');
   const theSubject = subjects.find(sub => sub.url === subject)?.name;
 
+  
   useEffect(() => {
     const fetchContent = async () => {
       setLoading(true);
@@ -30,7 +34,7 @@ export default function Page() {
       setData(null);
       try {
         const res = await fetch(
-          `https://citadel-i-project.onrender.com/api/v1/note/get_note/${id}/${theSubject}`,
+          `https://citadel-i.com.ng/api/v1/note/get_note/${id}/${theSubject}`,
           {
             method: "GET",
             headers: {

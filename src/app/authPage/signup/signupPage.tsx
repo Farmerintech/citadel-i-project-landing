@@ -8,6 +8,10 @@ interface SignUpPageProps {
   setShowReg: (show: boolean) => void;
 }
 
+export const metadata = {
+  title: "Sign Up – Citadel-i",
+};
+
 export default function SignUpPage({ setShowReg }: SignUpPageProps) {
   return (
     <section className="flex items-start md:items-center justify-center h-screen">

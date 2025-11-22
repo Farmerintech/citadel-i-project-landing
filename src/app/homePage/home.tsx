@@ -15,6 +15,9 @@ import { useEffect, useState } from "react";
 import SignUpPage from '../authPage/signup/signupPage'
 import SignInPage from "../authPage/signin/signinPage";
 
+export const metadata = {
+  title: "Home – Citadel-i",
+};
 export default function home() {
            const [showReg, setShowReg] = useState(false)
          const [showLogin, setShowLogin] = useState(false)

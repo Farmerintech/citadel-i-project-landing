@@ -68,7 +68,7 @@ export default function Page() {
 
     try {
       const res = await fetch(
-        `https://citadel-i-project.onrender.com/api/v1/past_question/get_questions?page=${currentPage}&offset=${offset}`,
+        `https://citadel-i.com.ng/api/v1/past_question/get_questions?page=${currentPage}&offset=${offset}`,
         {
           method: "POST",
           headers: {
