@@ -40,6 +40,7 @@ const fetchAllAdmissions = async () => {
   try {
     const response = await fetch(
       "https://citadel-i.com.ng/api/v1/admin/get_admission_requirements/all"
+      
     );
     const result = await response.json();
     if (!response.ok) return [];
