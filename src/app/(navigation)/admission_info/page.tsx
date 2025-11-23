@@ -415,7 +415,7 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
       {apiData?.length > 0 ?
         apiData.map((item) => (
           <div key={item?.id} className="bg-white p-4 rounded-md">
-            <h4 className="font-[600] px-5 mb-2">
+            <h4 className="font-[600] mb-2">
               Admission Requiremnets
             </h4>
             <p className="font-[600] text-[12px] mb-2 ">Institution: {item?.school}</p>
