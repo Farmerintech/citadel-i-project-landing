@@ -411,12 +411,12 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
       {apiData?.length > 0 &&
         apiData.map((item) => (
           <div key={item?.id} className="bg-white p-4 rounded-md">
-            <h4 className="font-[600]">
-              {item?.course} - {item?.school} ({item?.year})
+            <h4 className="font-[600] px-5">
+              Admission Requiremnets for {item?.school} {item?.course} -  ({item?.year})
             </h4>
               <div
             dangerouslySetInnerHTML={{ __html: item?.requirements || "" }}
-            className="p-8"
+            className="px-5"
           />
           </div>
         ))}
