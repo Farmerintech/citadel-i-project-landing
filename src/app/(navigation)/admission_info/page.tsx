@@ -333,13 +333,13 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
           IF API DATA AVAILABLE => SHOW FILTER BOX + API RESULTS
       ======================================================= */}
       <div className="py-3 px-5 flex gap-5 justify-between">
-        <button className={`${active ===1 ? "border-b-2 border-white":""}`} onClick={()=>setActive(1)}>General Admission Requirements</button>
-        <button className={`${active ===2 ? "border-b-2 border-white":""}`} onClick={()=>setActive(2)}>School Specific</button>
+        <button className={`${active ===1 ? "border-b-2 border-white text-white font-[600]":""}`} onClick={()=>setActive(1)}>General Admission Requirements</button>
+        <button className={`${active ===2 ? "border-b-2 border-white text-white font-[600]":""}`} onClick={()=>setActive(2)}>School Specific</button>
       </div>
      {active===2 && apiData && apiData.length > 0 ? (
   <>
     {/* FILTERS */}
-    <div className="flex flex-col gap-[16px]">
+    <div className="flex flex-col gap-[16px] gap-2 bg-[#FFFBF9] p-[16px]  rounded-[4px]">
       {/* School */}
       <div className="flex flex-col gap-2">
         <label className="font-[600] text-[16px]">Select School</label>
@@ -376,7 +376,7 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
       </div>
 
       {/* Year */}
-      <div className="flex flex-col gap-2 bg-[#FFFBF9] p-[16px]  rounded-[4px]">
+      <div className="flex flex-col ">
         <label className="font-[600] text-[16px]">Select Year</label>
         <Select value={year} onValueChange={setYear}>
           <SelectTrigger className="w-full">
@@ -429,11 +429,14 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
         ))}
     </div>
   </>
-) : (
-  <div>
-    <p>No Admission information found ${selectedSchool} on ${selectedCourse} for the ${year}</p>
+) : apiData.length<1 && active ===2 && 
+(
+    <div>
+    <p>No Admission information found </p>
   </div>
-)}
+  
+)
+}
  {active ===1 &&
   <>
  
