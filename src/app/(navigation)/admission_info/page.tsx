@@ -336,7 +336,7 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
         <button className={`${active ===1 ? "border-b-2 border-white text-white font-[600]":""}`} onClick={()=>setActive(1)}>General Admission Requirements</button>
         <button className={`${active ===2 ? "border-b-2 border-white text-white font-[600]":""}`} onClick={()=>setActive(2)}>School Specific</button>
       </div>
-     {active===2 && apiData && apiData.length > 0 ? (
+     {active===2 &&  (
   <>
     {/* FILTERS */}
     <div className="flex flex-col gap-[16px] gap-2 bg-[#FFFBF9] p-[16px]  rounded-[4px]">
@@ -412,7 +412,7 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
 
     {/* API RESULTS */}
     <div className="mt-4 flex flex-col gap-[12px]">
-      {apiData?.length > 0 &&
+      {apiData?.length > 0 ?
         apiData.map((item) => (
           <div key={item?.id} className="bg-white p-4 rounded-md">
             <h4 className="font-[600] px-5 mb-2">
@@ -426,15 +426,17 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
             className="px-5"
           />
           </div>
-        ))}
-    </div>
-  </>
-) : apiData.length<1 && active ===2 && 
+        ))
+       : apiData.length<1 && active ===2 && 
 (
     <div>
     <p>No Admission information found </p>
   </div>
   
+)
+      }
+    </div>
+  </>
 )
 }
  {active ===1 &&
