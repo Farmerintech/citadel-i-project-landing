@@ -6,7 +6,7 @@ import { ChefHatIcon } from 'lucide-react'
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { useParams } from 'next/navigation'; // ✅ Use this instead
-
+import type {Metadata} from "next";
 import {
     Select,
     SelectContent,
@@ -28,6 +28,12 @@ import {
   import { useSearchParams, useRouter } from 'next/navigation';
 import { subjects } from '../../page'
 import {FaChevronRight} from "react-icons/fa"
+
+import type {Metadata} from "next";
+
+export const metadata:Metadata= {
+  title: "Exam Questions | Citadel-i",
+};
 export default function Page() {
   const params = useParams();
   let subject = params.subject as string; // if TypeScript complains

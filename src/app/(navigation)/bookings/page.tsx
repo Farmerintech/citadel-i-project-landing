@@ -2,8 +2,9 @@ import Image from "next/image";
 import { FaGraduationCap } from "react-icons/fa";
 import Bookings1 from "@/app/assets/bookings1.png"
 import Bookings2 from "@/app/assets/bookings2.jpg"
-export const metadata = {
-  title: "Bookings – Citadel-i",
+import type {Metadata} from "next";
+export const metadata:Metadata = {
+  title: "Bookings | Citadel-i",
 };
 export default function page (){
     return(

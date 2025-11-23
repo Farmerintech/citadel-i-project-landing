@@ -3,13 +3,13 @@
 import { X } from "lucide-react";
 import { SignInForm } from "./signinForm";
 import { AuthPage } from "../authRightPage";
-
+import type {Metadata} from "next";
 interface SignInPageProps {
   setShowLogin: (show: boolean) => void;
 }
 
-export const metadata = {
-  title: "Sign in – Citadel-i",
+export const metadata:Metadata = {
+  title: "Sign in | Citadel-i",
 };
 
 export default function SignInPage({ setShowLogin }: SignInPageProps) {

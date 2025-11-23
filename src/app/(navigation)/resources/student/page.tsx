@@ -4,9 +4,9 @@ import { toggle } from '@/lib/utils';
 import { useEffect, useState } from "react";
 import { ResourcesImages } from "@/app/components/resourcesImage";
 import Image from "next/image";
-
-export const metadata = {
-  title: "Resources - Students || Citadel-i",
+import type {Metadata} from "next";
+export const metadata:Metadata = {
+  title: "Resources - Students | Citadel-i",
 };
 
 export default function Main(){

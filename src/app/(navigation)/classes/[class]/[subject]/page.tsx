@@ -3,14 +3,14 @@
 import { subjects } from '@/app/components/subjects';
 import { useParams, useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
-
+import type {Metadata, ResolvingMetadata} from "next";
 interface Section {
   heading: string;
   content: string;
 }
 
-export const metadata = {
-  title: "Classes – Citadel-i",
+export const metadata:Metadata = {
+  title: "Classes - Citadel-i",
 };
 export default function Page() {
   const [sections, setSections] = useState<Record<string, Section> | null>(null);

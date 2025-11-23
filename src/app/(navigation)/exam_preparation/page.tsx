@@ -8,7 +8,7 @@ import Maths from '@/app/assets/maths.png'
 import { FiPhoneOutgoing } from 'react-icons/fi'
 import EXamt from '@/app/assets/examtuto.png'
 import image from "@/app/assets/imageholder.png"
-
+import type {Metadata} from "next";
 import {
   Accordion,
   AccordionContent,
@@ -177,8 +177,8 @@ import {
       bgColor2:'bg-[#3E414A] '
     },
   ]
-export const metadata = {
-  title: "Exam prepearations || Citadel-i",
+export const metadata: Metadata= {
+  title: "Exam prepearations | Citadel-i",
 };
 export default function page() {
   
