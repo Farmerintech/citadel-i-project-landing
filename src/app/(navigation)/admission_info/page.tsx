@@ -409,17 +409,19 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
     {/* API RESULTS */}
     <div className="mt-4 flex flex-col gap-[12px]">
       {apiData?.length > 0 &&
-        apiData.map((item) => (
-          <div key={item?.id} className="bg-white p-4 rounded-md">
-            <h4 className="font-[600]">
-              {item?.course} - {item?.school} ({item?.year})
-            </h4>
-            <p>{item?.requirements}</p>
-          </div>
-        ))}
+  apiData.map((item) => (
+    <div key={item?.id} className="bg-white p-4 rounded-md">
+      <h4 className="font-[600]">
+        {item?.course} - {item?.school} ({item?.year})
+      </h4>
+      <div
+        className="p-8"
+        dangerouslySetInnerHTML={{ __html: item?.requirements || "" }}
+      />
     </div>
-  </>
-) : (
+  ))
+}
+ : (
   <>
     {/* LOCAL SEARCH */}
     <div className="bg-[#FFFBF9] p-[16px] flex gap-[10px] rounded-[4px]">
