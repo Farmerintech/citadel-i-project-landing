@@ -3,14 +3,11 @@
 import { X } from "lucide-react";
 import { SignUpForm } from "./signupForm";
 import { AuthPage } from "../authRightPage";
-import type {Metadata} from "next";
 interface SignUpPageProps {
   setShowReg: (show: boolean) => void;
 }
 
-export const metadata:Metadata = {
-  title: "Sign Up | Citadel-i",
-};
+
 
 export default function SignUpPage({ setShowReg }: SignUpPageProps) {
   return (

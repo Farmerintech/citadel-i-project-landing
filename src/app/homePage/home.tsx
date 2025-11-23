@@ -14,10 +14,7 @@ import { toggle } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import SignUpPage from '../authPage/signup/signupPage'
 import SignInPage from "../authPage/signin/signinPage";
-import type {Metadata} from "next";
-export const metadata:Metadata = {
-  title: "Home | Citadel-i",
-};
+
 export default function home() {
            const [showReg, setShowReg] = useState(false)
          const [showLogin, setShowLogin] = useState(false)
