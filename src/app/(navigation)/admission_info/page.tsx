@@ -418,7 +418,6 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
             dangerouslySetInnerHTML={{ __html: item?.requirements || "" }}
             className="p-8"
           />
-            <p>{item?.requirements}</p>
           </div>
         ))}
     </div>
