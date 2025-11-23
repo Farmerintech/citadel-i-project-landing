@@ -47,7 +47,7 @@ export const SignInForm = () => {
     }
 
     try {
-      const res = await fetch("https://citadel-i-project.onrender.com/api/v1/user/auth/signin", {
+      const res = await fetch("https://api.citadel-i.com.ng/api/v1/user/auth/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

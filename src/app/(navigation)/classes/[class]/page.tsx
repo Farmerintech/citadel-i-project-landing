@@ -91,7 +91,7 @@ export default function Myclass (){
 
       try {
         const res = await fetch(
-          `https://citadel-i-project.onrender.com/api/v1/note/get_class_note`,
+          `https://api.citadel-i.com.ng/api/v1/note/get_class_note`,
           {
             method: "POST",
             headers: {

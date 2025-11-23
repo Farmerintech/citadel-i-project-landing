@@ -39,7 +39,7 @@ type AdmissionFilters = {
 const fetchAllAdmissions = async () => {
   try {
     const response = await fetch(
-      "https://citadel-i.com.ng/api/v1/admin/get_admission_requirements/all"
+      "https://api.citadel-i.com.ng/api/v1/admin/get_admission_requirements/all"
       
     );
     const result = await response.json();
@@ -55,7 +55,7 @@ const fetchAllAdmissions = async () => {
 const fetchAdmission = async (filters: AdmissionFilters) => {
   try {
     const response = await fetch(
-      "https://citadel-i.com.ng/api/v1/admin/admission_requirements/filter",
+      "https://api.citadel-i.com.ng/api/v1/admin/admission_requirements/filter",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

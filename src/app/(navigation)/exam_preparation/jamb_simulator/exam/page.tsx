@@ -28,7 +28,7 @@ console.log(formData)
     const fetchQuestion = async () => {
       setError("");
       try {
-        const res = await fetch(`https://citadel-i.com.ng/api/v1/cbt/jamb`, {
+        const res = await fetch(`https://api.citadel-i.com.ng/api/v1/cbt/jamb`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

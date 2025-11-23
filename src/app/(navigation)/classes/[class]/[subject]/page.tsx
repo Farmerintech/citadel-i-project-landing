@@ -32,7 +32,7 @@ export default function Page() {
       setData(null);
       try {
         const res = await fetch(
-          `https://citadel-i.com.ng/api/v1/note/get_note/${id}/${theSubject}`,
+          `https://api.citadel-i.com.ng/api/v1/note/get_note/${id}/${theSubject}`,
           {
             method: "GET",
             headers: {
