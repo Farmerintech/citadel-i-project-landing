@@ -94,7 +94,7 @@ export default function page(){
                             <div className="flex gap-[16px] flex-col">
                               <p className="font-[500] text-[16px]">{resources.source}</p>
                               <p className="font-[400] text-[14px]">{resources.description}</p>
-                              <a className="text-[#002BAD] font-[400] text-[14px]">{resources.link}</a>
+                              <a className="text-[#002BAD] font-[400] text-[14px] cursor-pointer" href={resources.link}>{resources.link}</a>
                             </div>
                           </div>
                         ))
