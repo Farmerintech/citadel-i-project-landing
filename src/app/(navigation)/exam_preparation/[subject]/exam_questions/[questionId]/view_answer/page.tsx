@@ -9,10 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from '@/components/ui/textarea'
 import { useParams } from 'next/navigation'
 import { subjects } from "@/app/(navigation)/exam_preparation/page"
-  import type {Metadata} from "next";
-  export const metadata:Metadata= {
-  title: "Exam prepearation | Citadel-i",
-};
+
 export default function page() {
   const params = useParams();
     let subject = params.subject as string;

@@ -15,7 +15,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import type {Metadata} from "next";
 import {
     Select,
     SelectContent,
@@ -25,9 +24,7 @@ import {
   } from "@/components/ui/select"
 import { Schools } from '../page'
 
-export const metadata:Metadata= {
-  title: "CBT | Citadel-i",
-};
+
 export default function page (){
 
     return (

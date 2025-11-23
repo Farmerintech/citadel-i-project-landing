@@ -10,10 +10,7 @@ import {
     SelectValue,
   } from "@/components/ui/select"
 import { subjects } from "@/app/components/subjects";
-import type {Metadata} from "next";
-export const metadata:Metadata = {
-  title: "Classes – Citadel-i",
-};
+
 const menuItems =[
         {
             id:0,

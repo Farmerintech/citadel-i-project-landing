@@ -10,7 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import type {Metadata} from "next";
 // =======================
 //   TYPES
 // =======================
@@ -32,9 +31,7 @@ type AdmissionFilters = {
   year?: string;
 };
 
-export const metadata:Metadata= {
-  title: "Admission Information | Citadel-i",
-};
+
 
 // =======================
 //   API CALL

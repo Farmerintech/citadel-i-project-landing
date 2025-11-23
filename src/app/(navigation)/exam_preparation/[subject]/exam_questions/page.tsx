@@ -31,9 +31,7 @@ import {FaChevronRight} from "react-icons/fa"
 
 import type {Metadata} from "next";
 
-export const metadata:Metadata= {
-  title: "Exam Questions | Citadel-i",
-};
+
 export default function Page() {
   const params = useParams();
   let subject = params.subject as string; // if TypeScript complains

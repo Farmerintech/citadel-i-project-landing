@@ -5,9 +5,7 @@ import { useEffect, useState } from "react";
 import { ResourcesImages } from "@/app/components/resourcesImage";
 import Image from "next/image";
 import type {Metadata} from "next";
-export const metadata:Metadata = {
-  title: "Resources - Students | Citadel-i",
-};
+
 
 export default function Main(){
     // const router = useRouter()

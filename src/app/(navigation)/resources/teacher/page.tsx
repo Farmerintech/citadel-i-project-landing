@@ -5,10 +5,7 @@ import { ResourcesImages } from '@/app/components/resourcesImage';
 import { toggle } from '@/lib/utils';
 import Image from 'next/image';
 import { useEffect, useState } from "react";
-import type {Metadata} from "next";
-export const metadata:Metadata = {
-  title: "Resources - Teachers || Citadel-i",
-};
+
 
 export default function page(){
   

@@ -9,9 +9,7 @@ interface Section {
   content: string;
 }
 
-export const metadata:Metadata = {
-  title: "Classes - Citadel-i",
-};
+
 export default function Page() {
   const [sections, setSections] = useState<Record<string, Section> | null>(null);
   const [rawContent, setRawContent] = useState<string>('');

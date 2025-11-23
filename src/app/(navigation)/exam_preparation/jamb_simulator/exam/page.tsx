@@ -5,9 +5,7 @@ import { ChangeEvent, useEffect, useState } from "react"
 import { FaCalculator, FaChevronLeft, FaChevronRight } from "react-icons/fa"
 import { FiClock } from "react-icons/fi"
 
-export const metadata = {
-  title: "JAMB Simulator || CBT – Citadel-i",
-};
+
 export default function Page() {
   const [currentSubject, setCurrentSubject] = useState<string>('English Language');
   const [questionIndex, setQuestionIndex] = useState(1);

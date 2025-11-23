@@ -10,10 +10,7 @@ import Image from 'next/image'
 import stem from "@/app/assets/stem.png"
 import graphics from "@/app/assets/graphic.png"
 import coding from "@/app/assets/coding.png"
-import type {Metadata} from "next";
-export const metadata:Metadata= {
-  title: "Holiday Coaching – Citadel-i",
-};
+
 export default function Coaching (){
     return(
         <>
