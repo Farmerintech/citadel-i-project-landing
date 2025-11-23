@@ -48,7 +48,7 @@ const fetchAdmission = async (filters: AdmissionFilters) => {
     );
 
     const result = await response.json();
-
+    console.log(result)
     if (!response.ok) {
       console.error("API error:", result);
       return null;
