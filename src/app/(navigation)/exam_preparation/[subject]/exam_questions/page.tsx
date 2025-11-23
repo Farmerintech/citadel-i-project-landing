@@ -6,7 +6,6 @@ import { ChefHatIcon } from 'lucide-react'
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { useParams } from 'next/navigation'; // ✅ Use this instead
-import type {Metadata} from "next";
 import {
     Select,
     SelectContent,
@@ -29,7 +28,6 @@ import {
 import { subjects } from '../../page'
 import {FaChevronRight} from "react-icons/fa"
 
-import type {Metadata} from "next";
 
 
 export default function Page() {
