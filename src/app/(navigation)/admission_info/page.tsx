@@ -36,6 +36,21 @@ type AdmissionFilters = {
 // =======================
 //   API CALL
 // =======================
+const fetchAllAdmissions = async () => {
+  try {
+    const response = await fetch(
+      "https://citadel-i.com.ng/api/v1/admin/get_admission_requirements/all"
+    );
+    const result = await response.json();
+    if (!response.ok) return [];
+
+    return result.data;
+  } catch (err) {
+    console.error("Fetch All Error:", err);
+    return [];
+  }
+};
+
 const fetchAdmission = async (filters: AdmissionFilters) => {
   try {
     const response = await fetch(
@@ -48,16 +63,12 @@ const fetchAdmission = async (filters: AdmissionFilters) => {
     );
 
     const result = await response.json();
-    console.log(result)
-    if (!response.ok) {
-      console.error("API error:", result);
-      return null;
-    }
+    if (!response.ok) return [];
 
-    return result.data as CourseItem[];
+    return result.data;
   } catch (error) {
-    console.error("Fetch error:", error);
-    return null;
+    console.error("Fetch filter error:", error);
+    return [];
   }
 };
 
@@ -65,41 +76,50 @@ const fetchAdmission = async (filters: AdmissionFilters) => {
 //   COMPONENT
 // =======================
 export default function AdmissionInfo() {
-  const [courseSearch, setCourseSearch] = useState<string>("Medicine And Surgery");
-
   const [apiData, setApiData] = useState<CourseItem[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-
+  const [loading, setLoading] = useState(false);
+const [courseSearch, setCourseSearch] = useState<string>("Medicine And Surgery");
   const [selectedSchool, setSelectedSchool] = useState("");
   const [selectedCourse, setSelectedCourse] = useState("");
   const [year, setYear] = useState("");
+const schools = ["Unilorin", "OAU", "FUTA", "ABU"]; 
+const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => 
+  { 
+    setCourseSearch(e.target.value); 
 
-  const schools = ["Unilorin", "OAU", "FUTA", "ABU"];
-
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCourseSearch(e.target.value);
   };
-
-
-
-  // AUTO FETCH WHEN FILTERS CHANGE
+  // FIRST PRIORITY → Fetch ALL admission requirements
   useEffect(() => {
+    const loadAll = async () => {
+      setLoading(true);
+      const allData = await fetchAllAdmissions();
+      setApiData(allData);
+      setLoading(false);
+    };
+
+    loadAll();
+  }, []);
+
+  // SECOND PRIORITY → Fetch FILTERED data only when filters change
+  useEffect(() => {
+    // If no filter selected → use ALL data (do nothing)
     if (!selectedSchool && !selectedCourse && !year) return;
 
-    const fetchData = async () => {
+    const loadFiltered = async () => {
       setLoading(true);
-      const data = await fetchAdmission({
+      const filtered = await fetchAdmission({
         school: selectedSchool,
         course: selectedCourse,
         year: year,
       });
 
-      setApiData(data || []);
+      setApiData(filtered);
       setLoading(false);
     };
 
-    fetchData();
+    loadFiltered();
   }, [selectedSchool, selectedCourse, year]);
+
 
     return(
         <section className=" md:bg-[#F3F3F3] md:px-6 lg:px-[100px] py-2 flex flex-col-reverse md:flex-row items-start justify-between gap-2">
