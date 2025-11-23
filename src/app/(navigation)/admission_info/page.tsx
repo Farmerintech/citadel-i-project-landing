@@ -173,7 +173,7 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
     loadFiltered();
   }, [selectedSchool, selectedCourse, year]);
 
-
+  const [active, setActive] = useState<number>(1);
     return(
         <section className=" md:bg-[#F3F3F3] md:px-6 lg:px-[100px] py-2 flex flex-col-reverse md:flex-row items-start justify-between gap-2">
         <aside className=" bg-white flex flex-col gap-[53px] px-4 py-2 md:rounded-[4px] md:w-2/3 custom-scrollbar md:overflow-y-scroll md:h-[900px] lg:h-[800px]">
@@ -327,12 +327,16 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
             </section>
         </aside>
            {/* <RightSide/> */}
-                   <aside className="p-[16px] bg-[#F9D68A] lg:rounded-[4px] w-full md:w-1/3 flex-col flex gap-[24px] custom-scrollbar md:overflow-y-scroll md:h-[900px] lg:h-[800px]">
+      <aside className="p-[16px] bg-[#F9D68A] lg:rounded-[4px] w-full md:w-1/3 flex-col flex gap-[24px] custom-scrollbar md:overflow-y-scroll md:h-[900px] lg:h-[800px]">
 
       {/* ======================================================
           IF API DATA AVAILABLE => SHOW FILTER BOX + API RESULTS
       ======================================================= */}
-     {apiData && apiData.length > 0 ? (
+      <div className="py-3 px-5 flex gap-5 justify-between">
+        <button className={`${active ===1 ? "border-b-2 border-white":""}`} onClick={()=>setActive(1)}>General Admission Requirements</button>
+        <button className={`${active ===2 ? "border-b-2 border-white":""}`} onClick={()=>setActive(2)}>School Specific</button>
+      </div>
+     {active===2 && apiData && apiData.length > 0 ? (
   <>
     {/* FILTERS */}
     <div className="flex flex-col gap-[16px]">
@@ -372,7 +376,7 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
       </div>
 
       {/* Year */}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 bg-[#FFFBF9] p-[16px]  rounded-[4px]">
         <label className="font-[600] text-[16px]">Select Year</label>
         <Select value={year} onValueChange={setYear}>
           <SelectTrigger className="w-full">
@@ -412,8 +416,11 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
         apiData.map((item) => (
           <div key={item?.id} className="bg-white p-4 rounded-md">
             <h4 className="font-[600] px-5">
-              Admission Requiremnets for {item?.school} {item?.course} -  ({item?.year})
+              Admission Requiremnets
             </h4>
+            <p className="font-[600] ">Institution: {item?.school}</p>
+            <p className="font-[600] ">Course: {item?.course}</p>
+            <p className="font-[600] ">Institution: {item?.year}</p>
               <div
             dangerouslySetInnerHTML={{ __html: item?.requirements || "" }}
             className="px-5"
@@ -423,7 +430,13 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
     </div>
   </>
 ) : (
+  <div>
+    <p>No Admission information found ${selectedSchool} on ${selectedCourse} for the ${year}</p>
+  </div>
+)}
+ {active ===1 &&
   <>
+ 
     {/* LOCAL SEARCH */}
     <div className="bg-[#FFFBF9] p-[16px] flex gap-[10px] rounded-[4px]">
       <input
@@ -487,7 +500,7 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
         ))}
     </div>
   </>
-)}
+ }
 
     </aside> 
 </section>
