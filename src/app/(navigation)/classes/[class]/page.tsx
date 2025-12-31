@@ -354,27 +354,26 @@ export default function Myclass (){
                 {error}
             </p>
           )}
-          <div className="mt-[50px] md:mt-[0px] grid md:grid-cols-2 lg:grid-cols-4 gap-[32px] py-[32px]">
+         <div className="mt-[50px] md:mt-[0px] grid md:grid-cols-2 lg:grid-cols-4 gap-[32px] py-[32px]">
   {!loading && data?.length > 0 &&
     data.map((material: materialItem, index: number) => (
       <div className="w-full h-[177px]" key={index}>
-        
-        {/* IMAGE CONTAINER */}
-        <div className="relative bg-[#F3F3F3] w-full h-[137px]">
+
+        {/* IMAGE AREA */}
+        <div className="relative bg-[#F3F3F3] w-full h-[137px] overflow-hidden">
           <Image
             src={material.imagePath}
             alt={material.subject}
             fill
             sizes="(max-width: 768px) 100vw, 100vw"
-            className="object-contain p-[26px]"
+            className="object-cover"
           />
         </div>
 
-        {/* TITLE */}
+        {/* FOOTER */}
         <div className="bg-[#3E414A] h-[40px] w-full text-center text-white flex items-center justify-center">
           <Link
             href={`/classes/${theClass}/${subjects.find(sub => sub.name === material.subject)?.url}?id=${material.id}`}
-            className="text-sm font-medium"
           >
             {material.subject}
           </Link>
