@@ -206,6 +206,7 @@ export default function Myclass (){
     term: string;
     id: number;
     filePath: any;
+    imagePath:any
   };
     return(
         <>
@@ -361,7 +362,7 @@ export default function Myclass (){
                  <div className="bg-[#F3F3F3] w-full h-[137px]">
                    <div className="flex items-center justify-center py-[35px] px-[26px]">
                     {/* You could add an icon or image here */}
-                       <Image src= {material.image} alt={material.suject}/>
+                       <Image src= {material.imagePath} alt={material.imagePath}/>
                   </div>
                </div>
              <div className="bg-[#3E414A] h-[40px] w-full text-center text-white flex items-center justify-center">
