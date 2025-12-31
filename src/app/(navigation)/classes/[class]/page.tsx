@@ -359,13 +359,19 @@ export default function Myclass (){
           {!loading && data?.length > 0 && (
             data.map((material: materialItem, index: number) => (
                <div className="w-full h-[177px]" key={index}>
-                 <div className="bg-[#F3F3F3] w-full h-[137px]">
-                   <div className="flex items-center justify-center py-[35px] px-[26px]">
-                    {/* You could add an icon or image here */}
-                       <Image src= {material.imagePath} alt={material.imagePath}/>
-                    
-                  </div>
-               </div>
+<div className="bg-[#F3F3F3] w-full h-[137px]">
+  <div className="relative w-full h-full flex items-center justify-center px-[26px] py-[35px]">
+    <Image
+      src={material.imagePath}
+      alt={material.subject}
+      fill
+      sizes="(max-width: 768px) 100vw, 137px"
+      className="object-contain"
+      priority={false}
+    />
+  </div>
+</div>
+
              <div className="bg-[#3E414A] h-[40px] w-full text-center text-white flex items-center justify-center">
            <Link
                   href={`/classes/${theClass}/${subjects.find(sub => sub.name === material.subject)?.url}?id=${material.id}`}>
