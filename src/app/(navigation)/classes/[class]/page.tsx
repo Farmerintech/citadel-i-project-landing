@@ -360,7 +360,7 @@ export default function Myclass (){
       <div className="w-full h-[177px]" key={index}>
 
         {/* IMAGE AREA */}
-        <div className="relative bg-[#F3F3F3] w-full h-[137px] overflow-hidden">
+        <div className="relative bg-[#F3F3F3] w-full h-[137px] overflow-hidden pb-2 px-2">
           <Image
             src={material.imagePath}
             alt={material.subject}
