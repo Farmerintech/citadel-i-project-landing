@@ -354,34 +354,36 @@ export default function Myclass (){
                 {error}
             </p>
           )}
-            <div className="mt-[50px] md:mt-[0px]  grid md:grid-cols-2 lg:grid-cols-4 gap-[32px] py-[32px]  ">
+          <div className="mt-[50px] md:mt-[0px] grid md:grid-cols-2 lg:grid-cols-4 gap-[32px] py-[32px]">
+  {!loading && data?.length > 0 &&
+    data.map((material: materialItem, index: number) => (
+      <div className="w-full h-[177px]" key={index}>
+        
+        {/* IMAGE CONTAINER */}
+        <div className="relative bg-[#F3F3F3] w-full h-[137px]">
+          <Image
+            src={material.imagePath}
+            alt={material.subject}
+            fill
+            sizes="(max-width: 768px) 100vw, 25vw"
+            className="object-contain p-[26px]"
+          />
+        </div>
 
-          {!loading && data?.length > 0 && (
-            data.map((material: materialItem, index: number) => (
-               <div className="w-full h-[177px]" key={index}>
-<div className="bg-[#F3F3F3] w-full h-[137px]">
-  <div className="relative w-full h-full flex items-center justify-center px-[26px] py-[35px]">
-    <Image
-      src={material.imagePath}
-      alt={material.subject}
-      fill
-      sizes="(max-width: 768px) 100vw, 137px"
-      className="object-contain"
-      priority={false}
-    />
-  </div>
+        {/* TITLE */}
+        <div className="bg-[#3E414A] h-[40px] w-full text-center text-white flex items-center justify-center">
+          <Link
+            href={`/classes/${theClass}/${subjects.find(sub => sub.name === material.subject)?.url}?id=${material.id}`}
+            className="text-sm font-medium"
+          >
+            {material.subject}
+          </Link>
+        </div>
+
+      </div>
+    ))}
 </div>
 
-             <div className="bg-[#3E414A] h-[40px] w-full text-center text-white flex items-center justify-center">
-           <Link
-                  href={`/classes/${theClass}/${subjects.find(sub => sub.name === material.subject)?.url}?id=${material.id}`}>
-                  {material.subject}
-            </Link>
-          </div>
-       </div>
-       ))
-       )}
-    </div>
             <div className="md:flex-row flex-col flex flex-start gap-[32px] md:items-center">
                     <p className="font-[400] text-[18px] text-xl">Need help with understanding your subjects?</p>
                     <button className="text-white rounded-[8px] w-[200px] px-[16px] py-[8px]  bg-[#FF5900]">
