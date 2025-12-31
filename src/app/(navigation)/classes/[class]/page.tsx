@@ -365,7 +365,7 @@ export default function Myclass (){
             src={material.imagePath}
             alt={material.subject}
             fill
-            sizes="(max-width: 768px) 100vw, 25vw"
+            sizes="(max-width: 768px) 100vw, 100vw"
             className="object-contain p-[26px]"
           />
         </div>
