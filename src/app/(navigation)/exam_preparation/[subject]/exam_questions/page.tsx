@@ -237,7 +237,7 @@ export default function Page() {
                 !error &&
                 data?.map((pq: PQItem, index: number) => (
                   <>
-                    <span className="flex items-center gap-2" key={index}>
+                    <div className="flex items-center gap-5" key={index}>
                       <p
                         className="h-[24px] w-[24px] bg-[#FFCCB0] text-[10px]
     border border-[#FF5900] text-[#FF5900] rounded-full flex items-center justify-center"
@@ -247,15 +247,15 @@ export default function Page() {
                       <p key={index} className="font-semibold text-[18px]">
                         {pq.question}
                       </p>
-                    </span>
+                    </div>
                     <span className="">
-                      <p className="text-[18px]">{pq.optionA} </p>
+                      <p className="text-[18px]">A. {pq.optionA} </p>
 
-                      <p className="text-[18px]"> {pq.optionB}</p>
+                      <p className="text-[18px]">B. {pq.optionB}</p>
 
-                      <p className="text-[18px]"> {pq.optionC}</p>
+                      <p className="text-[18px]">C. {pq.optionC}</p>
 
-                      <p className="text-[18px]"> {pq.optionD}</p>
+                      <p className="text-[18px]">D. {pq.optionD}</p>
                     </span>
                     <span className="flex justify-between w-[261px]">
                       <Button
