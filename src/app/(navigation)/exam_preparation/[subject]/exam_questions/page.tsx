@@ -240,17 +240,20 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
   data.map((pq: PQItem, index: number) => (
     <div key={pq.id} className="space-y-3">
       {/* Question */}
-      <div className="flex items-center gap-5">
-        <p className="h-[25px] w-[25px] bg-[#FFCCB0] text-[10px]
-          border border-[#FF5900] text-[#FF5900] rounded-full
-          flex items-center justify-center">
-          {index + 1}
-        </p>
+     <div className="flex items-start gap-5">
+  <p
+    className="h-[25px] w-[25px] flex-shrink-0 bg-[#FFCCB0] text-[10px]
+    border border-[#FF5900] text-[#FF5900] rounded-full
+    flex items-center justify-center"
+  >
+    {index + 1}
+  </p>
 
-        <p className="font-semibold text-[18px]">
-          {pq.question}
-        </p>
-      </div>
+  <p className="font-semibold text-[18px] leading-relaxed">
+    {pq.question}
+  </p>
+</div>
+
 
       {/* Options */}
       <div>
