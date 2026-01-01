@@ -268,7 +268,7 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
       )}
 
       {/* Actions */}
-      <div className="flex justify-between w-[261px]">
+      <div className="flex justify-between flex-col md:flex-row gap-3 w-[261px]">
         <Button
           variant="outline"
           className="border border-[#FF5900] text-[#FF5900]"
@@ -283,7 +283,7 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
           variant="outline"
           className="border border-[#FF5900] text-[#FF5900]"
         >
-          View Explanation
+          <Link href={/exam_preparation/${matched?.url}/exam_questions/${pq.id}/view_answer} > {" "} View Explanation </Link>
         </Button>
 
         <Button
