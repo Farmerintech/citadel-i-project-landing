@@ -23,7 +23,7 @@ const menuItems =[
         {
             id:1,
             name:"KS2",
-            years:["Year1", "Year2", "Year3", "Year4", "Year5", "Year6"], 
+            years:[ "Year3", "Year4", "Year5", "Year6"], 
             uri:"KS2"
         },
         {
@@ -34,9 +34,9 @@ const menuItems =[
         },
         {
             id:3,
-            name:"SSCE/IGCE",
+            name:"SSCE/GSCE",
             years:[],
-            uri:"SSCE%2FIGCE"
+            uri:"SSCE/GSCE"
         },
     ]
 const Terms=[
