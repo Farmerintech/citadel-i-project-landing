@@ -286,7 +286,11 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
           variant="outline"
           className="border border-[#FF5900] text-[#FF5900]"
         >
-          <Link href={/exam_preparation/${matched?.url}/exam_questions/${pq.id}/view_answer} > {" "} View Explanation </Link>
+           <Link
+    href={`/exam_preparation/${matched?.url}/exam_questions/${pq.id}/view_answer`}
+  >
+    View Explanation
+  </Link>
         </Button>
 
         <Button
