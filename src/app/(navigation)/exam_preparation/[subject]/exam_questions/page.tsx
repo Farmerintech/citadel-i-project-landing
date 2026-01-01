@@ -40,6 +40,7 @@ export default function Page() {
   const [totalPage, setTotalPage] = useState<number>(1);
   const [loading, setIsLoading] = useState<boolean>(true);
   const matched = subjects.find((subj) => subj.url === subject);
+const [showAnswer, setShowAnswer] = useState<number | null>(null);
 
   const [formData, setFormData] = useState<any>({
     subject: `${matched?.name}`,
@@ -232,52 +233,68 @@ export default function Page() {
                   {error}
                 </p>
               )}
-              {!loading &&
-                data?.length > 0 &&
-                !error &&
-                data?.map((pq: PQItem, index: number) => (
-                  <>
-                    <div className="flex items-center gap-5" key={index}>
-                      <p
-                        className="h-[24px] w-[24px] bg-[#FFCCB0] text-[10px]
-    border border-[#FF5900] text-[#FF5900] rounded-full flex items-center justify-center"
-                      >
-                        {index + 1}
-                      </p>
-                      <p key={index} className="font-semibold text-[18px]">
-                        {pq.question}
-                      </p>
-                    </div>
-                    <span className="">
-                      <p className="text-[18px]">A. {pq.optionA} </p>
+             {!loading &&
+  data?.length > 0 &&
+  !error &&
+  data.map((pq: PQItem, index: number) => (
+    <div key={pq.id} className="space-y-3">
+      {/* Question */}
+      <div className="flex items-center gap-5">
+        <p className="h-[25px] w-[25px] bg-[#FFCCB0] text-[10px]
+          border border-[#FF5900] text-[#FF5900] rounded-full
+          flex items-center justify-center">
+          {index + 1}
+        </p>
 
-                      <p className="text-[18px]">B. {pq.optionB}</p>
+        <p className="font-semibold text-[18px]">
+          {pq.question}
+        </p>
+      </div>
 
-                      <p className="text-[18px]">C. {pq.optionC}</p>
+      {/* Options */}
+      <div>
+        <p className="text-[18px]">A. {pq.optionA}</p>
+        <p className="text-[18px]">B. {pq.optionB}</p>
+        <p className="text-[18px]">C. {pq.optionC}</p>
+        <p className="text-[18px]">D. {pq.optionD}</p>
+      </div>
 
-                      <p className="text-[18px]">D. {pq.optionD}</p>
-                    </span>
-                    <span className="flex justify-between w-[261px]">
-                      <Button
-                        variant="outline"
-                        className="border border-[#FF5900] text-[#FF5900]"
-                      >
-                        <Link
-                          href={`/exam_preparation/${matched?.url}/exam_questions/${pq.id}/view_answer`}
-                        >
-                          {" "}
-                          View Answer
-                        </Link>
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="border border-[#FF5900] text-[#FF5900]"
-                      >
-                        <ChefHatIcon /> Save Question
-                      </Button>
-                    </span>
-                  </>
-                ))}
+      {/* Correct Answer (Hidden by default) */}
+      {showAnswer === pq.id && (
+        <p className="text-green-600 font-semibold text-[16px]">
+          ✅ Correct Answer: {pq.correctAnswer}
+        </p>
+      )}
+
+      {/* Actions */}
+      <div className="flex justify-between w-[261px]">
+        <Button
+          variant="outline"
+          className="border border-[#FF5900] text-[#FF5900]"
+          onClick={() =>
+            setShowAnswer(showAnswer === pq.id ? null : pq.id)
+          }
+        >
+          {showAnswer === pq.id ? "Hide Answer" : "View Answer"}
+        </Button>
+
+        <Button
+          variant="outline"
+          className="border border-[#FF5900] text-[#FF5900]"
+        >
+          View Explanation
+        </Button>
+
+        <Button
+          variant="outline"
+          className="border border-[#FF5900] text-[#FF5900]"
+        >
+          <ChefHatIcon /> Save Question
+        </Button>
+      </div>
+    </div>
+  ))}
+
             </div>
           </article>
 
