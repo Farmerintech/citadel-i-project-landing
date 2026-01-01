@@ -29,7 +29,7 @@ export default function page() {
         setError("");
     
         try {
-          const response = await fetch(`https://citadel-i.com.ng/api/v1/past_question/view_answer/${questionId}`, {
+          const response = await fetch(`https://api.citadel-i.com.ng/api/v1/past_question/view_answer/${questionId}`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
