@@ -240,7 +240,7 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
   data.map((pq: PQItem, index: number) => (
     <div key={pq.id} className="space-y-3">
       {/* Question */}
-     <div className="flex items-start gap-5">
+     <div className="flex items-start gap-5 flex-col md:flex-row">
   <p
     className="h-[25px] w-[25px] flex-shrink-0 bg-[#FFCCB0] text-[10px]
     border border-[#FF5900] text-[#FF5900] rounded-full
@@ -271,7 +271,7 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
       )}
 
       {/* Actions */}
-      <div className="flex justify-between items-center flex-col md:flex-row gap-3 w-[261px]">
+      <div className="flex justify-between items-center flex-col md:flex-row gap-3 w-full md:w-[261px]">
         <Button
           variant="outline"
           className="border border-[#FF5900] text-[#FF5900] w-full"
