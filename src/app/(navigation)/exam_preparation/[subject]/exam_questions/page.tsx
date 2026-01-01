@@ -20,6 +20,7 @@ import {
     optionB:string,
     optionC:string,
     optionD:string,
+    answer:string,
     optE:string,
     subject:string,
     id:number
@@ -262,7 +263,7 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
       {/* Correct Answer (Hidden by default) */}
       {showAnswer === pq.id && (
         <p className="text-green-600 font-semibold text-[16px]">
-          ✅ Correct Answer: {pq.correctAnswer}
+          ✅ Correct Answer: {pq.answer}
         </p>
       )}
 
