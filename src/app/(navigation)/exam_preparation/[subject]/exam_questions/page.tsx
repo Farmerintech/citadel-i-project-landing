@@ -256,7 +256,7 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
 
 
       {/* Options */}
-      <div>
+      <div className="px-8">
         <p className="text-[18px]">A. {pq.optionA}</p>
         <p className="text-[18px]">B. {pq.optionB}</p>
         <p className="text-[18px]">C. {pq.optionC}</p>
@@ -274,7 +274,7 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
       <div className="flex justify-between flex-col md:flex-row gap-3 w-[261px]">
         <Button
           variant="outline"
-          className="border border-[#FF5900] text-[#FF5900]"
+          className="border border-[#FF5900] text-[#FF5900] w-full"
           onClick={() =>
             setShowAnswer(showAnswer === pq.id ? null : pq.id)
           }
@@ -284,7 +284,7 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
 
         <Button
           variant="outline"
-          className="border border-[#FF5900] text-[#FF5900]"
+          className="border border-[#FF5900] text-[#FF5900] w-full"
         >
            <Link
     href={`/exam_preparation/${matched?.url}/exam_questions/${pq.id}/view_answer`}
@@ -295,7 +295,7 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
 
         <Button
           variant="outline"
-          className="border border-[#FF5900] text-[#FF5900]"
+          className="border border-[#FF5900] text-[#FF5900] w-full"
         >
           <ChefHatIcon /> Save Question
         </Button>
