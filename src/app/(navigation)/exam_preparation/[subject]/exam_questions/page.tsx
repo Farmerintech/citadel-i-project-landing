@@ -249,14 +249,14 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
     {index + 1}
   </p>
 
-  <p className="font-semibold text-[18px] leading-relaxed">
+  <p className=" text-[18px] leading-relaxed">
     {pq.question}
   </p>
 </div>
 
 
       {/* Options */}
-      <div className="px-8">
+      <div className="px-3">
         <p className="text-[18px]">A. {pq.optionA}</p>
         <p className="text-[18px]">B. {pq.optionB}</p>
         <p className="text-[18px]">C. {pq.optionC}</p>
@@ -271,7 +271,7 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
       )}
 
       {/* Actions */}
-      <div className="flex justify-between flex-col md:flex-row gap-3 w-[261px]">
+      <div className="flex justify-between items-center flex-col md:flex-row gap-3 w-[261px]">
         <Button
           variant="outline"
           className="border border-[#FF5900] text-[#FF5900] w-full"
