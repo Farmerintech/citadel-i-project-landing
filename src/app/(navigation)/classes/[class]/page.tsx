@@ -75,57 +75,55 @@ export default function Myclass (){
   const formatYear = (index: number): string => {
     return years[index] || "year1";
   };
+const [page, setPage] = useState<number>(1); // current page
+const [totalPages, setTotalPages] = useState<number>(1); // total pages from backend
 
-  useEffect(() => {
-    if (!params.class) return;
-    setLoading(true);
-    const theClass = params.class as string;
-    const year = formatYear(yearIndex);
+useEffect(() => {
+  if (!params.class) return;
+  setLoading(true);
+  const theClass = params.class as string;
+  const year = formatYear(yearIndex);
 
-    const body = {
-      class: decodeURIComponent(theClass),
-      year,
-      term,
-    };
-    console.log(body);
-    const fetchClassNote = async () => {
-      setError("");
-      setData(null);
+  const body = {
+    class: decodeURIComponent(theClass),
+    year,
+    term,
+  };
 
-      try {
-        const res = await fetch(
-          `https://api.citadel-i.com.ng/api/v1/note/get_class_note`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(body),
-          }
-        );
+  const fetchClassNote = async () => {
+    setError("");
+    setData(null);
 
-        const result = await res.json();
-
-        if (!res.ok) {
-          setError(result.message);
-          throw new Error(result.message || "Failed to fetch class material");
+    try {
+      const res = await fetch(
+        `https://api.citadel-i.com.ng/api/v1/note/get_class_note?page=${page}&limit=6`, // <-- added page & limit
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
         }
-        setData(result.data);
-        console.log("Fetched:", result);
-      } catch (err: any) {
-        console.error(err);
-        setError(err.message || "Error connecting to server");
-      } finally {
-        setLoading(false);
-      }
-    };
+      );
 
-    // Determine classIndex on mount
-    const matchIndex = menuItems.findIndex((item) => item.name === theClass);
-    // const matchedSubject = 
-    if (matchIndex !== -1) setClassIndex(matchIndex);
-    fetchClassNote();
-  }, [params.class, yearIndex, term]);
+      const result = await res.json();
+
+      if (!res.ok) {
+        setError(result.message);
+        throw new Error(result.message || "Failed to fetch class material");
+      }
+
+      setData(result.data);
+      setTotalPages(result.pagination?.totalPages || 1); // <-- set total pages from backend
+      console.log("Fetched:", result);
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || "Error connecting to server");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchClassNote();
+}, [params.class, yearIndex, term, page]); // <-- added page as dependency
 
   const [form, setForm] = useState<any>({
     subject: "",
@@ -152,14 +150,9 @@ export default function Myclass (){
       term: value,
     });
   };
- const router = useRouter();
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
 
-  const index = Number(searchParams.get("index"));
+ 
 
-  const prevMaterial = index > 0 && data ? data[index - 1] : null;
-  const nextMaterial = index < data?.length - 1 ? data[index + 1] : null;
 
   useEffect(() => {
     setTerm(form.term);
@@ -363,7 +356,7 @@ export default function Myclass (){
                 {error}
             </p>
           )}
-         <div className="mt-[50px] md:mt-[0px] grid md:grid-cols-2 lg:grid-cols-4 gap-[32px] py-[32px]">
+         <div className="mt-[50px] md:mt-[0px] grid md:grid-cols-2 lg:grid-cols-3 gap-[32px] py-[32px]">
   {!loading && data?.length > 0 &&
     data.map((material: materialItem, index: number) => (
       <div className="w-full h-[177px]" key={index}>
@@ -393,35 +386,28 @@ export default function Myclass (){
     ))}
    
 </div>
- {/* <div className="flex justify-between mt-6">
-      {prevMaterial ? (
-        <button
-          onClick={() =>
-            router.push(
-              `${pathname}?id=${prevMaterial.id}&index=${index - 1}`
-            )
-          }
-          className="px-4 py-2 bg-gray-600 text-white rounded"
-        >
-          ← Previous
-        </button>
-      ) : (
-        <div />
-      )}
 
-      {nextMaterial && (
-        <button
-          onClick={() =>
-            router.push(
-              `${pathname}?id=${nextMaterial.id}&index=${index + 1}`
-            )
-          }
-          className="px-4 py-2 bg-blue-600 text-white rounded"
-        >
-          Next →
-        </button>
-      )}
-    </div> */}
+<div className="flex justify-center items-center gap-4 mt-8 mb-8">
+  <button
+    className={`px-4 py-2 rounded ${page === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-orange-500 text-white"}`}
+    disabled={page === 1}
+    onClick={() => setPage(page - 1)}
+  >
+    Previous
+  </button>
+
+  <span className="text-lg font-semibold">
+    Page {page} of {totalPages}
+  </span>
+
+  <button
+    className={`px-4 py-2 rounded ${page === totalPages ? "bg-gray-300 cursor-not-allowed" : "bg-orange-500 text-white"}`}
+    disabled={page === totalPages}
+    onClick={() => setPage(page + 1)}
+  >
+    Next
+  </button>
+</div>
 
             <div className="md:flex-row flex-col flex flex-start gap-[32px] md:items-center">
                     <p className="font-[400] text-[18px] text-xl">Need help with understanding your subjects?</p>
