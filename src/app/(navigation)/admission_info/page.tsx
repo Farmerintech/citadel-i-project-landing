@@ -175,13 +175,13 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
 
   const [active, setActive] = useState<number>(1);
     return(
-        <section className=" md:bg-[#F3F3F3] md:px-6 lg:px-[100px] py-2 flex flex-col-reverse md:flex-row items-start justify-between gap-2">
-        <aside className=" bg-white flex flex-col gap-[53px] px-4 py-2 md:rounded-[4px] md:w-2/3 custom-scrollbar md:overflow-y-scroll md:h-[900px] lg:h-[800px]">
+        <section className=" md:bg-[#F3F3F3] md:px-6 lg:px-[100px] py-2 flex flex-col-reverse md:flex-row-reverse  items-start justify-between gap-2">
+        <aside className=" bg-white flex flex-col gap-[53px] px-4 py-2 md:rounded-[4px] md:w-1/3 custom-scrollbar md:overflow-y-scroll md:h-[900px] lg:h-[800px]">
             <div className="flex flex-col gap-[24px]">
                 <h2 className="font-[700] md:text-[32px] text-[24px] text-[#0F0F0F]">Your Complete Guide to Securing Admission into Your Desired School and Course</h2>
                 <p className="font-[400] text-[18px]">Gaining admission into a higher institution in Nigeria requires careful planning and an understanding of the process. Whether you're applying to a university, polytechnic, or college, this guide will help you navigate the admission process smoothly.</p>
             </div>
-            <div className="flex  gap-[12px] justify-start items-center">
+            <div className="flex gap-[12px] justify-start items-center">
                 <span>
                     <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21.8359 1.68799H2.33594C1.50719 1.68799 0.835938 2.35924 0.835938 3.18799V22.688C0.835938 23.5167 1.50719 24.188 2.33594 24.188H21.8359C22.6647 24.188 23.3359 23.5167 23.3359 22.688V3.18799C23.3359 2.35924 22.6647 1.68799 21.8359 1.68799Z" fill="#549700"/>
@@ -327,14 +327,14 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
             </section>
         </aside>
            {/* <RightSide/> */}
-      <aside className="p-[16px] bg-[#F9D68A] lg:rounded-[4px] w-full md:w-1/3 flex-col flex gap-[24px] custom-scrollbar md:overflow-y-scroll md:h-[900px] lg:h-[800px]">
+      <aside className="p-[16px] bg-[#F9D68A] lg:rounded-[4px] w-full md:w-2/3 flex-col flex gap-[24px] custom-scrollbar md:overflow-y-scroll md:h-[900px] lg:h-[800px]">
 
       {/* ======================================================
           IF API DATA AVAILABLE => SHOW FILTER BOX + API RESULTS
       ======================================================= */}
       <div className="py-3 px-5 flex gap-5 justify-between">
-        <button className={`${active ===1 ? "border-b-2 border-white text-white font-[600]":""}`} onClick={()=>setActive(1)}>General Admission Requirements</button>
-        <button className={`${active ===2 ? "border-b-2 border-white text-white font-[600]":""}`} onClick={()=>setActive(2)}>School Specific</button>
+        <button className={`${active ===1 ? "border-b-2 border-[#FF5900]  text-[#FF5900]  font-[600]":"text-white"}`} onClick={()=>setActive(1)}>General Admission Requirements</button>
+        <button className={`${active ===2 ? "border-b-2 border-[#FF5900]  text-[#FF5900]  font-[600]":"text-white"}`} onClick={()=>setActive(2)}>School Specific</button>
       </div>
      {active===2 &&  (
   <>

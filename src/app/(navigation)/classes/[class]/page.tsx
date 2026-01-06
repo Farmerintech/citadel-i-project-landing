@@ -3,6 +3,7 @@ import { useState, useEffect, ChangeEvent } from "react";
 import Link from "next/link"
 import { useParams } from "next/navigation"    
 import Image from 'next/image'
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 import {
     Select,
@@ -151,6 +152,14 @@ export default function Myclass (){
       term: value,
     });
   };
+ const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+
+  const index = Number(searchParams.get("index"));
+
+  const prevMaterial = index > 0 && data ? data[index - 1] : null;
+  const nextMaterial = index < data?.length - 1 ? data[index + 1] : null;
 
   useEffect(() => {
     setTerm(form.term);
@@ -380,8 +389,39 @@ export default function Myclass (){
         </div>
 
       </div>
+      
     ))}
+   
 </div>
+ {/* <div className="flex justify-between mt-6">
+      {prevMaterial ? (
+        <button
+          onClick={() =>
+            router.push(
+              `${pathname}?id=${prevMaterial.id}&index=${index - 1}`
+            )
+          }
+          className="px-4 py-2 bg-gray-600 text-white rounded"
+        >
+          ← Previous
+        </button>
+      ) : (
+        <div />
+      )}
+
+      {nextMaterial && (
+        <button
+          onClick={() =>
+            router.push(
+              `${pathname}?id=${nextMaterial.id}&index=${index + 1}`
+            )
+          }
+          className="px-4 py-2 bg-blue-600 text-white rounded"
+        >
+          Next →
+        </button>
+      )}
+    </div> */}
 
             <div className="md:flex-row flex-col flex flex-start gap-[32px] md:items-center">
                     <p className="font-[400] text-[18px] text-xl">Need help with understanding your subjects?</p>
