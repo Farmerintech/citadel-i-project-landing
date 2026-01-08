@@ -1,5 +1,6 @@
 "use client";
 
+import StudentGuard from "@/app/components/studentsGuard";
 import { useAuthStore } from "@/app/store/user";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -37,6 +38,8 @@ export default function TeacherDashboard() {
   // Sidebar toggle for mobile
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const user = useAuthStore((s) => s.user);
+    const logout = useAuthStore((s) => s.logout);
+
   /* ================= FETCH TEACHER ================= */
   const email = user?.email
   useEffect(() => {
@@ -96,6 +99,7 @@ export default function TeacherDashboard() {
   if (!teacher) return <p className="p-6">Loading dashboard...</p>;
 
   return (
+    <StudentGuard>
     <div className="min-h-screen bg-gray-100 flex">
       {/* Sidebar */}
       <aside
@@ -181,6 +185,12 @@ export default function TeacherDashboard() {
                 </button>
               </div>
             )}
+            <button
+        onClick={logout}
+        className="mt-6 w-full bg-red-800 text-white py-2 rounded cursor-pointer"
+      >
+        Logout
+      </button>
           </div>
         </div>
       </aside>
@@ -255,5 +265,6 @@ export default function TeacherDashboard() {
         </div>
       </main>
     </div>
+    </StudentGuard>
   );
 }

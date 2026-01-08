@@ -141,7 +141,7 @@ const [sidebarOpen, setSidebarOpen] = useState(false);
 
       <button
         onClick={logout}
-        className="mt-6 w-full bg-red-500 text-white py-2 rounded"
+        className="mt-6 w-full bg-red-800 text-white py-2 rounded cursor-pointer"
       >
         Logout
       </button>
