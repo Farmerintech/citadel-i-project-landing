@@ -99,7 +99,7 @@ export default function TeacherDashboard() {
   if (!teacher) return <p className="p-6">Loading dashboard...</p>;
 
   return (
-    <StudentGuard>
+    
     <div className="min-h-screen bg-gray-100 flex">
       {/* Sidebar */}
       <aside
@@ -265,6 +265,6 @@ export default function TeacherDashboard() {
         </div>
       </main>
     </div>
-    </StudentGuard>
+    
   );
 }
