@@ -1,5 +1,7 @@
 "use client";
 
+import { useAuthStore } from "@/app/store/user";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 
@@ -34,17 +36,20 @@ export default function TeacherDashboard() {
 
   // Sidebar toggle for mobile
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
+  const user = useAuthStore((s) => s.user);
   /* ================= FETCH TEACHER ================= */
+  const email = user?.email
   useEffect(() => {
     const fetchTeacher = async () => {
       try {
         const res = await fetch(
-          "https://api.citadel-i.com.ng/api/v1/teacher/",
+          `https://api.citadel-i.com.ng/api/v1/teacher/get_teacher/${email}`,
           { credentials: "include" }
         );
         const data = await res.json();
         setTeacher(data);
+        setStudents([data.students])
+        console.log(teacher)
       } catch (err) {
         console.error(err);
       }
@@ -53,25 +58,25 @@ export default function TeacherDashboard() {
   }, []);
 
   /* ================= FETCH STUDENTS ================= */
-  useEffect(() => {
-    const fetchStudents = async () => {
-      setLoading(true);
-      try {
-        const res = await fetch(
-          `https://api.citadel-i.com.ng/api/v1/teacher/students?page=${page}&limit=${limit}`,
-          { credentials: "include" }
-        );
-        const data = await res.json();
-        setStudents(data.data || []);
-        setTotalPages(data.pagination?.totalPages || 1);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchStudents();
-  }, [page]);
+  // useEffect(() => {
+  //   const fetchStudents = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const res = await fetch(
+  //         `https://api.citadel-i.com.ng/api/v1/teacher/students?page=${page}&limit=${limit}`,
+  //         { credentials: "include" }
+  //       );
+  //       const data = await res.json();
+  //       setStudents(data.data || []);
+  //       setTotalPages(data.pagination?.totalPages || 1);
+  //     } catch (err) {
+  //       console.error(err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchStudents();
+  // }, [page]);
 
   /* ================= BANK DETAILS ================= */
   const saveBankDetails = async () => {
@@ -94,7 +99,7 @@ export default function TeacherDashboard() {
     <div className="min-h-screen bg-gray-100 flex">
       {/* Sidebar */}
       <aside
-        className={`fixed z-30 inset-y-0 left-0 w-64 bg-white rounded-r-xl shadow-lg transform transition-transform duration-300 md:relative md:translate-x-0 ${
+        className={`bg-[#FFEEE6] fixed z-30 inset-y-0 left-0 w-64  shadow-lg transform transition-transform duration-300 md:relative md:translate-x-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -107,15 +112,18 @@ export default function TeacherDashboard() {
 
         <div className="p-4 space-y-6">
           <div className="text-center">
-            <img
-              src={teacher.passportPhoto || "/avatar.png"}
-              className="w-20 h-20 rounded-full mx-auto border"
-              alt="Teacher"
-            />
+            <Image
+  src={teacher?.passportPhoto}
+  alt="Teacher"
+  width={80}
+  height={80}
+  className="w-20 h-20 rounded-full mx-auto border object-cover"
+/>
+{/* <p className="text-black">{teacher?.passportPhoto}....</p> */}
             <h2 className="mt-2 font-semibold text-lg">
               {teacher.firstName} {teacher.lastName}
             </h2>
-            <p className="text-sm text-gray-500">{teacher.email}</p>
+            <p className="text-sm text-gray-500 text-[10px]">{teacher.email}</p>
           </div>
 
           {/* Bank Details */}
@@ -180,13 +188,13 @@ export default function TeacherDashboard() {
       {/* Overlay for mobile */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/30 z-20 md:hidden"
+          className="fixed inset-0 bg-black/30 z-20 md:hidden "
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Main content */}
-      <main className="flex-1 p-4 md:ml-64">
+      <main className="flex-1 p-4 ">
         {/* Mobile menu button */}
         <div className="flex justify-between items-center md:hidden mb-4">
           <h2 className="text-xl font-bold">Dashboard</h2>
@@ -214,10 +222,10 @@ export default function TeacherDashboard() {
               </thead>
               <tbody>
                 {students.map((student) => (
-                  <tr key={student.id} className="hover:bg-gray-50">
-                    <td className="border px-3 py-2">{student.name}</td>
-                    <td className="border px-3 py-2">{student.email}</td>
-                    <td className="border px-3 py-2">{student.className}</td>
+                  <tr key={student?.id} className="hover:bg-gray-50">
+                    <td className="border px-3 py-2">{student?.name}</td>
+                    <td className="border px-3 py-2">{student?.email}</td>
+                    <td className="border px-3 py-2">{student?.className}</td>
                   </tr>
                 ))}
               </tbody>
