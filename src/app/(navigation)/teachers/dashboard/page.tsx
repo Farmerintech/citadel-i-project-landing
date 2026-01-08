@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 type Student = {
   id: number;
@@ -20,7 +21,7 @@ export default function TeacherDashboard() {
   const [students, setStudents] = useState<Student[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // pagination
+  // Pagination
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const limit = 10;
@@ -31,12 +32,15 @@ export default function TeacherDashboard() {
     accountNumber: "",
   });
 
+  // Sidebar toggle for mobile
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   /* ================= FETCH TEACHER ================= */
   useEffect(() => {
     const fetchTeacher = async () => {
       try {
         const res = await fetch(
-          "https://api.citadel-i.com.ng/api/v1/teacher/profile",
+          "https://api.citadel-i.com.ng/api/v1/teacher/",
           { credentials: "include" }
         );
         const data = await res.json();
@@ -72,15 +76,12 @@ export default function TeacherDashboard() {
   /* ================= BANK DETAILS ================= */
   const saveBankDetails = async () => {
     try {
-      await fetch(
-        "https://api.citadel-i.com.ng/api/v1/teacher/bank-details",
-        {
-          method: "POST",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(bankForm),
-        }
-      );
+      await fetch("https://api.citadel-i.com.ng/api/v1/teacher/bank-details", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bankForm),
+      });
       alert("Bank details saved");
     } catch (err) {
       console.error(err);
@@ -90,10 +91,21 @@ export default function TeacherDashboard() {
   if (!teacher) return <p className="p-6">Loading dashboard...</p>;
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="max-w-7xl mx-auto p-4 grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
-        {/* ================= SIDEBAR ================= */}
-        <aside className="bg-white rounded-xl shadow p-4 space-y-6">
+    <div className="min-h-screen bg-gray-100 flex">
+      {/* Sidebar */}
+      <aside
+        className={`fixed z-30 inset-y-0 left-0 w-64 bg-white rounded-r-xl shadow-lg transform transition-transform duration-300 md:relative md:translate-x-0 ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="flex justify-between items-center p-4 md:hidden">
+          <h2 className="text-lg font-bold">Menu</h2>
+          <button onClick={() => setSidebarOpen(false)}>
+            <FaTimes size={20} />
+          </button>
+        </div>
+
+        <div className="p-4 space-y-6">
           <div className="text-center">
             <img
               src={teacher.passportPhoto || "/avatar.png"}
@@ -162,67 +174,78 @@ export default function TeacherDashboard() {
               </div>
             )}
           </div>
-        </aside>
+        </div>
+      </aside>
 
-        {/* ================= MAIN ================= */}
-        <main className="bg-white rounded-xl shadow p-4">
-          <h3 className="text-xl font-semibold mb-4">
-            Students in Your Classes
-          </h3>
+      {/* Overlay for mobile */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/30 z-20 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
-          {loading ? (
-            <p>Loading students...</p>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full border text-sm">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="border px-3 py-2 text-left">Name</th>
-                    <th className="border px-3 py-2 text-left">Email</th>
-                    <th className="border px-3 py-2 text-left">Class</th>
+      {/* Main content */}
+      <main className="flex-1 p-4 md:ml-64">
+        {/* Mobile menu button */}
+        <div className="flex justify-between items-center md:hidden mb-4">
+          <h2 className="text-xl font-bold">Dashboard</h2>
+          <button
+            className="p-2 bg-white rounded shadow"
+            onClick={() => setSidebarOpen(true)}
+          >
+            <FaBars size={20} />
+          </button>
+        </div>
+
+        <h3 className="text-xl font-semibold mb-4">Students in Your Classes</h3>
+
+        {loading ? (
+          <p>Loading students...</p>
+        ) : (
+          <div className="overflow-x-auto bg-white rounded-xl shadow p-2">
+            <table className="w-full border text-sm">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="border px-3 py-2 text-left">Name</th>
+                  <th className="border px-3 py-2 text-left">Email</th>
+                  <th className="border px-3 py-2 text-left">Class</th>
+                </tr>
+              </thead>
+              <tbody>
+                {students.map((student) => (
+                  <tr key={student.id} className="hover:bg-gray-50">
+                    <td className="border px-3 py-2">{student.name}</td>
+                    <td className="border px-3 py-2">{student.email}</td>
+                    <td className="border px-3 py-2">{student.className}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {students.map((student) => (
-                    <tr key={student.id} className="hover:bg-gray-50">
-                      <td className="border px-3 py-2">
-                        {student.name}
-                      </td>
-                      <td className="border px-3 py-2">
-                        {student.email}
-                      </td>
-                      <td className="border px-3 py-2">
-                        {student.className}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-
-          {/* Pagination */}
-          <div className="flex justify-between items-center mt-4">
-            <button
-              disabled={page === 1}
-              onClick={() => setPage(page - 1)}
-              className="px-4 py-2 rounded bg-gray-200 disabled:opacity-50"
-            >
-              Previous
-            </button>
-            <span className="text-sm">
-              Page {page} of {totalPages}
-            </span>
-            <button
-              disabled={page === totalPages}
-              onClick={() => setPage(page + 1)}
-              className="px-4 py-2 rounded bg-orange-500 text-white disabled:opacity-50"
-            >
-              Next
-            </button>
+                ))}
+              </tbody>
+            </table>
           </div>
-        </main>
-      </div>
+        )}
+
+        {/* Pagination */}
+        <div className="flex justify-between items-center mt-4">
+          <button
+            disabled={page === 1}
+            onClick={() => setPage(page - 1)}
+            className="px-4 py-2 rounded bg-gray-200 disabled:opacity-50"
+          >
+            Previous
+          </button>
+          <span className="text-sm">
+            Page {page} of {totalPages}
+          </span>
+          <button
+            disabled={page === totalPages}
+            onClick={() => setPage(page + 1)}
+            className="px-4 py-2 rounded bg-orange-500 text-white disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
+      </main>
     </div>
   );
 }

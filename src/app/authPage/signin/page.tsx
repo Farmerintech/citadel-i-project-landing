@@ -8,7 +8,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { useUser } from "@/app/context/reducer";
 import { useAuthStore } from "@/app/store/user";
 
-export const SignInForm = () => {
+export default function SignInForm () {
    const router = useRouter();
   const pathname = usePathname();
   const [formData, setFormData] = useState({
@@ -172,7 +172,7 @@ export const SignInForm = () => {
         <hr className="flex-grow border-gray-300" />
       </div>
 
-      {/* <div className="flex items-center justify-center w-full">
+      <div className="flex items-center justify-center w-full">
         <button
           type="button"
           className="w-full rounded-[8px] border border-gray-300 py-2 flex items-center justify-center text-sm"
@@ -186,11 +186,11 @@ export const SignInForm = () => {
           />
           Continue with Google
         </button>
-      </div> */}
+      </div>
 
       <p className="text-center text-xs text-gray-500 mt-2">
         Don’t have an account?{" "}
-        <a href="/student/register" className="text-orange-500">
+        <a href="/signup" className="text-orange-500">
           Register now!
         </a>
       </p>

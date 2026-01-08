@@ -61,7 +61,7 @@ export const SignInForm = () => {
         setFormData({ email: "", password: "" });
         setIsChecked(false);
         // Redirect or save token if needed
-        router.push("/student");
+        router.push("/student/dashboard");
         useAuthStore.getState().login({
         email: result.user.email,
         firstName: result.user.firstName,
@@ -69,18 +69,18 @@ export const SignInForm = () => {
         token: result.user.token,
         role: result.user.role, // "student" | "teacher"
         });
-        dispatch({
-    type: 'LOGIN',
-    payload: {
-      email:result.user.email,
-      firstName:result.user.firstName,
-      lastName:result.user.lastName,
-      token:result.user.token,
-      role:result.user.role,
-      subjects:[],
-      examMode:''
-    },
-  });
+  //       dispatch({
+  //   type: 'LOGIN',
+  //   payload: {
+  //     email:result.user.email,
+  //     firstName:result.user.firstName,
+  //     lastName:result.user.lastName,
+  //     token:result.user.token,
+  //     role:result.user.role,
+  //     subjects:[],
+  //     examMode:''
+  //   },
+  // });
       } else {
         const errorMsg =
           typeof result.message === "string"
@@ -188,7 +188,7 @@ export const SignInForm = () => {
         </button>
       </div> */}
 
-      <p className="text-center text-xs text-gray-500 mt-2">
+      <p className="text-center text-xs text-gray-500">
         Don’t have an account?{" "}
         <a href="/student/register" className="text-orange-500">
           Register now!

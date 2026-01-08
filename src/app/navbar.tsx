@@ -14,6 +14,7 @@ import SignUpPage from "./authPage/signup/signupPage";
 import SignInPage from "./authPage/signin/signinPage";
 import { useUser } from "./context/reducer";
 import { FaUser, FaUserCircle } from "react-icons/fa";
+import { useAuthStore } from "./store/user";
 export default function Header() {
   // State to manage mobile menu visibility
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -42,6 +43,10 @@ export default function Header() {
     const navIndex = getCurrentNav(pathname);
     setCurrentNav(navIndex);
   }, [pathname]); 
+
+  const user = useAuthStore((s) => s.user);
+
+
   return (
     <>
  {showReg && (
@@ -105,12 +110,19 @@ export default function Header() {
                   </Label>
                 </span>
         
-       {state.isLoggedIn && state.firstName!==null ?
-                <div className=" py-10 flex gap-[12px] items-center">
-                 <p className="flex items-center justify-center w-[50px] h-[50px] rounded-full justify-center">   <FaUserCircle color="orange" size={20}/></p>
-                 <p>Hello, {state?.firstName  || ''} {state?.lastName || ""} 
-                 </p>
-                </div>
+      
+      {user ? (
+  <div className="py-10 flex gap-3 items-center">
+    {/* <div className="flex items-center justify-center w-[50px] h-[50px] rounded-full">
+      <FaUserCircle color="orange" size={20} />
+    </div> */}
+
+    <a 
+    href={user.role ==="student" ? "/student/dashbaord" :"/teachers/dashbaord"}
+    className="bg-[#FF5900] px-5 py-2 text-[16px] rounded-md text-white">Dashboard</a>
+  </div>
+      )
+      
        :
        <span className="flex items-center gap-[5px]">
         <Button className="bg-[#FF5900] w-[97px] h-[35px] text-[16px] text-white"  onClick={()=>{showRegPage()}}>
@@ -390,13 +402,18 @@ export default function Header() {
          <Button className="block text-[#FF5900] text-[16px] bg-[#FFEEE6] hover:text-white">
           <Link href="/bookings" onClick={()=> toggleMobileMenu()}>Book a Tutor</Link>
         </Button>
-       { 
-              state.isLoggedIn  && state.firstName!==null ?
-                <div className=" py-10 flex gap-[12px] items-center">
-                 <p className="flex items-center justify-center w-[50px] h-[50px] rounded-full justify-center">   <FaUserCircle color="orange" size={20}/></p>
-                 <p>Hello, {state?.firstName || ''} {state?.lastName || ""} 
-                 </p>
-                </div>
+       
+                {user ? (
+  <div className="py-10 flex gap-3 items-center">
+    {/* <div className="flex items-center justify-center w-[50px] h-[50px] rounded-full">
+      <FaUserCircle color="orange" size={20} />
+    </div> */}
+
+    <a 
+    href={user.role ==="student" ? "/student/dashbaord" :"/teachers/dashbaord"}
+    className="bg-[#FF5900] px-5 py-2 text-[16px] rounded-md text-white">Dashboard</a>
+  </div>
+                )
          :
         <span className="py-10 flex justify-center flex-col items-center gap-[5px]">
           <Button className="bg-[#FF5900] text-[16px] text-white w-full" variant="outline" onClick={()=>{showRegPage()}}>Register</Button>

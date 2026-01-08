@@ -201,7 +201,7 @@ export const SignUpForm = () => {
         <span className="text-gray-500 text-xs px-2">Or</span>
         <hr className="flex-grow border-gray-300" />
       </div>
-
+{/* 
       <div className="flex items-center justify-center w-full">
         <button
           type="button"
@@ -216,11 +216,11 @@ export const SignUpForm = () => {
           />
           Continue with Google
         </button>
-      </div>
+      </div> */}
 
       <p className="text-center text-xs text-gray-500 mt-2">
         Already have an account?{" "}
-        <a href="/signin" className="text-orange-500">
+        <a href="/student/login" className="text-orange-500">
           Log in
         </a>
       </p>

@@ -93,7 +93,7 @@ export function SignUpForm() {
 
     try {
       const res = await fetch(
-        `https://api.citadel-i.com.ng/api/v1/user/auth/teachers/signUp`,
+        `https://api.citadel-i.com.ng/api/v1/user/auth/tecahers/signUp`,
         {
           method: "POST",
           body: formData,
@@ -321,13 +321,6 @@ export function SignUpForm() {
       >
         {loading ? "Submitting..." : "Create Teacher Account"}
       </Button>
-       <p className="text-center text-xs text-gray-500 ">
-        Already have an account?{" "}
-        <a href="/teachers/login" className="text-orange-500">
-          Log in
-        </a>
-      </p>
     </form>
-
   );
 }
