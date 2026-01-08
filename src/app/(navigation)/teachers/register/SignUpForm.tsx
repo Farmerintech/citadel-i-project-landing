@@ -84,7 +84,7 @@ export function SignUpForm() {
     const formData = new FormData(e.currentTarget);
 
     formData.append("discipline", discipline);
-    formData.append("qualification", qualification);
+    formData.append("qualifications", qualification);
     formData.append("subjects", JSON.stringify(subjects));
     formData.append("classGroup", classGroup);
     formData.append("classYears", JSON.stringify(classYears));
@@ -93,7 +93,7 @@ export function SignUpForm() {
 
     try {
       const res = await fetch(
-        `https://api.citadel-i.com.ng/api/v1/user/auth/teacher/signUp`,
+        `https://api.citadel-i.com.ng/api/v1/user/auth/tecahers/signUp`,
         {
           method: "POST",
           body: formData,
