@@ -3,16 +3,12 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Eye, EyeOff, ChevronsRight, Loader2 } from "lucide-react";
-import googleLogo from "@/app/assets/google.svg";
-import { useRouter, usePathname } from "next/navigation";
-import { useUser } from "@/app/context/reducer";
+import { useRouter } from "next/navigation";
 
  
 
 export const SignUpForm = () => {
     const router = useRouter();
-  const pathname = usePathname();
-    const { dispatch } = useUser();
   
   const [formData, setFormData] = useState({
     email: "",
@@ -73,20 +69,7 @@ export const SignUpForm = () => {
         setMessage(result?.message || "Account created successfully");
         setFormData({ email: "", password: "", firstName: "", lastName: "" });
         setIsChecked(false);
-                  router.push(pathname);
-           dispatch({
-    type: 'LOGIN',
-    payload: {
-      email:result.user.email,
-      firstName:result.user.firstName,
-      lastName:result.user.lastName,
-      token:result.user.token,
-      role:result.user.role,
-      subjects:[],
-      examMode:''
-    },
-  });
-    window.location.reload();
+        router.push("/teachers/login");
 
       } else {
         const errMsg =
@@ -168,9 +151,9 @@ export const SignUpForm = () => {
         />
         <span>
           I agree to the citadel-i-project{" "}
-          <a href="#" className="text-orange-500">
+          <a href="/terms_conditions" className="text-orange-500">
             Terms & Conditions
-          </a>
+          </a> and <a href="/privacy_policy"  className="text-orange-500">Privacy Policy</a>
         </span>
       </div>
 

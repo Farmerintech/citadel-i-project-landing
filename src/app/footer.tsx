@@ -66,8 +66,8 @@ Info@citadelprojects.com              </p>
             Copyright &copy; 2025 Citadel-i-Projects
           </p>
           <span className="text-white text-[14px] justify-between md:justify-center flex gap-[32px]">
-            <p className="">Terms and Condition</p>
-            <p className="">Privacy Policy</p>
+            <a className="" href="/terms_conditions">Terms and Condition</a>
+            <a className="" href="/privacy_policy">Privacy Policy</a>
           </span>
         </div>
       </section>

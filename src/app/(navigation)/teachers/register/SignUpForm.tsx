@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useRouter } from "next/navigation";
 
 const DISCIPLINES = ["Science", "Arts", "Commercial"];
 const QUALIFICATIONS = ["NCE", "B.Sc", "B.Ed", "M.Sc", "M.Ed", "PhD"];
@@ -76,6 +77,7 @@ export function SignUpForm() {
     );
   };
 
+  const router = useRouter()
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -112,11 +114,16 @@ export function SignUpForm() {
       setClassYears([]);
       setClassGroup("");
       setPassport(null);
+      router.push("/teachers/login");
     } catch {
       alert("Something went wrong");
     } finally {
       setLoading(false);
     }
+  };
+  const [isChecked, setIsChecked] = useState<any>()
+ const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(e.target.checked);
   };
 
   return (
@@ -319,9 +326,22 @@ export function SignUpForm() {
           </div>
         </div>
       </div>
-
+ <div className="flex items-center text-xs">
+        <input
+          type="checkbox"
+          className="mr-2"
+          checked={isChecked}
+          onChange={handleCheck}
+        />
+        <span>
+          I agree to the citadel-i-project{" "}
+          <a href="/terms_conditions" className="text-orange-500">
+            Terms & Conditions
+          </a> and <a href="/privacy_policy"  className="text-orange-500">Privacy Policy</a>
+        </span>
+      </div>
       <Button
-        disabled={loading}
+        disabled={loading || !isChecked}
         className="w-full bg-orange-500 hover:bg-orange-600"
       >
         {loading ? "Submitting..." : "Create Teacher Account"}
