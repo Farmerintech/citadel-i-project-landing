@@ -118,7 +118,7 @@ export default function Header() {
     </div> */}
 
     <a 
-    href={user.role ==="student" ? "/student/dashbaord" :"/teachers/dashbaord"}
+    href={user.role ==="student" ? "/student/dashboard" :"/teachers/dashboard"}
     className="bg-[#FF5900] px-5 py-2 text-[16px] rounded-md text-white">Dashboard</a>
   </div>
       )
@@ -410,7 +410,7 @@ export default function Header() {
     </div> */}
 
     <a 
-    href={user.role ==="student" ? "/student/dashbaord" :"/teachers/dashbaord"}
+    href={user.role ==="student" ? "/student/dashboard" :"/teachers/dashboard"}
     className="bg-[#FF5900] px-5 py-2 text-[16px] rounded-md text-white">Dashboard</a>
   </div>
                 )
