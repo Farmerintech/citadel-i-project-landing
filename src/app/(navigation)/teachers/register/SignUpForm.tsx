@@ -58,7 +58,6 @@ export function SignUpForm() {
   const [discipline, setDiscipline] = useState("");
   const [qualification, setQualification] = useState("");
   const [subjects, setSubjects] = useState<string[]>([]);
-
   const [classGroup, setClassGroup] = useState<string>("");
   const [classYears, setClassYears] = useState<string[]>([]);
 
@@ -99,7 +98,7 @@ export function SignUpForm() {
           body: formData,
         }
       );
-
+      console.log(formData)
       const data = await res.json();
 
       if (!res.ok) {
@@ -210,9 +209,15 @@ export function SignUpForm() {
                 </SelectContent>
               </Select>
             </div>
+            
+          </div>
+           <div className="grid grid-cols-1">
+            <Label>Course of Study</Label>
+            <Input name="courseOfStudy" type="text" required />
           </div>
         </div>
-
+        
+     
         {/* ================= RIGHT ================= */}
         <div className="space-y-4">
           <div>
