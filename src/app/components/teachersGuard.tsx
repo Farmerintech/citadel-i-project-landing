@@ -4,27 +4,27 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "../store/user";
 
-export default function StudentGuard({
+export default function TeacherGuard({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const router = useRouter();
   const user = useAuthStore((s) => s.user);
-  const isStudent = useAuthStore((s) => s.isStudent());
+  const isTeacher = useAuthStore((s) => s.isTeacher());
 
   useEffect(() => {
     if (!user) {
-      router.replace("/student/login");
+      router.replace("/teachers/login");
       return;
     }
 
-    if (isStudent) {
-      router.replace("/student/dashboard"); // or /teacher/dashboard
+    if (isTeacher) {
+      router.replace("/teachers/dashboard"); // or /teacher/dashboard
     }
-  }, [user, isStudent, router]);
+  }, [user, isTeacher, router]);
 
-  if (!user || !isStudent) {
+  if (!user || !isTeacher) {
     return null; // prevent flash
   }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import StudentGuard from "@/app/components/studentsGuard";
+import TeacherGuard from "@/app/components/teachersGuard";
 import { useAuthStore } from "@/app/store/user";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -99,7 +99,7 @@ export default function TeacherDashboard() {
   if (!teacher) return <p className="p-6">Loading dashboard...</p>;
 
   return (
-    
+    <TeacherGuard>
     <div className="min-h-screen bg-gray-100 flex">
       {/* Sidebar */}
       <aside
@@ -265,6 +265,6 @@ export default function TeacherDashboard() {
         </div>
       </main>
     </div>
-    
+    </TeacherGuard>
   );
 }
