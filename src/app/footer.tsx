@@ -21,8 +21,7 @@ export default function footer() {
             </span>
             <span className="">
               <p className="text-[14px] text-[#F1A500]">Address</p>
-              <p className="text-[14px] text-white">
-27 Oyegbemi st, Ijora-Oloye, Ijora, Lagos, Nigeria.              </p>
+              <p className="text-[14px] text-white">27 Oyegbemi st, Ijora-Oloye, Ijora, Lagos, Nigeria.              </p>
             </span>
 
             <span className="">
@@ -32,8 +31,7 @@ export default function footer() {
 
             <span className="">
               <p className="text-[14px] text-[#F1A500]">Email</p>
-              <p className="text-[14px] text-white">
-Info@citadelprojects.com              </p>
+              <p className="text-[14px] text-white">citadelprojects7@gmail.com</p>
             </span>
           </aside>
 

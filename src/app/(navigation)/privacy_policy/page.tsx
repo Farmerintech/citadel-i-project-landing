@@ -277,7 +277,7 @@ export default function PrivacyPolicy() {
       <p className="mt-2">
         Citadel-i-Projects
         <br />
-        Email: Info@citadelprojects.com
+        Email: citadelprojects7@gmail.com
         <br />
         Address: 27 Oyegbemi st, Ijora-Oloye, Ijora, Lagos, Nigeria.
       </p>
