@@ -5,6 +5,7 @@ import { FaGraduationCap } from "react-icons/fa";
 import Bookings1 from "@/app/assets/bookings1.png"
 import Bookings2 from "@/app/assets/bookings2.jpg"
 import { useEffect, useState } from "react";
+import TutorBookingForm from "./booking";
 
 
 interface Subject {
@@ -209,32 +210,7 @@ const [showDetails, setShowDetails] = useState(false);
           </aside>
         </section>
         <section className="bg-[#F9D68A] flex md:flex-row flex-col gap-[32px] justify-center px-[32px] py-[24px]">
-            <aside className="w-full md:w-[519px] bg-white text-black p-[24px] rounded-[8px] gap-[31px]">
-                <h2 className="font-[600] mb-5">Tutor Booking</h2>
-                <form className="flex gap-[24px] flex-col ">
-                <div>
-                    <label>First and last Name</label>
-                    <input type="text" className="md:w-[417px] w-full h-[43px] p-[12px] rounded-[8px] border-1"/>
-                </div>
-                 <div>
-                    <label>Email address</label>
-                    <input type="text" className="md:w-[417px] w-full h-[43px] p-[12px] rounded-[8px] border-1"/>
-                </div> 
-                <div>
-                    <label>Phone Number</label>
-                    <input type="text" className="md:w-[417px] w-full h-[43px] p-[12px] rounded-[8px] border-1"/>
-                </div>
-                 <div>
-                    <label>Class Booking For</label>
-                    <input type="text" className="md:w-[417px] w-full h-[43px] p-[12px] rounded-[8px] border-1"/>
-                </div>
-                <div>
-                    <p>Note: You need to make a payment of #15 000  for your bookings to be successful </p>
-                </div>
-                <button className="bg-[#FF5900] text-white px-[24px] py-[12px] gap-[8px] rounded-[8px]">Make payment</button>
-
-                </form>
-            </aside>
+           <TutorBookingForm/>
             <aside className="max-w-[477px]">
               <h2 className="font-[600] mb-5">Terms and Conditions/Process</h2>
               <ul>

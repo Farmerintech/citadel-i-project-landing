@@ -277,7 +277,7 @@ export default function page() {
 
 </div> */}
 
-
+{/* 
         <div className="flex flex-col gap-[12px]">
 
           <Accordion type="single" className='' collapsible>
@@ -306,7 +306,7 @@ export default function page() {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-        </div>
+        </div> */}
 
 
         <div className="flex flex-col gap-[32px]">
@@ -322,7 +322,7 @@ export default function page() {
                   <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>
                     <Link href={`/exam_preparation/${subject.url}/exam_questions`} >Study Past Questions</Link></Button>
                   <Button variant="outline" className='border border-[#FF5900] text-[#FF5900]'>
-                    <Link href={`/exam_preparation/${subject.url}/cbt`} >Practice CBT</Link></Button>
+                    <Link href={`/exam_preparation/cbt`} >Practice CBT</Link></Button>
                 </span>
               </article>
 

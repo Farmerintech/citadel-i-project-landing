@@ -4,6 +4,7 @@ import { useCBTStore } from "@/app/store/cbt";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { FaCalculator, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FiClock } from "react-icons/fi";
+import { useRouter } from "next/navigation";
 
 interface Question {
   question: string;
@@ -115,41 +116,31 @@ export default function Page() {
   /* =======================
      SCORE CALCULATION
   ======================= */
-/* =======================
-   SCORE CALCULATION
-======================= */
+
+const router = useRouter();
 const calculateScore = () => {
-  // ✅ Calculate and update individual subject scores
-  subjects.forEach((subject) => {
+  // Calculate individual subject scores dynamically
+  subjectState.forEach(({ subject }) => {
     const subjectQuestions = questions[subject] || [];
     const subjectAnswers = answers[subject] || {};
-    let score = 0;
+
+    const totalQuestions = subjectQuestions.length;
+    let correct = 0;
 
     subjectQuestions.forEach((item, idx) => {
-      if (subjectAnswers[idx] === item.answer) score++;
+      if (subjectAnswers[idx] === item.answer) correct++;
     });
 
-    updateScore(subject, score); // update zustand store
+    // Scale to 100
+    const score = totalQuestions > 0 ? Math.round((correct / totalQuestions) * 100) : 0;
+
+    updateScore(subject, score);
   });
 
-  // ✅ Wait for state update (or just read from current store)
-  const currentScores = useCBTStore.getState().subjects; // [{subject, score}, ...]
-
-  // Individual scores
-  let message = "Individual Scores:\n";
-  let totalScore = 0;
-  currentScores.forEach(({ subject, score }) => {
-    message += `${subject}: ${score}\n`;
-    totalScore += score;
-  });
-
-  message += `\nTotal Score: ${totalScore}`;
-
-  alert(message);
-
-  // Reset exam
-  resetCBT();
+  // Redirect to score page
+  router.push("/exam_preparation/jamb_simulator/score");
 };
+
 
   /* =======================
      COUNTDOWN TIMER 2hrs
