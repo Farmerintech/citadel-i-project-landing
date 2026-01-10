@@ -25,7 +25,7 @@ export default async function handler(
       body: JSON.stringify({
         email,
         amount, // in kobo
-        callback_url: `${process.env.NEXT_PUBLIC_BASE_URL}/payment-callback`,
+        callback_url: `${process.env.NEXT_PUBLIC_BASE_URL}/payment-callback`,//https:citadel-i.com.ng
         metadata: { name },
       }),
     });
