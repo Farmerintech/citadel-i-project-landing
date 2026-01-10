@@ -79,7 +79,7 @@ const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
 <StudentGuard>
-  <div className="flex min-h-screen bg-gray-100 relative">
+  <div className="flex min-h-screen ">
 
     {/* Mobile toggle button */}
     <button
