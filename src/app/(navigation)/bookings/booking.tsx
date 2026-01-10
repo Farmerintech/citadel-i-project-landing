@@ -97,7 +97,7 @@ const handlePayment = async () => {
           }
 
           // STEP 4: Submit booking to backend
-          const bookingRes = await fetch("/api/booking", {
+          const bookingRes = await fetch("https:api.citadel-i.com.ng/bookings/create_booking", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
