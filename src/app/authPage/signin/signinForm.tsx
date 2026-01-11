@@ -62,25 +62,8 @@ export const SignInForm = () => {
         setIsChecked(false);
         // Redirect or save token if needed
         router.push("/student");
-        useAuthStore.getState().login({
-        email: result.user.email,
-        firstName: result.user.firstName,
-        lastName: result.user.lastName,
-        token: result.user.token,
-        role: result.user.role, // "student" | "teacher"
-        });
-        dispatch({
-    type: 'LOGIN',
-    payload: {
-      email:result.user.email,
-      firstName:result.user.firstName,
-      lastName:result.user.lastName,
-      token:result.user.token,
-      role:result.user.role,
-      subjects:[],
-      examMode:''
-    },
-  });
+    
+      
       } else {
         const errorMsg =
           typeof result.message === "string"

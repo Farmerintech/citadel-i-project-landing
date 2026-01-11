@@ -2,8 +2,9 @@
 
 import StudentGuard from "@/app/components/studentsGuard";
 import { useAuthStore } from "@/app/store/user";
-import { useState, useEffect } from "react";
-
+import { useState, useEffect, ChangeEvent } from "react";
+import { useRouter } from "next/navigation";
+import { FiEdit } from "react-icons/fi";
 
 type Assignment = {
   id: number;
@@ -22,6 +23,7 @@ type Subscription = {
 };
 
 export default function StudentDashboard() {
+  const router = useRouter();
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
 
@@ -29,10 +31,13 @@ export default function StudentDashboard() {
   const [data, setData] = useState<Assignment[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>();
-
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const limit = 6;
+
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [profileImage, setProfileImage] = useState(user?.profileImage || "/profile.png");
 
   /* ================= FETCH SUBSCRIPTIONS ================= */
   useEffect(() => {
@@ -75,87 +80,133 @@ export default function StudentDashboard() {
   }, [page]);
 
   const isExpired = (date: string) => new Date(date) < new Date();
-const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  /* ================= UPLOAD PROFILE IMAGE ================= */
+  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("profileImage", file);
+
+    setUploading(true);
+
+    try {
+      const res = await fetch(`https://api.citadel-i.com.ng/api/v1/student//update_picture/${user?.id}`, {
+        method: "POST",
+        credentials: "include",
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.url) {
+        setProfileImage(data.url);
+      } else {
+        alert(data.message || "Upload failed");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error uploading image");
+    } finally {
+      setUploading(false);
+    }
+  };
 
   return (
-<StudentGuard>
-  <div className="flex min-h-screen ">
+    <StudentGuard>
+      <div className="flex min-h-screen">
 
-    {/* Mobile toggle button */}
-    <button
-      className="md:hidden fixed top-4 left-4 z-50 bg-orange-500 text-white p-2 rounded"
-      onClick={() => setSidebarOpen(true)}
-    >
-      ☰
-    </button>
-
-    {/* Overlay (mobile only) */}
-    {sidebarOpen && (
-      <div
-        className="fixed inset-0 bg-black/40 z-40 md:hidden"
-        onClick={() => setSidebarOpen(false)}
-      />
-    )}
-
-    {/* Sidebar */}
-    <aside
-      className={`
-        fixed md:static z-50
-        top-0 left-0 h-full md:h-screen
-        w-64 bg-[#FFEEE6] shadow-md p-6
-        transform transition-transform duration-300
-        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
-        md:translate-x-0
-        flex flex-col justify-between
-      `}
-    >
-      <div>
-        {/* Close button (mobile) */}
+        {/* Mobile toggle button */}
         <button
-          className="md:hidden mb-4 text-sm text-red-500"
-          onClick={() => setSidebarOpen(false)}
+          className="md:hidden fixed top-4 left-4 z-50 bg-orange-500 text-white p-2 rounded"
+          onClick={() => setSidebarOpen(true)}
         >
-          Close ✕
+          ☰
         </button>
 
-        <div className="flex flex-col items-center mb-6">
-          <img
-            src="/profile.png"
-            className="w-20 h-20 rounded-full mb-3 object-cover"
+        {/* Overlay (mobile only) */}
+        {sidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black/40 z-40 md:hidden"
+            onClick={() => setSidebarOpen(false)}
           />
-          <h2 className="text-xl font-bold">
-            {user?.firstName} {user?.lastName}
-          </h2>
-          <p className="text-gray-600 text-[10px]">{user?.email}</p>
-        </div>
+        )}
 
-        <div className="flex flex-col gap-3">
-          <button className="text-left px-3 py-2 rounded hover:bg-gray-200">
-            Change Name
+        {/* Sidebar */}
+        <aside
+          className={`
+            fixed md:static z-50
+            top-0 left-0 h-full md:h-screen
+            w-64 bg-[#FFEEE6] shadow-md p-6
+            transform transition-transform duration-300
+            ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+            md:translate-x-0
+            flex flex-col justify-between
+          `}
+        >
+          <div>
+            {/* Close button (mobile) */}
+            <button
+              className="md:hidden mb-4 text-sm text-red-500"
+              onClick={() => setSidebarOpen(false)}
+            >
+              Close ✕
+            </button>
+
+            {/* Profile Section */}
+            <div className="flex flex-col items-center mb-6 relative">
+              <img
+                src={profileImage}
+                className="w-20 h-20 rounded-full mb-3 object-cover"
+              />
+              <label className="absolute bottom-0 right-0 bg-white p-1 rounded-full cursor-pointer shadow-md hover:bg-gray-200">
+                <FiEdit className="text-sm text-gray-600" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleImageChange}
+                  disabled={uploading}
+                />
+              </label>
+              <h2 className="text-xl font-bold">{user?.firstName} {user?.lastName}</h2>
+              <p className="text-gray-600 text-[10px]">{user?.email}</p>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <button
+                className="text-left px-3 py-2 rounded hover:bg-gray-200"
+                onClick={() => router.push("/student/edit-profile")}
+              >
+                Edit Profile
+              </button>
+              <button className="text-left px-3 py-2 rounded hover:bg-gray-200">
+                Change Name
+              </button>
+              <button className="text-left px-3 py-2 rounded hover:bg-gray-200">
+                Change Password
+              </button>
+            </div>
+          </div>
+
+          <button
+            onClick={logout}
+            className="mt-6 w-full bg-red-800 text-white py-2 rounded cursor-pointer"
+          >
+            Logout
           </button>
-          <button className="text-left px-3 py-2 rounded hover:bg-gray-200">
-            Change Password
-          </button>
-        </div>
+        </aside>
+
+        {/* Main content */}
+        <main className="flex-1 p-6 md:ml-0">
+          <h3 className="text-2xl font-semibold mb-6">
+            Your Subscribed Classes
+          </h3>
+
+          {/* tables remain unchanged */}
+        </main>
       </div>
-
-      <button
-        onClick={logout}
-        className="mt-6 w-full bg-red-800 text-white py-2 rounded cursor-pointer"
-      >
-        Logout
-      </button>
-    </aside>
-
-    {/* Main content */}
-    <main className="flex-1 p-6 md:ml-0">
-      <h3 className="text-2xl font-semibold mb-6">
-        Your Subscribed Classes
-      </h3>
-
-      {/* tables remain unchanged */}
-    </main>
-  </div>
-</StudentGuard>
+    </StudentGuard>
   );
 }

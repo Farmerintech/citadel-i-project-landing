@@ -14,6 +14,8 @@ export interface User {
   subjects?: string[];
   students?:string[]
   isLoggedIn: boolean;
+  profileImage:any
+  id:any
 }
 
 interface AuthState {
