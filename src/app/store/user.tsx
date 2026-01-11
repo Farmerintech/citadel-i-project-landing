@@ -17,7 +17,6 @@ export interface User {
   profileImage:any
   id:any
 }
-
 interface AuthState {
   user: User | null;
 
