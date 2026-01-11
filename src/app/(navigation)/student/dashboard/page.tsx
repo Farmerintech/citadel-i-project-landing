@@ -92,7 +92,7 @@ export default function StudentDashboard() {
     setUploading(true);
 
     try {
-      const res = await fetch(`https://api.citadel-i.com.ng/api/v1/student//update_picture/${user?.id}`, {
+      const res = await fetch(`https://api.citadel-i.com.ng/api/v1/student/update_picture/${user?.id}`, {
         method: "POST",
         credentials: "include",
         body: formData,
