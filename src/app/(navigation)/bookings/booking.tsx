@@ -17,10 +17,11 @@ export default function TutorBookingForm() {
   const [selectedYear, setSelectedYear] = useState("");
   const [sectionsPerWeek, setSectionsPerWeek] = useState(1);
   const [amount, setAmount] = useState(0);
+  const [inUSD, setInUSD] = useState(0);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const [payPerSession, setPayPerSession] = useState(0); // Fetched price in Naira
-  const [usdRate, setUsdRate] = useState(0); // Fetched USD conversion rate
+  const [payPerSession, setPayPerSession] = useState(0); // Naira
+  const [usdRate, setUsdRate] = useState(0); // USD
 
   // Fetch pricing on mount
   useEffect(() => {
@@ -51,15 +52,15 @@ export default function TutorBookingForm() {
       else if (!YEARS.includes(selectedYear)) setSelectedYear("");
     }
   }, [selectedClass]);
-  const [inUSD, setInUSD] = useState<number>()
-  // Calculate amount dynamically
+
+  // Calculate amounts
   useEffect(() => {
-    if (sectionsPerWeek && selectedClass && payPerSession && usdRate) {
-      setAmount(payPerSession * sectionsPerWeek * 4); // monthly payment
-      setInUSD(usdRate * sectionsPerWeek * 4)
+    if (sectionsPerWeek > 0 && selectedClass) {
+      setAmount(payPerSession * sectionsPerWeek * 4); // monthly Naira
+      setInUSD(usdRate * sectionsPerWeek * 4); // monthly USD
     } else {
       setAmount(0);
-      setInUSD(0)
+      setInUSD(0);
     }
   }, [sectionsPerWeek, selectedClass, payPerSession, usdRate]);
 
@@ -150,7 +151,7 @@ export default function TutorBookingForm() {
               setSelectedYear("");
               setSectionsPerWeek(1);
               setAmount(0);
-              setInUSD(0)
+              setInUSD(0);
             } else {
               setMessage("Booking failed, please contact support.");
             }
@@ -192,7 +193,7 @@ export default function TutorBookingForm() {
 
         <div className="flex flex-col gap-1">
           <Label>Class Booking For</Label>
-          <Select onValueChange={setSelectedClass}>
+          <Select onValueChange={setSelectedClass} value={selectedClass}>
             <SelectTrigger>
               <SelectValue placeholder="Select Class" />
             </SelectTrigger>
@@ -207,7 +208,7 @@ export default function TutorBookingForm() {
         {selectedClass && selectedClass !== "ISCE/GCE" && (
           <div className="flex flex-col gap-1">
             <Label>Select Year</Label>
-            <Select onValueChange={setSelectedYear}>
+            <Select onValueChange={setSelectedYear} value={selectedYear}>
               <SelectTrigger>
                 <SelectValue placeholder="Select Year" />
               </SelectTrigger>
@@ -233,10 +234,10 @@ export default function TutorBookingForm() {
           </div>
         )}
 
-        {amount > 0 &&(
+        {amount > 0 && (
           <div className="p-4 bg-gray-100 rounded-md">
             <p className="font-medium">Amount to Pay:</p>
-            <p>₦{amount.toLocaleString()} / ${ inUSD?.toLocaleString() }</p>
+            <p>₦{amount.toLocaleString()} / ${inUSD.toLocaleString()}</p>
             <p className="text-sm text-gray-600">*Monthly Payment</p>
           </div>
         )}
