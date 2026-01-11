@@ -68,6 +68,8 @@ export const SignInForm = () => {
         lastName: result.user.lastName,
         token: result.user.token,
         role: result.user.role, // "student" | "teacher"
+        id:result.user.id,
+        profileImage:result.user.image
         });
   //       dispatch({
   //   type: 'LOGIN',
