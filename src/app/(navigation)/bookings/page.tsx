@@ -159,9 +159,9 @@ const [showDetails, setShowDetails] = useState(false);
               <p className="text-gray-400 text-sm">—</p>
             )}
         {/* Footer */}
-        <a className="mt-4 w-full bg-[#FF5900] text-white py-[10px] rounded-[8px] text-sm hover:opacity-90" href="#book">
-          Book Tutor
-        </a>
+        <button className="mt-4 w-full bg-[#FF5900] text-white py-[10px] rounded-[8px] text-sm hover:opacity-90">
+          <a href="#book">Book Tutor</a>
+        </button>
       </div>
     </div>
   ))}
@@ -169,16 +169,6 @@ const [showDetails, setShowDetails] = useState(false);
 
             
           </aside>
-                  <section id="book" className="bg-[#F9D68A] flex md:flex-row flex-col gap-[32px] justify-center px-[32px] py-[24px]">
-           <TutorBookingForm/>
-            <aside className="max-w-[477px]">
-              <h2 className="font-[600] mb-5">Terms and Conditions/Process</h2>
-              <ul>
-                <li>After making your payment. You’ll received a confirmation email immediately</li>
-              </ul>
-            </aside>
-          </section>
-
           <aside className="mt-10">
             <h2 className="font-[600] text-center mb-5">Why Book a Tutor With Us?</h2>
             <div className="flex flex-col md:flex-row gap-[80px] items-center justify-center ">
@@ -219,6 +209,15 @@ const [showDetails, setShowDetails] = useState(false);
             </div>
           </aside>
         </section>
+        <section id="book" className="bg-[#F9D68A] flex md:flex-row flex-col gap-[32px] justify-center px-[32px] py-[24px]">
+           <TutorBookingForm/>
+            <aside className="max-w-[477px]">
+              <h2 className="font-[600] mb-5">Terms and Conditions/Process</h2>
+              <ul>
+                <li>After making your payment. You’ll received a confirmation email immediately</li>
+              </ul>
+            </aside>
+          </section>
 
         </>
     )
