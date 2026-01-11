@@ -70,6 +70,7 @@ export const SignInForm = () => {
         role: result.user.role, // "student" | "teacher"
         id:result.user.id,
         profileImage:result.user.profileImage
+        
         });
   //       dispatch({
   //   type: 'LOGIN',

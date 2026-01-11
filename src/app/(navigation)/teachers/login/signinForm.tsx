@@ -64,13 +64,13 @@ export const SignInForm = () => {
         router.push("/teachers/dashboard");
         useAuthStore.getState().login({
         // id:result.teacher.id,
-      email: result.user.email,
-        firstName: result.user.firstName,
-        lastName: result.user.lastName,
-        token: result.user.token,
-        role: result.user.role, // "student" | "teacher"
-        id:result.user.id,
-        profileImage:result.user.passportPhoto
+        email: result.teacher.email,
+        firstName: result.teacher.firstName,
+        lastName: result.teacher.lastName,
+        token: result.token,
+        role: result.teacher.role, // "student" | "teacher"
+        id:result.teacher.id,
+        profileImage:result.teacher.passportPhoto
         });
   //       dispatch({
   //   type: 'LOGIN',
