@@ -36,9 +36,10 @@ export default function StudentDashboard() {
   const limit = 6;
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
+const avater = require("@/app/assets/avatar.jpg")
 
   /* ================= PROFILE IMAGE STATE ================= */
-  const [profileImage, setProfileImage] = useState(user?.profileImage || "/profile.png");
+  const [profileImage, setProfileImage] = useState(user?.profileImage || avater);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
@@ -129,7 +130,6 @@ export default function StudentDashboard() {
       setSaving(false);
     }
   };
-
   return (
     <StudentGuard>
       <div className="flex min-h-screen">
