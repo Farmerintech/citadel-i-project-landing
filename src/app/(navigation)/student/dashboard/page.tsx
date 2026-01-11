@@ -36,8 +36,12 @@ export default function StudentDashboard() {
   const limit = 6;
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [uploading, setUploading] = useState(false);
+
+  /* ================= PROFILE IMAGE STATE ================= */
   const [profileImage, setProfileImage] = useState(user?.profileImage || "/profile.png");
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
 
   /* ================= FETCH SUBSCRIPTIONS ================= */
   useEffect(() => {
@@ -81,27 +85,40 @@ export default function StudentDashboard() {
 
   const isExpired = (date: string) => new Date(date) < new Date();
 
-  /* ================= UPLOAD PROFILE IMAGE ================= */
-  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
+  /* ================= HANDLE IMAGE PREVIEW ================= */
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const formData = new FormData();
-    formData.append("profileImage", file);
+    setSelectedFile(file);
+    setPreviewImage(URL.createObjectURL(file)); // preview immediately
+  };
 
-    setUploading(true);
+  const handleSaveImage = async () => {
+    if (!selectedFile) return;
+
+    setSaving(true);
+
+    const formData = new FormData();
+    formData.append("profileImage", selectedFile);
 
     try {
-      const res = await fetch(`https://api.citadel-i.com.ng/api/v1/student/update_picture/${user?.id}`, {
-        method: "POST",
-        credentials: "include",
-        body: formData,
-      });
+      const res = await fetch(
+        `https://api.citadel-i.com.ng/api/v1/student/update_picture/${user?.id}`,
+        {
+          method: "POST",
+          credentials: "include",
+          body: formData,
+        }
+      );
 
       const data = await res.json();
 
       if (res.ok && data.url) {
-        setProfileImage(data.url);
+        setProfileImage(data.url); // update profile
+        setSelectedFile(null);
+        setPreviewImage(null);
+        alert("Profile image updated successfully!");
       } else {
         alert(data.message || "Upload failed");
       }
@@ -109,7 +126,7 @@ export default function StudentDashboard() {
       console.error(err);
       alert("Error uploading image");
     } finally {
-      setUploading(false);
+      setSaving(false);
     }
   };
 
@@ -157,7 +174,7 @@ export default function StudentDashboard() {
             {/* Profile Section */}
             <div className="flex flex-col items-center mb-6 relative">
               <img
-                src={profileImage}
+                src={previewImage || profileImage}
                 className="w-20 h-20 rounded-full mb-3 object-cover"
               />
               <label className="absolute bottom-0 right-0 bg-white p-1 rounded-full cursor-pointer shadow-md hover:bg-gray-200">
@@ -167,9 +184,21 @@ export default function StudentDashboard() {
                   accept="image/*"
                   className="hidden"
                   onChange={handleImageChange}
-                  disabled={uploading}
+                  disabled={saving}
                 />
               </label>
+
+              {/* Save button appears only if new image is selected */}
+              {selectedFile && (
+                <button
+                  className="mt-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                  onClick={handleSaveImage}
+                  disabled={saving}
+                >
+                  {saving ? "Saving..." : "Save"}
+                </button>
+              )}
+
               <h2 className="text-xl font-bold">{user?.firstName} {user?.lastName}</h2>
               <p className="text-gray-600 text-[10px]">{user?.email}</p>
             </div>
@@ -204,7 +233,16 @@ export default function StudentDashboard() {
             Your Subscribed Classes
           </h3>
 
-          {/* tables remain unchanged */}
+          {/* Render subscriptions or assignments here */}
+          {subscriptions.map((sub, idx) => (
+            <div key={idx} className="mb-4 p-4 border rounded shadow-sm">
+              <h4 className="font-bold">{sub.name}</h4>
+              <p className="text-sm">{sub.type} - {sub.startDate} to {sub.endDate}</p>
+            </div>
+          ))}
+
+          {loading && <p>Loading assignments...</p>}
+          {error && <p className="text-red-500">{error}</p>}
         </main>
       </div>
     </StudentGuard>
