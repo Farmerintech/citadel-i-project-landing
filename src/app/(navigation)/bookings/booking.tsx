@@ -8,8 +8,6 @@ import { Input } from "@/components/ui/input";
 
 const CLASSES = ["KS1", "KS2", "KS3", "ISCE/GCE"];
 const YEARS = ["Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"];
-const PAY_PER_SESSION = 1500; // Naira
-const USD_RATE = 2000; // 1 USD = 460 Naira
 
 export default function TutorBookingForm() {
   const [name, setName] = useState("");
@@ -21,7 +19,32 @@ export default function TutorBookingForm() {
   const [amount, setAmount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [payPerSession, setPayPerSession] = useState(0); // Fetched price in Naira
+  const [usdRate, setUsdRate] = useState(0); // Fetched USD conversion rate
 
+  // Fetch pricing on mount
+  useEffect(() => {
+    const fetchPricing = async () => {
+      try {
+        const res = await fetch("https://api.citadel-i.com.ng/api/v1/admin/get_pricing", {
+          method: "GET",
+          credentials: "include",
+        });
+        const data = await res.json();
+
+        if (res.ok && data?.data) {
+          setPayPerSession(Number(data.data.price_per_season_in_naira));
+          setUsdRate(Number(data.data.price_per_season_in_dollar));
+        }
+      } catch (err) {
+        console.error("Error fetching price:", err);
+      }
+    };
+
+    fetchPricing();
+  }, []);
+
+  // Reset year if class changes
   useEffect(() => {
     if (selectedClass) {
       if (selectedClass === "ISCE/GCE") setSelectedYear("");
@@ -29,123 +52,121 @@ export default function TutorBookingForm() {
     }
   }, [selectedClass]);
 
+  // Calculate amount dynamically
   useEffect(() => {
-    if (sectionsPerWeek && selectedClass) {
-      setAmount(PAY_PER_SESSION * sectionsPerWeek * 4);
+    if (sectionsPerWeek && selectedClass && payPerSession && usdRate) {
+      setAmount(payPerSession * sectionsPerWeek * 4); // monthly payment
     } else {
       setAmount(0);
     }
-  }, [sectionsPerWeek, selectedClass]);
+  }, [sectionsPerWeek, selectedClass, payPerSession, usdRate]);
 
-const handlePayment = async () => {
-  if (!name || !email || !phone || !selectedClass || (selectedClass !== "ISCE/GCE" && !selectedYear)) {
-    setMessage("Please fill all required fields");
-    return;
-  }
-
-  setLoading(true);
-  setMessage("");
-
-  try {
-    // STEP 1: Initialize payment via backend
-    const res = await fetch("/api/payment", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        amount: amount * 100, // Paystack expects kobo
-        email,
-        name,
-      }),
-    });
-
-    const data = await res.json();
-
-    if (!data.success) {
-      setMessage("Payment initialization failed. Please try again.");
-      setLoading(false);
+  const handlePayment = async () => {
+    if (!name || !email || !phone || !selectedClass || (selectedClass !== "ISCE/GCE" && !selectedYear)) {
+      setMessage("Please fill all required fields");
       return;
     }
 
-    const { reference, publicKey } = data; // reference from backend & your Paystack public key
+    setLoading(true);
+    setMessage("");
 
-    // STEP 2: Launch Paystack inline payment
-    const handler = (window as any).PaystackPop?.setup({
-      key: publicKey, // your Paystack public key
-      email,
-      amount: amount * 100, // in kobo
-      currency: "NGN",
-      ref: reference,
-      onClose: () => {
-        setMessage("Payment was not completed.");
+    try {
+      const res = await fetch("/api/payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amount: amount * 100, // Paystack expects kobo
+          email,
+          name,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!data.success) {
+        setMessage("Payment initialization failed. Please try again.");
         setLoading(false);
-      },
-      callback: async (response: { reference: string }) => {
-        // STEP 3: Verify payment on backend
-        try {
-          const verifyRes = await fetch("/api/verify-payment", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ reference: response.reference }),
-          });
+        return;
+      }
 
-          const verifyData = await verifyRes.json();
+      const { reference, publicKey } = data;
 
-          if (!verifyData.success) {
-            setMessage("Payment was not successful. Please try again.");
-            setLoading(false);
-            return;
-          }
-
-          // STEP 4: Submit booking to backend
-          const bookingRes = await fetch("https:api.citadel-i.com.ng/bookings/create_booking", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              name,
-              email,
-              phone,
-              selectedClass,
-              selectedYear,
-              sectionsPerWeek,
-              amountPaid: amount,
-              currency: "NGN",
-              paymentId: response.reference,
-              paymentStatus: "successful",
-            }),
-          });
-
-          const bookingResult = await bookingRes.json();
-
-          if (bookingResult.success) {
-            setMessage("Booking successful! Payment confirmed.");
-            // Reset form
-            setName("");
-            setEmail("");
-            setPhone("");
-            setSelectedClass("");
-            setSelectedYear("");
-            setSectionsPerWeek(1);
-            setAmount(0);
-          } else {
-            setMessage("Booking failed, please contact support.");
-          }
-        } catch (err) {
-          console.error(err);
-          setMessage("Error verifying payment. Try again.");
-        } finally {
+      const handler = (window as any).PaystackPop?.setup({
+        key: publicKey,
+        email,
+        amount: amount * 100,
+        currency: "NGN",
+        ref: reference,
+        onClose: () => {
+          setMessage("Payment was not completed.");
           setLoading(false);
-        }
-      },
-    });
+        },
+        callback: async (response: { reference: string }) => {
+          try {
+            const verifyRes = await fetch("/api/verify-payment", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ reference: response.reference }),
+            });
 
-    handler.openIframe();
-  } catch (err) {
-    console.error(err);
-    setMessage("An error occurred. Please try again.");
-    setLoading(false);
-  }
-};
+            const verifyData = await verifyRes.json();
 
+            if (!verifyData.success) {
+              setMessage("Payment was not successful. Please try again.");
+              setLoading(false);
+              return;
+            }
+
+            const bookingRes = await fetch(
+              "https://api.citadel-i.com.ng/bookings/create_booking",
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  name,
+                  email,
+                  phone,
+                  selectedClass,
+                  selectedYear,
+                  sectionsPerWeek,
+                  amountPaid: amount,
+                  currency: "NGN",
+                  paymentId: response.reference,
+                  paymentStatus: "successful",
+                }),
+              }
+            );
+
+            const bookingResult = await bookingRes.json();
+
+            if (bookingResult.success) {
+              setMessage("Booking successful! Payment confirmed.");
+              setName("");
+              setEmail("");
+              setPhone("");
+              setSelectedClass("");
+              setSelectedYear("");
+              setSectionsPerWeek(1);
+              setAmount(0);
+            } else {
+              setMessage("Booking failed, please contact support.");
+            }
+          } catch (err) {
+            console.error(err);
+            setMessage("Error verifying payment. Try again.");
+          } finally {
+            setLoading(false);
+          }
+        },
+      });
+
+      handler.openIframe();
+    } catch (err) {
+      console.error(err);
+      setMessage("An error occurred. Please try again.");
+      setLoading(false);
+    }
+  };
 
   return (
     <aside className="w-full md:w-[520px] bg-white text-black p-6 rounded-lg flex flex-col gap-6 shadow-md">
@@ -212,7 +233,7 @@ const handlePayment = async () => {
         {amount > 0 && (
           <div className="p-4 bg-gray-100 rounded-md">
             <p className="font-medium">Amount to Pay:</p>
-            <p>₦{amount.toLocaleString()} / ${ (amount / USD_RATE).toFixed(2) }</p>
+            <p>₦{amount.toLocaleString()} / ${ (amount / usdRate).toFixed(2) }</p>
             <p className="text-sm text-gray-600">*Monthly Payment</p>
           </div>
         )}
