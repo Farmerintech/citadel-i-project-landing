@@ -60,7 +60,7 @@ export default function Header() {
           <SignInPage setShowLogin={setShowLogin} />
         </div>
       )}
-    <header className=" flex  w-[100%] bg-[#FEF6E6] md:bg-[#FFFFFF]" >
+    <header className=" flex  w-[100%] bg-[#FEF6E6] md:bg-[#FFFFFF] z-100" >
       <nav className=" p-[24px] md:p-0  flex justify-between w-[100%] ">
         {/* Logo */}
         <div className="flex md:hidden items-center">
@@ -148,7 +148,7 @@ export default function Header() {
 
         {/* Classes Dropdown */}
         <li
-          className={`relative text-[16px] border-[#FF5900] font-normal flex items-center gap-[4px] hover:text-[#FF5900] hover ${
+          className={`relative text-[16px] border-[#FF5900] z-50 font-normal flex items-center gap-[4px] hover:text-[#FF5900] hover ${
             currentNav === 1 ? "text-[#FF5900] border-b-[3px]" : "text-black"
           }`}
           onMouseEnter={() => setIsClassesDropdownOpen(true)}
@@ -234,11 +234,11 @@ export default function Header() {
       </ul>
 
       {/* Right Section - Resources Dropdown, Sponsor, Search, Book a Tutor */}
-      <div className="flex justify-center gap-[10px] xl:gap-[24px] items-center">
-        <ul className="flex justify-center gap-[32px]">
+      <div className="flex justify-center gap-[10px] xl:gap-[24px] items-center z-20">
+        <ul className="flex justify-center gap-[32px] z-50">
           {/* Resources Dropdown */}
           <li
-          className={`relative text-[16px] border-[#FF5900] font-normal flex items-center gap-[4px] hover:text-[#FF5900] hover ${
+          className={`z-50 relative text-[16px] border-[#FF5900] font-normal flex items-center gap-[4px] hover:text-[#FF5900] hover ${
             currentNav === 5 ? "text-[#FF5900] border-b-[3px]" : "text-black"
           }`}
           onMouseEnter={() => setIsExamDropDown(true)}

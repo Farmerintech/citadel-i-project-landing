@@ -5,6 +5,7 @@ import { useAuthStore } from "@/app/store/user";
 import { useState, useEffect, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 import { FiEdit } from "react-icons/fi";
+import Image from "next/image";
 
 type Assignment = {
   id: number;
@@ -25,6 +26,7 @@ type Subscription = {
 export default function StudentDashboard() {
   const router = useRouter();
   const user = useAuthStore((s) => s.user);
+  console.log(user)
   const logout = useAuthStore((s) => s.logout);
 
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
@@ -107,7 +109,7 @@ const avater = require("@/app/assets/avatar.jpg")
       const res = await fetch(
         `https://api.citadel-i.com.ng/api/v1/student/update_picture/${user?.id}`,
         {
-          method: "POST",
+          method: "PATCH",
           credentials: "include",
           body: formData,
         }
@@ -153,7 +155,7 @@ const avater = require("@/app/assets/avatar.jpg")
         {/* Sidebar */}
         <aside
           className={`
-            fixed md:static z-50
+            fixed md:static z-10
             top-0 left-0 h-full md:h-screen
             w-64 bg-[#FFEEE6] shadow-md p-6
             transform transition-transform duration-300
@@ -173,11 +175,14 @@ const avater = require("@/app/assets/avatar.jpg")
 
             {/* Profile Section */}
             <div className="flex flex-col items-center mb-6 relative">
-              <img
-                src={previewImage || profileImage}
-                className="w-20 h-20 rounded-full mb-3 object-cover"
-              />
-              <label className="absolute bottom-0 right-0 bg-white p-1 rounded-full cursor-pointer shadow-md hover:bg-gray-200">
+             <Image
+  src={previewImage || profileImage}
+  alt="Profile"
+  width={100}       // 20 * 4 (Tailwind w-20)
+  height={100}      // 20 * 4 (Tailwind h-20)
+  className="w-[80px] h-[80px] rounded-[40px] mb-3 object-cover"
+/>
+              <label className="absolute top-10 right-10 bg-white p-1 rounded-full cursor-pointer shadow-md hover:bg-gray-200">
                 <FiEdit className="text-sm text-gray-600" />
                 <input
                   type="file"
@@ -234,15 +239,15 @@ const avater = require("@/app/assets/avatar.jpg")
           </h3>
 
           {/* Render subscriptions or assignments here */}
-          {subscriptions.map((sub, idx) => (
+          {/* {subscriptions.map((sub, idx) => (
             <div key={idx} className="mb-4 p-4 border rounded shadow-sm">
               <h4 className="font-bold">{sub.name}</h4>
               <p className="text-sm">{sub.type} - {sub.startDate} to {sub.endDate}</p>
             </div>
-          ))}
+          ))} */}
 
-          {loading && <p>Loading assignments...</p>}
-          {error && <p className="text-red-500">{error}</p>}
+          {/* {loading && <p>Loading assignments...</p>}
+          {error && <p className="text-red-500">{error}</p>} */}
         </main>
       </div>
     </StudentGuard>
