@@ -12,19 +12,20 @@ export interface User {
   token: string;
   role: Role;
   subjects?: string[];
-  students?:string[]
+  students?: string[];
   isLoggedIn: boolean;
-  profileImage:any
-  id:any
+  profileImage?: any;
+  id?: any;
 }
+
 interface AuthState {
   user: User | null;
+  hasHydrated: boolean;
 
   login: (user: Omit<User, "isLoggedIn">) => void;
   logout: () => void;
   updateUser: (data: Partial<Omit<User, "isLoggedIn">>) => void;
 
-  // helpers
   isStudent: () => boolean;
   isTeacher: () => boolean;
 }
@@ -33,16 +34,14 @@ export const useAuthStore = create<AuthState>()(
   persist(
     (set, get) => ({
       user: null,
+      hasHydrated: false,
 
       login: (user) =>
         set({
           user: { ...user, isLoggedIn: true },
         }),
 
-      logout: () =>
-        set({
-          user: null,
-        }),
+      logout: () => set({ user: null }),
 
       updateUser: (data) =>
         set((state) =>
@@ -55,7 +54,12 @@ export const useAuthStore = create<AuthState>()(
       isTeacher: () => get().user?.role === "teacher",
     }),
     {
-      name: "auth-storage", // localStorage key
+      name: "auth-storage",
+      skipHydration: true,
+      onRehydrateStorage: () => (state) => {
+        state?.hasHydrated && console.log("hydrated");
+        if (state) state.hasHydrated = true;
+      },
     }
   )
 );
