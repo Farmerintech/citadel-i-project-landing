@@ -162,7 +162,8 @@ const verifyRes = await fetch("/api/verify-payment", {
         const bookingResult = await bookingRes.json();
         if (!bookingResult.success) throw new Error("Booking failed");
 
-        setMessage("Booking successful! Payment confirmed.");
+        // setMessage("");
+        alert("Booking successful! Payment confirmed.")
         setName(""); setEmail(""); setPhone(""); setSelectedClass(""); setSelectedYear("");
         setSectionsPerWeek(1); setAmount(0); setInUSD(0);
       } catch (err: any) {
