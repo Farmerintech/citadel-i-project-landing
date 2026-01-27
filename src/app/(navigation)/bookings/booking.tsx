@@ -144,16 +144,14 @@ const verifyRes = await fetch("/api/verify-payment", {
    const verifyData = await verifyRes.json();
         if (!verifyData.success) throw new Error("Payment verification failed");
 
-        const bookingRes = await fetch(
+  const bookingRes = await fetch(
   "https://api.citadel-i.com.ng/api/v1/bookings/create_booking",
   {
     method: "POST",
+        credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
-    credentials: "include",
-     
-            
             body: JSON.stringify({
               name,
               email,
