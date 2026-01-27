@@ -50,6 +50,7 @@ export const SignInForm = () => {
     try {
       const res = await fetch("https://api.citadel-i.com.ng/api/v1/user/auth/signin", {
         method: "POST",
+        credentials: 'include', // ✅ Required to send and receive cookies!
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
@@ -72,18 +73,6 @@ export const SignInForm = () => {
         profileImage:result.user.profileImage
         
         });
-  //       dispatch({
-  //   type: 'LOGIN',
-  //   payload: {
-  //     email:result.user.email,
-  //     firstName:result.user.firstName,
-  //     lastName:result.user.lastName,
-  //     token:result.user.token,
-  //     role:result.user.role,
-  //     subjects:[],
-  //     examMode:''
-  //   },
-  // });
       } else {
         const errorMsg =
           typeof result.message === "string"

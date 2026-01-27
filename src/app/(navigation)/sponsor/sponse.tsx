@@ -36,23 +36,26 @@ export default function Sponsor() {
     setMessage("");
 
     try {
-      // Initialize payment
+      // 1️⃣ Initialize payment
       const res = await fetch("/api/paystack", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name,
+          amount: amount * 100, // convert to kobo
           email,
-          amount,
+          name,
         }),
       });
 
       const data = await res.json();
-      if (!res.ok || !data.success) throw new Error(data.message || "Payment initialization failed");
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || "Payment initialization failed");
+      }
 
       const { reference, publicKey } = data;
       const PaystackPop = (window as any).PaystackPop;
 
+      // 2️⃣ Setup Paystack payment
       const handler = PaystackPop.setup({
         key: publicKey,
         email,
@@ -60,56 +63,59 @@ export default function Sponsor() {
         currency: "NGN",
         ref: reference,
 
-        onClose: () => {
+        onClose: function () {
           setMessage("Payment was not completed.");
           setLoading(false);
         },
 
-        callback: async (response: any) => {
-          try {
-            // Verify payment directly through the same endpoint
-            const verifyRes = await fetch("/api/paystack", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ reference: response.reference }),
-            });
-
-            const verifyData = await verifyRes.json();
-            if (!verifyData.success) throw new Error("Payment verification failed");
-
-            // Create booking
-            const bookingRes = await fetch(
-              "https://api.citadel-i.com.ng/api/v1/bookings/sponsor",
-              {
+        callback: function (response: any) {
+          (async () => {
+            try {
+              // Verify payment
+              const verifyRes = await fetch("/api/verify-payment", {
                 method: "POST",
-                credentials: "include",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  name,
-                  email,
-                  phone,
-                  amountPaid: amount,
-                  currency: "NGN",
-                  paymentId: response.reference,
-                  paymentStatus: "successful",
-                }),
-              }
-            );
+                body: JSON.stringify({ reference: response.reference }),
+              });
 
-            const bookingResult = await bookingRes.json();
-            if (!bookingResult.success) throw new Error("Booking failed");
+              const verifyData = await verifyRes.json();
+              if (!verifyData.success)
+                throw new Error("Payment verification failed");
 
-            alert("Booking successful! Payment confirmed.");
-            setName("");
-            setEmail("");
-            setPhone("");
-            setAmount(0);
-          } catch (err: any) {
-            console.error(err);
-            setMessage(err.message || "Error verifying payment. Try again.");
-          } finally {
-            setLoading(false);
-          }
+              // Create booking
+              const bookingRes = await fetch(
+                "https://api.citadel-i.com.ng/api/v1/bookings/create_booking",
+                {
+                  method: "POST",
+                  credentials: "include",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    name,
+                    email,
+                    phone,
+                    amountPaid: amount,
+                    currency: "NGN",
+                    paymentId: response.reference,
+                    paymentStatus: "successful",
+                  }),
+                }
+              );
+
+              const bookingResult = await bookingRes.json();
+              if (!bookingResult.success) throw new Error("Booking failed");
+
+              alert("Booking successful! Payment confirmed.");
+              setName("");
+              setEmail("");
+              setPhone("");
+              setAmount(0);
+            } catch (err: any) {
+              console.error(err);
+              setMessage(err.message || "Error verifying payment. Try again.");
+            } finally {
+              setLoading(false);
+            }
+          })();
         },
       });
 
@@ -121,15 +127,16 @@ export default function Sponsor() {
     }
   };
 
+  // -------------------- JSX --------------------
   return (
     <aside className="w-full md:w-[520px] bg-white text-black p-6 rounded-lg flex flex-col gap-6 shadow-md">
-      <Script
+        <Script
         src="https://js.paystack.co/v1/inline.js"
         strategy="afterInteractive"
         onLoad={() => setPaystackReady(true)}
       />
 
-      <h2 className="text-xl font-semibold">Donate to Sponsor Students</h2>
+      <h2 className="text-xl font-semibold">Donate to sponsor students</h2>
       <div className="flex flex-col gap-4">
         {/* Name */}
         <div className="flex flex-col gap-1">
