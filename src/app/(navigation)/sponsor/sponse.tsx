@@ -37,6 +37,7 @@ export default function Sponsor() {
 
     
       // 1️⃣ Initialize payment - NO reference sent here
+
     try {
       // Initialize & verify payment from the same endpoint
       const res = await fetch("/api/paystack", {
@@ -79,8 +80,6 @@ export default function Sponsor() {
 
               const verifyData = await verifyRes.json();
               if (!verifyData.success) throw new Error("Payment verification failed");
-
-
               // 4️⃣ Create sponsor record
               const sponsorRes = await fetch(
                 "https://api.citadel-i.com.ng/api/v1/bookings/sponsor",
