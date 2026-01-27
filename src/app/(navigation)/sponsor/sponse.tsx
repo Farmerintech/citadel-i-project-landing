@@ -130,7 +130,7 @@ export default function Sponsor() {
   // -------------------- JSX --------------------
   return (
     <aside className="w-full md:w-[520px] bg-white text-black p-6 rounded-lg flex flex-col gap-6 shadow-md">
-        <Script
+      <Script
         src="https://js.paystack.co/v1/inline.js"
         strategy="afterInteractive"
         onLoad={() => setPaystackReady(true)}
