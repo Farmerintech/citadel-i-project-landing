@@ -83,7 +83,7 @@ export default function Sponsor() {
 
               // 4️⃣ Create sponsor record
               const sponsorRes = await fetch(
-                "https://api.citadel-i.com.ng/api/v1/bookings/create_booking",
+                "https://api.citadel-i.com.ng/api/v1/bookings/sponsor",
                 {
                   method: "POST",
                   credentials: "include", // send cookies if needed
@@ -169,7 +169,7 @@ export default function Sponsor() {
 
         {/* Amount */}
         <div className="flex flex-col gap-1">
-          <Label>Amount willing to sponsor</Label>
+          <Label>Amount</Label>
           <Input
             type="number"
             value={amount}
