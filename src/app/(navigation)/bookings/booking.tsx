@@ -148,7 +148,7 @@ const verifyRes = await fetch("/api/verify-payment", {
   "https://api.citadel-i.com.ng/api/v1/bookings/create_booking",
   {
     method: "POST",
-        credentials: "include",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -195,10 +195,10 @@ const verifyRes = await fetch("/api/verify-payment", {
   return (
     <aside className="w-full md:w-[520px] bg-white text-black p-6 rounded-lg flex flex-col gap-6 shadow-md">
       <Script
-        src="https://js.paystack.co/v1/inline.js"
-        strategy="afterInteractive"
-        onLoad={() => setPaystackReady(true)}
-      />
+  src="https://js.paystack.co/v1/inline.js"
+  strategy="lazyOnload"
+/>
+
 
       <h2 className="text-xl font-semibold">Tutor Booking</h2>
       <div className="flex flex-col gap-4">
