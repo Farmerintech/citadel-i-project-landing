@@ -12,10 +12,18 @@ const CLASSES = ["KS1", "KS2", "KS3", "ISCE/GCE"];
 const YEARS = ["Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"];
 
 export default function TutorBookingForm() {
-    const {user} = useAuthStore()
+const user = useAuthStore((state) => state.user);
 
-  const [name, setName] = useState(`${user?.firstName} ${user?.lastName}`);
-  const [email, setEmail] = useState(`${user?.email}`)
+const [name, setName] = useState("");
+const [email, setEmail] = useState("");
+
+useEffect(() => {
+  if (user) {
+    setName(`${user.firstName ?? ""} ${user.lastName ?? ""}`);
+    setEmail(user.email ?? "");
+  }
+}, [user]);
+
   const [phone, setPhone] = useState("");
   const [selectedClass, setSelectedClass] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
@@ -42,6 +50,7 @@ export default function TutorBookingForm() {
           credentials: "include",
         });
         const data = await res.json();
+        console.log(data)
         if (res.ok && data?.data) {
           setPayPerSession(Number(data.data.price_per_season_in_naira));
           setUsdRate(Number(data.data.price_per_season_in_dollar));
