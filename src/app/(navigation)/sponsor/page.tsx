@@ -5,6 +5,7 @@ import chat from "@/app/assets/chat.svg"
 import Image from "next/image";
 import { Beneficiaries } from "@/app/components/beneficiaries";
 import partner from "@/app/assets/partner.jpg"
+import Sponsor from "./sponse";
 
 export default function Counselling (){
      
@@ -17,6 +18,7 @@ export default function Counselling (){
             <h2 className="font-[600] md:text-[48px] text-[32px] color-[#0F0F0F]">Sponsor a Student: Empower a Brighter Future</h2>
             <p className="font-[400] text-[18px] color-[#0F0F0F]">Education is a powerful tool for change, but not every student has the financial means to pursue their dreams. Our Sponsor a Student initiative provides an opportunity for generous individuals and organizations to support students in need.</p>
             
+            <Sponsor/>
             <div className="flex flex-col gap-[32px]">
                 <h3 className="font-[600] text-[24px] text-[#0F0F0F] flex gap-[16px]">
                     <span><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
