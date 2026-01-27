@@ -21,7 +21,7 @@ export default function Sponsor() {
   }, []);
 
   const handlePayment = async () => {
-    // Validate inputs
+    // Validation
     if (!name.trim() || !email.trim() || !phone.trim() || amount <= 0) {
       setMessage("Please fill all required fields with valid values.");
       return;
@@ -35,27 +35,26 @@ export default function Sponsor() {
     setLoading(true);
     setMessage("");
 
+    
+      // 1️⃣ Initialize payment - NO reference sent here
     try {
-      // 1️⃣ Initialize payment
+      // Initialize & verify payment from the same endpoint
       const res = await fetch("/api/paystack", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          amount: amount * 100, // convert to kobo
-          email,
           name,
+          email,
+          amount,
         }),
       });
 
       const data = await res.json();
-      if (!res.ok || !data.success) {
-        throw new Error(data.message || "Payment initialization failed");
-      }
+      if (!res.ok || !data.success) throw new Error(data.message || "Payment initialization failed");
 
       const { reference, publicKey } = data;
       const PaystackPop = (window as any).PaystackPop;
 
-      // 2️⃣ Setup Paystack payment
       const handler = PaystackPop.setup({
         key: publicKey,
         email,
@@ -71,23 +70,23 @@ export default function Sponsor() {
         callback: function (response: any) {
           (async () => {
             try {
-              // Verify payment
-              const verifyRes = await fetch("/api/verify-payment", {
+              // Verify payment directly through the same endpoint
+              const verifyRes = await fetch("/api/paystack", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ reference: response.reference }),
               });
 
               const verifyData = await verifyRes.json();
-              if (!verifyData.success)
-                throw new Error("Payment verification failed");
+              if (!verifyData.success) throw new Error("Payment verification failed");
 
-              // Create booking
-              const bookingRes = await fetch(
+
+              // 4️⃣ Create sponsor record
+              const sponsorRes = await fetch(
                 "https://api.citadel-i.com.ng/api/v1/bookings/create_booking",
                 {
                   method: "POST",
-                  credentials: "include",
+                  credentials: "include", // send cookies if needed
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({
                     name,
@@ -101,10 +100,10 @@ export default function Sponsor() {
                 }
               );
 
-              const bookingResult = await bookingRes.json();
-              if (!bookingResult.success) throw new Error("Booking failed");
+              const sponsorData = await sponsorRes.json();
+              if (!sponsorData.success) throw new Error("Sponsor creation failed");
 
-              alert("Booking successful! Payment confirmed.");
+              alert("Thank you! Sponsor payment successful.");
               setName("");
               setEmail("");
               setPhone("");
@@ -127,7 +126,6 @@ export default function Sponsor() {
     }
   };
 
-  // -------------------- JSX --------------------
   return (
     <aside className="w-full md:w-[520px] bg-white text-black p-6 rounded-lg flex flex-col gap-6 shadow-md">
       <Script
@@ -136,7 +134,8 @@ export default function Sponsor() {
         onLoad={() => setPaystackReady(true)}
       />
 
-      <h2 className="text-xl font-semibold">Donate to sponsor students</h2>
+      <h2 className="text-xl font-semibold">Donate to Sponsor Students</h2>
+
       <div className="flex flex-col gap-4">
         {/* Name */}
         <div className="flex flex-col gap-1">
