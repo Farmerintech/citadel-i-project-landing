@@ -93,7 +93,8 @@ export default function ResourcesPage() {
           <div key={index} className="bg-white shadow px-3 rounded-xl">
             <div className="flex items-center justify-center w-full h-[200px] mb-2">
               {ResourcesImages.map(image => image.name === resource.source ?
-                <Image key={image.name} src={resource.filePath} alt={image.name} className='rounded-xl'/> : null
+                <Image key={image.name} src={resource.filePath ?? image.image} alt={image.name} width={100} height={100}
+                 className='rounded-xl w-full h-full'/> : null
               )}
             </div>
             <div className="flex gap-[16px] flex-col">
