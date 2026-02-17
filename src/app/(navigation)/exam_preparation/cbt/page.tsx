@@ -29,18 +29,24 @@ export default function page (){
 
     return (
     <>
-    <section className='flex flex-col md:flex-row gap-[12px] justify-between bg-[#F3F3F3] xl:px-[100px] px-[16px] py-[24px]'>
+    <section className='flex 
+    flex-col md:flex-row gap-[12px] justify-between bg-[#F3F3F3] xl:px-[100px] px-[16px] py-[24px]'>
         <div>
             <h2 className='text-[32px] font-[700]'>WAEC & JAMB CBT SIMULATOR</h2>
+            <p className="text-[28px] font-">You are require to login befoe you gain access to the CBT simulator</p>
         </div>
         <button className='w-[280px] px-[24px] py-[12px] bg-[#FF5900] rounded-[8px] text-white'>
         Study Saved questions
         </button>
     </section>
-     <section className="xl:px-[100px] px-[16px] flex gap-[20px] md:flex-row flex-col bg-[#F3F3F3] py-[24px]">
-        <aside className="lg:w-[836px] bg-[#FFFFFF] flex flex-col gap-[48px] lg:px-[32px] px-[16px]  py-[40px]">
+     <section className="xl:px-[100px]
+      px-[16px] flex gap-[20px] md:flex-row flex-col bg-[#F3F3F3] py-[24px]">
+        <aside className="lg:w-[836px] bg-[#FFFFFF] flex flex-col gap-[48px]
+         lg:px-[32px] px-[16px]  py-[40px]">
             <p>
-            Get ready for JAMB, WAEC, and other CBT exams with our interactive simulator! Practice with real-time questions, timed sessions, and instant results. Select your subjects and start your mock exam now.
+            Get ready for JAMB, WAEC, and other CBT exams with
+             our interactive simulator! Practice with real-time questions,
+              timed sessions, and instant results. Select your subjects and start your mock exam now.
             </p>
             <div className='bg-[#FEF6E6] p-[24px] gap-[32px] rounded-[8px] flex flex-col'>
                 <Image src={jamb} alt='jamb'/>

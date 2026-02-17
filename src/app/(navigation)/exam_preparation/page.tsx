@@ -357,7 +357,8 @@ export default function page() {
         <div className="md:flex hidden">
           <div className="bg-[#FEF6E6] p-[16px] flex flex-col gap-[24px]">
             <span className="flex items-center px-[16px] py-[8px] gap-[12px]  ">
-              <FiPhoneOutgoing className='w-[50px] h-[50px]' /> <p className="font-semibold text-[24px] leading-[100%]">
+              <FiPhoneOutgoing className='w-[50px] h-[50px]' /> <p className="font-semibold 
+              text-[24px] leading-[100%]">
                 Need Help? Book a one-on-one Tutor</p>
             </span>
             <p className="text-[16px]">Need extra help with you studies?

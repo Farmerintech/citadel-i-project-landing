@@ -191,7 +191,7 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
      {active===2 &&  (
   <>
     {/* FILTERS */}
-    <div className="flex flex-col gap-[16px] gap-2 bg-[#FFFBF9] p-[16px]  rounded-[4px]">
+    <div className="flex flex-col gap-[16px]  bg-[#FFFBF9] p-[16px]  rounded-[4px]">
       {/* School */}
       <div className="flex flex-col gap-2">
         <label className="font-[600] text-[16px]">Select School</label>
