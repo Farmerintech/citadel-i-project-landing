@@ -98,7 +98,7 @@ const [showDetails, setShowDetails] = useState(false);
             </p>
             <button className="bg-[#FF5900] text-white px-[24px] py-[12px] gap-[8px] rounded-[8px]">Book a Tutor Now</button>
            {/* teachers should be fecthed here  */}
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-[40px] mt-10">
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-[20px] mt-10">
   {teachers.map((teacher) => (
     <div
       key={teacher.id}
@@ -111,7 +111,7 @@ const [showDetails, setShowDetails] = useState(false);
           alt={`${teacher.firstName} ${teacher.lastName}`}
           width={300}
           height={260}
-          className="w-full h-full object-cover"
+          className="w-full h-full "
         />
       </div>
 

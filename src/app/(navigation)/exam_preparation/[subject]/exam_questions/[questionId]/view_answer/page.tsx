@@ -51,7 +51,7 @@ export default function page() {
   
 
   return (
-    <main className="xl:px-[100px] md:px-[24px] py-3 px-[16px] bg-[#F3F3F3] py-[24px]">
+    <main className="xl:px-[100px] md:px-[24px] px-[16px] bg-[#F3F3F3] py-[24px]">
       <div className="flex md:flex-row flex-col md:items-center justify-between gap-[7px]">
         <span className="">
           <p className='flex gap-[8px]'>
@@ -75,7 +75,8 @@ export default function page() {
         </Button>
       </div>
       <section className=" flex gap-[20px] md:flex-row flex-col pt-[24px] ">
-        <aside className="lg:w-[836px] bg-[#FFFFFF] flex flex-col gap-[48px] md:px-[32px] py-[24px] p-[8px]">
+        <aside className="lg:w-[836px] bg-[#FFFFFF] flex flex-col gap-[48px] md:px-[32px] py-[24px] 
+        p-[8px]">
           <article className="flex flex-col gap-[24px]">
             <div className="flex flex-col gap-2.5">
               {data ? (

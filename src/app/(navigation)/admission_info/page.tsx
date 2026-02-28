@@ -179,14 +179,16 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
         <section className=" md:bg-[#F3F3F3] md:px-6 lg:px-[100px] py-2 flex flex-col-reverse md:flex-row-reverse  items-start justify-between gap-2">
            {/* <RightSide/> */}
            <StaticPage />
-      <aside className="p-[16px] bg-[#F9D68A] lg:rounded-[4px] w-full md:w-2/3 flex-col flex gap-[24px] custom-scrollbar md:overflow-y-scroll md:h-[900px] lg:h-[800px]">
+      <aside className="p-[16px] bg-[#F9D68A] lg:rounded-[4px]
+       w-full md:w-2/3 flex-col flex gap-[24px] custom-scrollbar
+        md:overflow-y-scroll md:h-[900px] lg:h-[800px]">
 
       {/* ======================================================
           IF API DATA AVAILABLE => SHOW FILTER BOX + API RESULTS
       ======================================================= */}
       <div className="py-3 px-5 flex gap-5 justify-between">
-        <button className={`${active ===1 ? "border-b-2 border-[#FF5900]  text-[#FF5900]  font-[600]":"text-white"}`} onClick={()=>setActive(1)}>General Admission Requirements</button>
-        <button className={`${active ===2 ? "border-b-2 border-[#FF5900]  text-[#FF5900]  font-[600]":"text-white"}`} onClick={()=>setActive(2)}>School Specific</button>
+        <button className={`${active ===1 ? "border-b-2 border-[#FF5900]  text-green-950   font-[600]":"text-green"}`} onClick={()=>setActive(1)}>General Admission Requirements</button>
+        <button className={`${active ===2 ? "border-b-2 border-[#FF5900]  text-green-950  font-[600]":"text-green"}`} onClick={()=>setActive(2)}>Click here to search for school</button>
       </div>
      {active===2 &&  (
   <>
