@@ -60,7 +60,7 @@ export default function Counselling (){
                 <p className="text-[18px] font-[400] flex gap-[8px]">
                     <span>
                        <svg width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                       <rect x="4" y="6" width="12" height="12" fill="#F9D68A"/>
+     <rect x="4" y="6" width="12" height="12" fill="#F9D68A"/>
                        </svg>
 
                     </span>

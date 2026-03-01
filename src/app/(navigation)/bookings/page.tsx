@@ -98,7 +98,7 @@ const [showDetails, setShowDetails] = useState(false);
             </p>
             <button className="bg-[#FF5900] text-white px-[24px] py-[12px] gap-[8px] rounded-[8px]">Book a Tutor Now</button>
            {/* teachers should be fecthed here  */}
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-[40px] mt-10">
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-[20px] mt-10">
   {teachers.map((teacher) => (
     <div
       key={teacher.id}
@@ -111,7 +111,7 @@ const [showDetails, setShowDetails] = useState(false);
           alt={`${teacher.firstName} ${teacher.lastName}`}
           width={300}
           height={260}
-          className="w-full h-full object-cover"
+          className="w-full h-full "
         />
       </div>
 
@@ -204,7 +204,8 @@ const [showDetails, setShowDetails] = useState(false);
 
                 </div>
                 <div className=" ">
-                    <Image src={Bookings2} alt='' className="w-full  md:w-[360px] h-[360px] rounded-[24px]"/>
+                    <Image src={Bookings2} alt='' className="w-full  
+                    md:w-[360px] h-[360px] rounded-[24px]"/>
                 </div>
             </div>
           </aside>
@@ -214,8 +215,23 @@ const [showDetails, setShowDetails] = useState(false);
             <aside className="max-w-[477px]">
               <h2 className="font-[600] mb-5">Terms and Conditions/Process</h2>
               <ul>
-                <li>After making your payment. You’ll received a confirmation email immediately</li>
+                <li>After making your payment. You’ll received a confirmation email immediately.</li>
+
               </ul>
+
+                <div className="font-[600] text-[#0F0F0F] mt-[50px]  flex flex-col gap-[24px]">
+                <h4>You can also have a quick chat with us to book a tutor on whatsapp</h4>
+                <a 
+  href="https://wa.me/2348062817634?text=Hi%2C%20I%20need%20help%20with%20tutoring"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="px-6 py-3 bg-[#25D366]
+   text-white rounded-lg hover:bg-[#20BA5A] text-center block"
+>
+  Chat on WhatsApp
+</a>
+
+            </div>
             </aside>
           </section>
 

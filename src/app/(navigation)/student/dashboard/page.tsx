@@ -211,7 +211,7 @@ const avater = require("@/app/assets/avatar.jpg")
             <div className="flex flex-col gap-3">
               <button
                 className="text-left px-3 py-2 rounded hover:bg-gray-200"
-                onClick={() => router.push("/student/edit-profile")}
+                onClick={() => router.push("")}
               >
                 Edit Profile
               </button>

@@ -118,11 +118,13 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
   const router = useRouter();
 
   return (
-    <main className="xl:px-[100px] md:px-[24px] py-3 px-[16px] bg-[#F3F3F3] py-[24px]">
+    <main className="xl:px-[100px] md:px-[24px] px-[16px] bg-[#F3F3F3] py-[24px]">
       <div className="flex md:flex-row flex-col md:items-center justify-between gap-[7px]">
         <span className="">
           <p className='flex gap-[8px]'>
-          <span className='flex gap-[8px] items-center text-[#8C3100]'>{`${formData.examType !== '' ? formData.examType: 'All'}` } <FaChevronRight/> </span>
+          <span className='flex gap-[8px] items-center
+           text-[#8C3100]'>
+            {`${formData.examType !== '' ? formData.examType: 'All'}` } <FaChevronRight/> </span>
           <span className="text-[#FF5900] text-[16px]">
             {matched ? `${matched.name} Past Question` : "Loading..."}
           </span>

@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import { useCBTStore } from "@/app/store/cbt";
 import { useAuthStore } from "@/app/store/user";
 import { useRouter } from "next/navigation";
@@ -38,7 +38,7 @@ export default function ScorePage() {
           className="mt-6 bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600"
           onClick={() =>finish() }
         >
-          Finish
+         <Link href="/exam_prepration"> Finish</Link>
         </button>
       </div>
     </section>
