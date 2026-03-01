@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+
 import { useCBTStore } from "@/app/store/cbt";
 import { useAuthStore } from "@/app/store/user";
 import { useRouter } from "next/navigation";
@@ -11,13 +11,13 @@ export default function ScorePage() {
   // Calculate total
   const totalScore = subjectState.reduce((acc, curr) => acc + curr.score, 0);
   const finish = () =>{
-    router.push("http://localhost:3000/exam_preparation/jamb_simulator");
+    router.push("/exam_preparation");
     resetCBT()
   }
   return (
     <section className="flex flex-col gap-6 items-center justify-center py-16 bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold">Your Exam Scores</h1>
-        <p>Dear{user?.firstName || "Candidate"} {user?.lastName || "Candidate"}, Below is the breaking down of your eam score </p>
+        <p>Dear {user?.firstName || "Candidate"} {user?.lastName || "Candidate"}, Below is the breaking down of your exam score</p>
 
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md flex flex-col gap-4">
         {subjectState.map(({ subject, score }) => (
@@ -38,7 +38,7 @@ export default function ScorePage() {
           className="mt-6 bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600"
           onClick={() =>finish() }
         >
-         <Link href="/exam_prepration"> Finish</Link>
+         Finish
         </button>
       </div>
     </section>

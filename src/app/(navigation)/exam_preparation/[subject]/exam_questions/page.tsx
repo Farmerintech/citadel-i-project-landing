@@ -89,6 +89,7 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
       }
 
       setData(result.data);
+      setTotalPage(result.totalPages || Math.ceil((result.total || 0) / 10));
       console.log("Fetched:", result);
     } catch (err: any) {
       console.error(err);
@@ -320,7 +321,7 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
                 disabled={currentPage === 1}
               >
                 <Link
-                  href={`/exam_preparation/${matched?.name}/exam_questions?page=${Math.max(
+                  href={`/exam_preparation/${matched?.url}/exam_questions?page=${Math.max(
                     currentPage - 1,
                     1
                   )}`}
@@ -335,7 +336,7 @@ const [showAnswer, setShowAnswer] = useState<number | null>(null);
                 disabled={currentPage === totalPage}
               >
                 <Link
-                  href={`/exam_preparation/${matched?.name}/exam_questions?page=${
+                  href={`/exam_preparation/${matched?.url}/exam_questions?page=${
                     currentPage + 1
                   }`}
                 >
